@@ -1,0 +1,242 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "16dc4f6c-4104-42fb-864e-f2aed6fc0cd0",
+   "metadata": {},
+   "source": [
+    "# Research Tools for iPad Stylus and Image Capture"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "91cb083b-38bb-4e4e-b041-c543de58ac34",
+   "metadata": {},
+   "source": [
+    "Find one or more iPad stylus interface Python libraries. Even better would be to find a Jupyter widget that when called opens up a handwriting box or something. Experiment with them to see how they work.\n",
+    "\n",
+    "Deliverable: Paste links to the tools and a summary of your thoughts of each."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a341997e-26a0-48f1-a8be-77b8701fc04e",
+   "metadata": {},
+   "source": [
+    "### Some overall notes about the research\n",
+    "\n",
+    "While researching, I came across a thread that asked exactly this question. How can we capture data from a stylus in Python, preferrably a notebook widget? So far, I'm using a mouse in this work, but there are open topics about getting stylus data.  \n",
+    "\n",
+    "**JupyterLab Thread**\n",
+    "Shows recently active thread about exactly this issue in Python. Last post made 19 days ago.\n",
+    "\n",
+    "inline whiteboard with jupyter notebook:\n",
+    "jupyterlab/jupyterlab: Issue #9194\n",
+    "\n",
+    "**Tool 1: ipyCanvas**\n",
+    "https://github.com/martinRenou/ipycanvas\n",
+    "\n",
+    "Twitter video of iPyCanvas:\n",
+    "https://twitter.com/martinRenou/status/1354121784539414529 (edited)\n",
+    "\n",
+    "Using a pen:\n",
+    "https://stackoverflow.com/questions/54003194/how-can-i-access-tablet-pen-data-via-python\n",
+    "\n",
+    "**Tool 2: ipyDrawIO**\n",
+    "https://github.com/deathbeds/ipydrawio\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "70fc4547-1a55-4706-adc5-5216728e2541",
+   "metadata": {},
+   "source": [
+    "## Testing ipycanvas"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bfbf3f1f-2a2a-45e2-9037-58922ebf098a",
+   "metadata": {},
+   "source": [
+    "Ipycanvas is a lightweight stable library exposing the browser's Canvas API to iPython. You can download the repo and use it in a notebook. The toolset claims it allows you to draw anything. \n",
+    "\n",
+    "Briefly, with a few lines in a code block the jupyter notebook will open a cell below where it will start 'listening' to the mouse button press (see image 1):\n",
+    "\n",
+    "\n",
+    "<img src=\"./testing_iPyCanvas/img1.png\" alt=\"Kitten\" title=\"A cute kitten\" width=\"750\" /> "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d62004cd-7b95-442b-a55e-e31eb30a876e",
+   "metadata": {},
+   "source": [
+    "Overall, the tool is intuitive and easy-to-use with little-to no explanation needed. \n",
+    "As far as speed, it's difficult to tell. Writing by mouse tends to be a little slow to get what you want. I don't have a stylus yet, but the author posted a twitter video of him handwriting with a stylus on an electronic pad (https://twitter.com/martinRenou/status/1354121784539414529). \n",
+    "\n",
+    "Here is a list of the pros and cons I've noticed while using ipycanvas:"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8c0ff0a8-6940-4b18-ac5c-39716fb5104f",
+   "metadata": {},
+   "source": [
+    "**Pros:**\n",
+    "- Fast and lightweight. Not many lines of code just to get a canvas right there in your notebook.\n",
+    "- There is a color-picker box so you can change the pencils color.\n",
+    "- You can write in a cavas, code in another cell, then come back to the same canvas drawing area (see image 2).\n",
+    "- You can style your pen for different fonts, colors, sizes etc (image 3).\n",
+    "- This tool is farily new and actively maintained. The last commit was 7 days ago. The author could be open to contributions / fast at responding to issues.\n",
+    "- On the ipycanvas twitter ( https://twitter.com/hashtag/ipycanvas?src=hashtag_click ), you have dozens of people posting them using the tool. I see this as a pro because people have adopted this and will likely have templates of their work I can copy while testing the applications uses and while I develop my own product. This could be an avenue to get the word out for our product. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8f387bc0-db60-4c2c-8e0c-f2295884d4f8",
+   "metadata": {},
+   "source": [
+    "<img src=\"./testing_iPyCanvas/img2.png\" alt=\"Kitten\" title=\"A cute kitten\" width=\"750\" /> "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8f89b68c-e90c-43b1-8881-e142e452e4e1",
+   "metadata": {},
+   "source": [
+    "\n",
+    "<img src=\"./testing_iPyCanvas/img3.png\" alt=\"Kitten\" title=\"A cute kitten\" width=\"750\" /> \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cc8b77d9-08e9-430b-b3b8-334eab5c5f46",
+   "metadata": {},
+   "source": [
+    "**Cons:**\n",
+    "\n",
+    "Here is a list of improvements that could be made:\n",
+    "\n",
+    "- There is no delete / undo button. If you make a mistake, you have to start over. This I'd list as a hi-priority task to reduce user latency. People make all kinds of mistakes while using a mouse or stylus. Having to rewrite before sending to OCR API would be a pain and reduce user experience. \n",
+    "- Needs an \"outline\" or boundaries so you can see where you need to stop drawing or it gets confusing to the user. I thought it had stopped working, but it just meant I was traying to draw out of bounds. The mouse release was not recognized so when I came back to the drawing area, it marked up what I had. It would be useful to apply a boundary for the user.   This is a medium to high priority task. \n",
+    "- So far there is no \"inline writing\" and drawings must be done in a separate cell on the canvas.\n",
+    "- This tool is new. There are likely many holes that could take a lot of time to fill. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9e2e333a-c280-4cf7-8a1b-12cb596e56d6",
+   "metadata": {},
+   "source": [
+    "## Testing ipydrawio"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "79c99424-dc0a-4da7-8f2c-693ce6abb984",
+   "metadata": {},
+   "source": [
+    "\"ipydrawio is a standalone embedding of the FOSS drawio / mxgraph package into jupyterlab.\" - Author @deathbeds\n",
+    "\n",
+    "It's purpose is to implement Draw.io from Diagrams.net, a software for flowcharts, network diagrams and more.\n",
+    "\n",
+    "It exists as a widget accessible on jupyter lab (see image 1). "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e64f264e-ca18-4390-ac71-c6ccba25a7dd",
+   "metadata": {},
+   "source": [
+    "<img src=\"./testing_ipydrawio/ipydrawio_1.png\" alt=\"Kitten\" title=\"A cute kitten\" width=\"250\" /> "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d1f97a63-9530-422c-91de-351c0b3eaef1",
+   "metadata": {},
+   "source": [
+    "ipydrawio is really just a canvas that has ported over every tool from draw.io, including a freehand / handwriting mode (see image 4). The tool can open to a blank canvas or several templates (see image 2 and 3). You can even import work done on draw.io's website."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4b6cdbd0-e4de-448d-8306-d7a967d98226",
+   "metadata": {},
+   "source": [
+    "**Image 2 and 3**\n",
+    "\n",
+    "<img src=\"./testing_ipydrawio/ipydrawio_blank_canvas.png\" alt=\"\n",
+    "\" title=\"A cute kitten\" width=\"500\" />\n",
+    "<img src=\"./testing_ipydrawio/ipydrawio_prepop_canvas2.png\" alt=\"\n",
+    "\" title=\"A cute kitten\" width=\"500\" /> "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "36e34755-a657-4c83-ba12-bc214110fb63",
+   "metadata": {},
+   "source": [
+    "**Image 4**\n",
+    "\n",
+    "<img src=\"./testing_ipydrawio/ipydrawio_free_hand_option.png\" alt=\"Kitten\" title=\"A cute kitten\" width=\"350\" /> "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "479c8f13-ddbc-49d9-be08-24e38cbb9325",
+   "metadata": {},
+   "source": [
+    "Using this, we draw just like any other canvas:\n",
+    "\n",
+    "<img src=\"./testing_ipydrawio/ipydrawio_drew_some_math.png\" alt=\"Kitten\" title=\"A cute kitten\" width=\"500\" /> "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5033a6cb-4a2c-4110-90a5-3f89949c2d97",
+   "metadata": {},
+   "source": [
+    "**Pros:**\n",
+    "- Many features that have not much to do with our application but many would find useful for notes in general. This is similar to one note where you can draw anywhere and freely.\n",
+    "- It's a full-fledged canvas that you can freely write into a text box or mouse-draw mathematics. This is not intended for math, but it will let you draw what you want.\n",
+    "- You can have a lot of text style options, again, because it is coming from a finished product. \n",
+    "- Up-to-date and maintained. This is the advantage of something like this over "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "eb2e76df-9d8d-42ad-83aa-9e89521055e4",
+   "metadata": {},
+   "source": [
+    "**Cons:**\n",
+    "- Math writing isn't dedicted. I'm technically abusing the drawing tool.\n",
+    "- Drawing isn't exactly seamless and sometimes the input stops before you're finished, detracting from a smooth seamless experience.\n",
+    "- You cannot change a drawing once it's made. If you mess up, you have to start from scratch.\n",
+    "- This is almost a fleshed out application, not necessarily a block of code I can just drop in and use like ipycanvas tool. \n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
