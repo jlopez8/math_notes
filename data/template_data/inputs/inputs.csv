@@ -1,91 +1,91 @@
-category,designation,filetag,latex
-algebra,order_operations,1,24+6 \cdot \frac{2}{3}-4^{2}
-algebra,order_operations,2,(15-7) \cdot(3-7)
-algebra,simplifying,3,\frac{a}{2^{3}}(64)-12 a \div 6
-algebra,exponential,4,\frac{(16 \sqrt{x})^{2}}{y^{-1}}
-algebra,linear_eq,5,2 x-\frac{2}{3}=\frac{3}{4} y+3
-algebra,factoring_eq,6,3 x^{3}-6 x^{2}-27 x+54=0
-algebra,rational_eq,7,"\frac{x}{x^{2}-9}+\frac{4}{x+3}=\frac{3}{x^{2}-9} x \neq 3,-3"
-algebra,abs_value_eq,8,|3 x+1|=|2 x+3|
-algebra,inequality,9,-\frac{1}{2}|x+2|<4
-algebra,quadratic_eq,10,2 x^{2}+10 x+17=0
-algebra,odd_even,11,f(x)=-\frac{5}{x^{3}}+9 x^{5}
+category,designation,filetag,latex,
+algebra,order_operations,001,24+6 \cdot \frac{2}{3}-4^{2},
+algebra,order_operations,002,(15-7) \cdot(3-7),
+algebra,simplifying,003,\frac{a}{2^{3}}(64)-12 a \div 6,
+algebra,exponential,004,\frac{(16 \sqrt{x})^{2}}{y^{-1}},
+algebra,linear_eq,005,2 x-\frac{2}{3}=\frac{3}{4} y+3,
+algebra,factoring_eq,6,3 x^{3}-6 x^{2}-27 x+54=0,
+algebra,rational_eq,7,"\frac{x}{x^{2}-9}+\frac{4}{x+3}=\frac{3}{x^{2}-9} x \neq 3,-3",
+algebra,abs_value_eq,8,|3 x+1|=|2 x+3|,
+algebra,inequality,9,-\frac{1}{2}|x+2|<4,
+algebra,quadratic_eq,10,2 x^{2}+10 x+17=0,
+algebra,odd_even,11,f(x)=-\frac{5}{x^{3}}+9 x^{5},
 algebra,piecewise,12,"f(x)=\left\{\begin{array}{lr}
 x+1 \text { if }-2<x<3 \\
 -x \quad \text { if } & x \geq 3
-\end{array}\right."
-algebra,roots,13,f(x)=x\left(4 x^{2}-12 x+9\right)\left(x^{2}+8 x+16\right)
-algebra,divide_poly,14,x + 1 \longdiv { 5 x ^ { 2 } + 3 x - 2 }
-algebra,rational_roots,15,f(x)=3 x^{4}-11 x^{3}+10 x-4
-algebra,asymptote,16,g(x)=\frac{6 x^{3}-10 x}{2 x^{3}+5 x^{2}}
-algebra,exponential,17,f(x)=3(4)^{-x}+2
-algebra,logarithm,18,\log _{y}(137)=x
-algebra,log_eq,19,\log _{5}(4 x+7)-\log _{5}(x-1)=2
-calculus,limits,20,\lim _{x \rightarrow 5^{-}} \frac{e^{x}}{(x-5)^{3}}
-calculus,limits,21,\lim _{x \rightarrow 2} \sqrt{f(x)}
+\end{array}\right.",
+algebra,roots,13,f(x)=x\left(4 x^{2}-12 x+9\right)\left(x^{2}+8 x+16\right),
+algebra,divide_poly,14,x + 1 \longdiv { 5 x ^ { 2 } + 3 x - 2 },
+algebra,rational_roots,15,f(x)=3 x^{4}-11 x^{3}+10 x-4,
+algebra,asymptote,16,g(x)=\frac{6 x^{3}-10 x}{2 x^{3}+5 x^{2}},
+algebra,exponential,17,f(x)=3(4)^{-x}+2,
+algebra,logarithm,18,\log _{y}(137)=x,
+algebra,log_eq,19,\log _{5}(4 x+7)-\log _{5}(x-1)=2,
+calculus,limits,20,\lim _{x \rightarrow 5^{-}} \frac{e^{x}}{(x-5)^{3}},
+calculus,limits,21,\lim _{x \rightarrow 2} \sqrt{f(x)},
 calculus,continuity,22,"f(x)=\left\{\begin{array}{ll}
 \frac{x^{2}-4}{x-2} & \text { if } x<2 \\
 a x^{2}-b x+3 & \text { if } 2 \leqslant x<3 \\
 2 x-a+b & \text { if } x \geqslant 3
-\end{array}\right."
-calculus,indeterm_lim,23,\lim _{x \rightarrow \infty}\left(\sqrt{9 x^{2}+x}-3 x\right)
-calculus,derivative,24,f^{\prime}(a)=\lim _{h \rightarrow 0} \frac{f(a+h)-f(a)}{h}
-calculus,derivative,25,\frac{d}{d x}\left(\frac{d y}{d x}\right)=\frac{d^{2} y}{d x^{2}}
+\end{array}\right.",
+calculus,indeterm_lim,23,\lim _{x \rightarrow \infty}\left(\sqrt{9 x^{2}+x}-3 x\right),
+calculus,derivative,24,f^{\prime}(a)=\lim _{h \rightarrow 0} \frac{f(a+h)-f(a)}{h},
+calculus,derivative,25,\frac{d}{d x}\left(\frac{d y}{d x}\right)=\frac{d^{2} y}{d x^{2}},
 calculus,derivative,26,"\begin{aligned}
 \frac{d}{d x}\left(x^{8}+12 x^{5}-4 x^{4}+10 x^{3}-6 x+5\right) \\
 \quad &=\frac{d}{d x}\left(x^{8}\right)+12 \frac{d}{d x}\left(x^{5}\right)-4 \frac{d}{d x}\left(x^{4}\right)+10 \frac{d}{d x}\left(x^{3}\right)-6 \frac{d}{d x}(x)+\frac{d}{d x}(5)
-\end{aligned}"
+\end{aligned}",
 calculus,chain_rule,27,"\begin{aligned}
 \frac{d y}{d x} &=\lim _{\Delta u \rightarrow 0} \frac{\Delta y}{\Delta u} \cdot \lim _{\Delta x \rightarrow 0} \frac{\Delta u}{\Delta x}
-\end{aligned}"
+\end{aligned}",
 calculus,implicit_diff,28,"\begin{aligned}
 y^{\prime \prime} &=\frac{d}{d x}\left(-\frac{x^{3}}{y^{3}}\right)=-\frac{y^{3}(d / d x)\left(x^{3}\right)-x^{3}(d / d x)\left(y^{3}\right)}{\left(y^{3}\right)^{2}}
-\end{aligned}"
-calculus,mean_value_thm,29,f^{\prime}(c)=\frac{f(b)-f(a)}{b-a}
-calculus,limits,30,\lim _{t \rightarrow 0} \frac{8^{t}-5^{t}}{t}
-calculus,newton_mthd,31,x_{n+1}=x_{n}-\frac{f\left(x_{n}\right)}{f^{\prime}\left(x_{n}\right)}
-calculus,integration,32,\lim _{n \rightarrow \infty} \sum_{i=1}^{n} \frac{\pi}{4 n} \tan \frac{i \pi}{4 n}
-calculus,anti_deriv,33,F(x)=\int_{x}^{\pi} \sqrt{1+\sec t} d t
+\end{aligned}",
+calculus,mean_value_thm,29,f^{\prime}(c)=\frac{f(b)-f(a)}{b-a},
+calculus,limits,30,\lim _{t \rightarrow 0} \frac{8^{t}-5^{t}}{t},
+calculus,newton_mthd,31,x_{n+1}=x_{n}-\frac{f\left(x_{n}\right)}{f^{\prime}\left(x_{n}\right)},
+calculus,integration,32,\lim _{n \rightarrow \infty} \sum_{i=1}^{n} \frac{\pi}{4 n} \tan \frac{i \pi}{4 n},
+calculus,anti_deriv,33,F(x)=\int_{x}^{\pi} \sqrt{1+\sec t} d t,
 calculus,anti_derive,34,"\left(\int_{a}^{x} f(t) d t+\int_{x}^{x+h} f(t) d t\right)-\int_{a}^{x} f(t) d t \\
 =\int_{x}^{x+h} f(t) d t
-"
-calculus,integration,35,\int_{-2}^{0}\left(\frac{1}{2} t^{4}+\frac{1}{4} t^{3}-t\right) d t
-calculus,integration,36,\int \frac{d x}{\sqrt{1-x^{2}} \sin ^{-1} x}
+",
+calculus,integration,35,\int_{-2}^{0}\left(\frac{1}{2} t^{4}+\frac{1}{4} t^{3}-t\right) d t,
+calculus,integration,36,\int \frac{d x}{\sqrt{1-x^{2}} \sin ^{-1} x},
 calculus,integration,37,"\begin{aligned}
 \int x \sin x d x &=f(x) g(x)-\int g(x) f^{\prime}(x) d x \\
 &=x(-\cos x)-\int(-\cos x) d x \\
 &=-x \cos x+\sin x+C
-\end{aligned}"
+\end{aligned}",
 calculus,integration,38,"\begin{aligned}
 \int \frac{d x}{x^{2} \sqrt{x^{2}+4}} =\frac{1}{4} \int \frac{\cos \theta}{\sin ^{2} \theta} d \theta=\frac{1}{4} \int \frac{d u}{u^{2}} 
 =-\frac{\csc \theta}{4}+C
-\end{aligned}"
-calculus,partial_frac,39,\frac{x^{3}-x+1}{x^{2}(x-1)^{3}}=\frac{A}{x}+\frac{B}{x^{2}}+\frac{C}{x-1}+\frac{D}{(x-1)^{2}}+\frac{E}{(x-1)^{3}}
-calculus,improp_int,40,\int_{1}^{\infty} \frac{1}{x} d x = \lim _{t \rightarrow \infty} \int_{1}^{t} \frac{1}{x} d x = \lim _{t \rightarrow \infty} \ln \left. |x|\right]_{1}^{t} = \lim _{t \rightarrow \infty}(\ln t-\ln 1)=\infty
-calculus,power_series,41,\sum_{n=0}^{\infty} c_{n} x^{n}=c_{0}+c_{1} x+c_{2} x^{2}+c_{3} x^{3}+\cdots
-calculus,series,42,\left|R_{n}(x)\right| \leqslant \frac{M}{(n+1) !}|x-a|^{n+1}
-calculus,derivative_curve,43,"\mathbf{r}^{\prime}(t) = \lim _{\Delta t \rightarrow 0}\left\langle\frac{f(t+\Delta t)-f(t)}{\Delta t}, \frac{g(t+\Delta t)-g(t)}{\Delta t}, \frac{h(t+\Delta t)-h(t)}{\Delta t}\right\rangle"
-calculus,derivative_vector,44,\frac{d}{d t}[\mathbf{u}(t) \times \mathbf{v}(t)]=\mathbf{u}^{\prime}(t) \times \mathbf{v}(t)+\mathbf{u}(t) \times \mathbf{v}^{\prime}(t)
-calculus,limits_multi_dim,45,"\lim _{(x, y) \rightarrow(0,0)} \frac{x^{2}+y^{2}}{\sqrt{x^{2}+y^{2}+1}-1}"
-calculus,partial_deriv,46,\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}=e^{-2 s}\left[\frac{\partial^{2} u}{\partial s^{2}}+\frac{\partial^{2} u}{\partial t^{2}}\right]
-calculus,directional_deriv,47,"D_{\mathrm{u}} f\left(x_{0}, y_{0}, z_{0}\right)=\lim _{h \rightarrow 0} \frac{f\left(x_{0}+h a, y_{0}+h b, z_{0}+h c\right)-f\left(x_{0}, y_{0}, z_{0}\right)}{h}"
-calculus,multiple_integral,48,"\iint_{R} f(x, y) d A=\lim _{m, n \rightarrow \infty} \sum_{i=1}^{m} \sum_{j=1}^{n} f\left(x_{i j}^{*}, y_{i j}^{*}\right) \Delta A"
+\end{aligned}",
+calculus,partial_frac,39,\frac{x^{3}-x+1}{x^{2}(x-1)^{3}}=\frac{A}{x}+\frac{B}{x^{2}}+\frac{C}{x-1}+\frac{D}{(x-1)^{2}}+\frac{E}{(x-1)^{3}},
+calculus,improp_int,40,\int_{1}^{\infty} \frac{1}{x} d x = \lim _{t \rightarrow \infty} \int_{1}^{t} \frac{1}{x} d x = \lim _{t \rightarrow \infty} \ln \left. |x|\right]_{1}^{t} = \lim _{t \rightarrow \infty}(\ln t-\ln 1)=\infty,
+calculus,power_series,41,\sum_{n=0}^{\infty} c_{n} x^{n}=c_{0}+c_{1} x+c_{2} x^{2}+c_{3} x^{3}+\cdots,
+calculus,series,42,\left|R_{n}(x)\right| \leqslant \frac{M}{(n+1) !}|x-a|^{n+1},
+calculus,derivative_curve,43,"\mathbf{r}^{\prime}(t) = \lim _{\Delta t \rightarrow 0}\left\langle\frac{f(t+\Delta t)-f(t)}{\Delta t}, \frac{g(t+\Delta t)-g(t)}{\Delta t}, \frac{h(t+\Delta t)-h(t)}{\Delta t}\right\rangle",
+calculus,derivative_vector,44,\frac{d}{d t}[\mathbf{u}(t) \times \mathbf{v}(t)]=\mathbf{u}^{\prime}(t) \times \mathbf{v}(t)+\mathbf{u}(t) \times \mathbf{v}^{\prime}(t),
+calculus,limits_multi_dim,45,"\lim _{(x, y) \rightarrow(0,0)} \frac{x^{2}+y^{2}}{\sqrt{x^{2}+y^{2}+1}-1}",
+calculus,partial_deriv,46,\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}=e^{-2 s}\left[\frac{\partial^{2} u}{\partial s^{2}}+\frac{\partial^{2} u}{\partial t^{2}}\right],
+calculus,directional_deriv,47,"D_{\mathrm{u}} f\left(x_{0}, y_{0}, z_{0}\right)=\lim _{h \rightarrow 0} \frac{f\left(x_{0}+h a, y_{0}+h b, z_{0}+h c\right)-f\left(x_{0}, y_{0}, z_{0}\right)}{h}",
+calculus,multiple_integral,48,"\iint_{R} f(x, y) d A=\lim _{m, n \rightarrow \infty} \sum_{i=1}^{m} \sum_{j=1}^{n} f\left(x_{i j}^{*}, y_{i j}^{*}\right) \Delta A",
 calculus,multiple_integral,49,"V =\iint_{D}\left(x^{2}+y^{2}\right) d A=\int_{0}^{4} \int_{\frac{1}{2} y}^{\sqrt{y}}\left(x^{2}+y^{2}\right) d x d y 
-= \int_{0}^{4}\left(\frac{y^{3 / 2}}{3}+y^{5 / 2}-\frac{y^{3}}{24}-\frac{y^{3}}{2}\right) d y"
-calculus,multiple_integral,50,\iiint_{B} x y z^{2} d V=\int_{0}^{3} \int_{-1}^{2} \int_{0}^{1} x y z^{2} d x d y d z
-linear_algebra,vectors,51,(2 \mathbf{u}-7 \mathbf{w})-(8 \mathbf{v}+\mathbf{u})
-linear_algebra,vectors_bases,52,"\mathbf{v}=\left(v_{1}, v_{2}, \ldots, v_{n}\right)=v_{1} \mathbf{e}_{1}+v_{2} \mathbf{e}_{2}+\cdots+v_{n} \mathbf{e}_{n}"
+= \int_{0}^{4}\left(\frac{y^{3 / 2}}{3}+y^{5 / 2}-\frac{y^{3}}{24}-\frac{y^{3}}{2}\right) d y",
+calculus,multiple_integral,50,\iiint_{B} x y z^{2} d V=\int_{0}^{3} \int_{-1}^{2} \int_{0}^{1} x y z^{2} d x d y d z,
+linear_algebra,vectors,51,(2 \mathbf{u}-7 \mathbf{w})-(8 \mathbf{v}+\mathbf{u}),
+linear_algebra,vectors_bases,52,"\mathbf{v}=\left(v_{1}, v_{2}, \ldots, v_{n}\right)=v_{1} \mathbf{e}_{1}+v_{2} \mathbf{e}_{2}+\cdots+v_{n} \mathbf{e}_{n}",
 linear_algebra,systems_lin_eqs,53,"\begin{array}{ccccc}
 a_{11} x_{1} & +a_{12} x_{2} & +\cdots &+a_{1 n} x_{n} & =b_{1} \\
 a_{21} x_{1} & +a_{22} x_{2} &+\cdots &+a_{2 n} x_{n} & =b_{2} \\
 \vdots & \vdots & &\vdots & \vdots \\
 a_{m 1} x_{1} & +a_{m 2} x_{2} & +\cdots &+a_{m n} x_{n} & =b_{m}
-\end{array}"
+\end{array}",
 linear_algebra,systems_lin_eqs,54,"\left[\begin{array}{cccc}
 1 & 1 & 2 & 9 \\
 0 & 1 & -\frac{7}{2} & -\frac{17}{2} \\
 0 & 3 & -11 & -27
-\end{array}\right]"
+\end{array}\right]",
 linear_algebra,systems_lin_eqs,55,"\left[\begin{array}{r}
 -1 \\
 2 \\
@@ -102,23 +102,23 @@ t
 -3 \\
 4 \\
 1
-\end{array}\right]"
+\end{array}\right]",
 linear_algebra,linear_mat_inverse,56,"A^{-1}=\frac{1}{a d-b c}\left[\begin{array}{rr}
 d & -b \\
 -c & a
-\end{array}\right]"
+\end{array}\right]",
 linear_algebra,determinant_eigen_value,57,"\operatorname{det}(\lambda I-A)=\left|\begin{array}{ccc}
 \lambda & 1 & 0 \\
 0 & \lambda & -1 \\
 4 & 17 & \lambda-8
-\end{array}\right|=\lambda^{3}-8 \lambda^{2}+17 \lambda-4"
+\end{array}\right|=\lambda^{3}-8 \lambda^{2}+17 \lambda-4",
 linear_algebra,power_method,58,"\left(A \mathbf{x}_{5}\right)^{T} \mathbf{x}_{5} \approx\left[\begin{array}{ll}
 3.53576 & 3.53531
 \end{array}\right]\left[\begin{array}{l}
 0.70733 \\
 0.70688
-\end{array}\right]"
-linear_algebra,composition,59,\left(T_{3} \circ T_{2} \circ T_{1}\right)(\mathbf{x})=T_{3}\left(T_{2}\left(T_{1}(\mathbf{x})\right)\right)
+\end{array}\right]",
+linear_algebra,composition,59,\left(T_{3} \circ T_{2} \circ T_{1}\right)(\mathbf{x})=T_{3}\left(T_{2}\left(T_{1}(\mathbf{x})\right)\right),
 linear_algebra,composition,60,"C B A=\left[\begin{array}{lll}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
@@ -131,7 +131,7 @@ linear_algebra,composition,60,"C B A=\left[\begin{array}{lll}
 \cos \theta & -\sin \theta & 0 \\
 \sin \theta & \cos \theta & 0 \\
 0 & 0 & 1
-\end{array}\right]"
+\end{array}\right]",
 linear_algebra,qr_decomposition,61,"\left[\begin{array}{llll}
 \mathbf{w}_{1} & \mathbf{w}_{2} & \cdots & \mathbf{w}_{k}
 \end{array}\right]=\left[\begin{array}{llll}
@@ -141,7 +141,7 @@ linear_algebra,qr_decomposition,61,"\left[\begin{array}{llll}
 0 & \left(\mathbf{w}_{2} \cdot \mathbf{q}_{2}\right) & \cdots & \left(\mathbf{w}_{k} \cdot \mathbf{q}_{2}\right) \\
 \vdots & \vdots & \ddots & \vdots \\
 0 & 0 & \cdots & \left(\mathbf{w}_{k} \cdot \mathbf{q}_{k}\right)
-\end{array}\right]"
+\end{array}\right]",
 linear_algebra,diagonalizable,62,"\begin{aligned}
 A P=A\left[\begin{array}{llll}
 \mathbf{p}_{1} & \mathbf{p}_{2} & \cdots & \mathbf{p}_{n}
@@ -168,40 +168,53 @@ p_{n 1} & p_{n 2} & \cdots & p_{n n}
 \vdots & \vdots & \ddots & \vdots \\
 0 & 0 & \cdots & \lambda_{n}
 \end{array}\right]=P D
-\end{aligned}"
-linear_algebra,inner_product_spaces,63,"b_{n}=\frac{1}{\sqrt{\pi}}\left\langle f, f_{2 n}\right\rangle=\frac{1}{\sqrt{\pi}} \int_{0}^{2 \pi} f(x) \frac{\sin n x}{\sqrt{\pi}} d x"
-real_analysis,sets,64,A \triangle B=(A-B) \cup(B-A)
-real_analysis,limits,65,\limsup _{n \rightarrow \infty} a_{n}=\inf _{n} \sup _{m \geq n} a_{m}
-real_analysis,measure,66,\mu\left(\cup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} \mu\left(A_{i}\right)
-real_analysis,measure_outer,67,\mu^{*}(E)=\inf \left\{\sum_{i=1}^{\infty} \ell\left(A_{i}\right): A_{i} \in \mathcal{C} \text { for each } i \text { and } E \subset \cup_{i=1}^{\infty} A_{i}\right\}
-real_analysis,lebesque_dominating_convergence,68,\limsup _{n \rightarrow \infty} \int f_{n} d x \leq \int \limsup _{n \rightarrow \infty} f_{n} d x ?
-real_analysis,\int \varphi=\sum a_{j}^{*} m\left(E_{j}^{*}\right)=\sum \sum_{E_{k} \supset E_{j}^{*}} a_{k} m\left(E_{j}^{*}\right)=\sum a_{k} m\left(E_{k}\right),69,
-real_analysis,lebesque_integration,70,\sum_{n=1}^{\infty} \mu(\{x: f(x) \geq n\})<\infty
-real_analysis,lebesque_integration,71,\mu(\{x:|f(x)| \geq a\}) \leq \frac{\int|f|^{p} d \mu}{a^{p}}
+\end{aligned}",
+linear_algebra,inner_product_spaces,63,"b_{n}=\frac{1}{\sqrt{\pi}}\left\langle f, f_{2 n}\right\rangle=\frac{1}{\sqrt{\pi}} \int_{0}^{2 \pi} f(x) \frac{\sin n x}{\sqrt{\pi}} d x",
+real_analysis,sets,64,A \triangle B=(A-B) \cup(B-A),
+real_analysis,limits,65,\limsup _{n \rightarrow \infty} a_{n}=\inf _{n} \sup _{m \geq n} a_{m},
+real_analysis,measure,66,\mu\left(\cup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} \mu\left(A_{i}\right),
+real_analysis,measure_outer,67,\mu^{*}(E)=\inf \left\{\sum_{i=1}^{\infty} \ell\left(A_{i}\right): A_{i} \in \mathcal{C} \text { for each } i \text { and } E \subset \cup_{i=1}^{\infty} A_{i}\right\},
+real_analysis,lebesque_dominating_convergence,68,\limsup _{n \rightarrow \infty} \int f_{n} d x \leq \int \limsup _{n \rightarrow \infty} f_{n} d x ?,
+real_analysis,\int \varphi=\sum a_{j}^{*} m\left(E_{j}^{*}\right)=\sum \sum_{E_{k} \supset E_{j}^{*}} a_{k} m\left(E_{j}^{*}\right)=\sum a_{k} m\left(E_{k}\right),69,,
+real_analysis,lebesque_integration,70,\sum_{n=1}^{\infty} \mu(\{x: f(x) \geq n\})<\infty,
+real_analysis,lebesque_integration,71,\mu(\{x:|f(x)| \geq a\}) \leq \frac{\int|f|^{p} d \mu}{a^{p}},
 real_analysis,differentiation,72,"\limsup _{h \rightarrow 0+} \frac{H(x+h)-H(x)}{h}  \leq \limsup _{h \rightarrow 0+} \frac{H(x+h)-H(x-h)}{h} 
- \leq 4 \limsup _{h \rightarrow 0+} \frac{\lambda(B(x, 2 h))}{4 h}=0"
-real_analysis,Lp,73,\int|f(x)|^{p} d x=\int_{0}^{\infty} p t^{p-1} m(\{x:|f(x)| \geq t\}) d t
-discrete_math,qualifiers,74,\left[\lim _{x \rightarrow \infty} f(x)=y\right] \equiv[\forall \epsilon>0: \exists N: \forall x>N:|f(x)-y|<\epsilon]
-discrete_math,math_logic,75,A_{1}: \forall x: E x \leftrightarrow(x=0 \vee(\exists y: E y \wedge x=S S y))
-discrete_math,math_logic,76,(P \wedge(P \rightarrow Q)) \rightarrow Q \equiv(P \wedge(\neg P \vee Q)) \rightarrow Q
+ \leq 4 \limsup _{h \rightarrow 0+} \frac{\lambda(B(x, 2 h))}{4 h}=0",
+real_analysis,Lp,73,\int|f(x)|^{p} d x=\int_{0}^{\infty} p t^{p-1} m(\{x:|f(x)| \geq t\}) d t,
+discrete_math,qualifiers,74,\left[\lim _{x \rightarrow \infty} f(x)=y\right] \equiv[\forall \epsilon>0: \exists N: \forall x>N:|f(x)-y|<\epsilon],
+discrete_math,math_logic,75,A_{1}: \forall x: E x \leftrightarrow(x=0 \vee(\exists y: E y \wedge x=S S y)),
+discrete_math,math_logic,76,(P \wedge(P \rightarrow Q)) \rightarrow Q \equiv(P \wedge(\neg P \vee Q)) \rightarrow Q,
 discrete_math,counting,77,"(x+y)^{n}=\sum_{k=0}^{\infty}\left(\begin{array}{l}
 n \\
 k
-\end{array}\right) x^{k} y^{n-k}"
-discrete_math,probability,78,"\operatorname{Pr}\left[\bigcup_{i=1}^{n} A_{i}\right]=\sum_{S \subseteq\{1 \ldots n\}, S \neq \emptyset}(-1)^{|S|+1} \operatorname{Pr}\left[\bigcap_{j \in S} A_{j}\right]"
+\end{array}\right) x^{k} y^{n-k}",
+discrete_math,probability,78,"\operatorname{Pr}\left[\bigcup_{i=1}^{n} A_{i}\right]=\sum_{S \subseteq\{1 \ldots n\}, S \neq \emptyset}(-1)^{|S|+1} \operatorname{Pr}\left[\bigcap_{j \in S} A_{j}\right]",
 discrete_math,math_induction,79,"\frac{1}{3}(n+1)^{3}+\frac{1}{2}(n+1)^{2}+\frac{1}{6}(n+1) =\frac{1}{3} n^{3}+\frac{1}{2} n^{2}+\frac{1}{6} n+n^{2}+2 n+1 =\sum_{i=0}^{n} i^{2}+(n+1)^{2} 
-=\sum_{i=0}^{n+1} i^{2}"
-physics,work,80,W_{\mathrm{ext}}=\int_{x_{i}}^{x_{f}} \sum F d x
-physics,work,81,W_{\mathrm{ext}}=\frac{1}{2} m v_{f}^{2}-\frac{1}{2} m v_{i}^{2}
-physics,momentum,82,\frac{1}{2} m_{1} v_{1 i}^{2}+\frac{1}{2} m_{2} v_{2 i}^{2}=\frac{1}{2} m_{1} v_{1 f}^{2}+\frac{1}{2} m_{2} v_{2 f}^{2}
-physics,momentum_angular,83,I=\frac{1}{12} M \ell^{2}+m_{f} d^{2}+m_{d}\left(\frac{\ell}{2}\right)^{2}=\frac{\ell^{2}}{4}\left(\frac{M}{3}+m_{d}\right)+m_{f} d^{2}
-physics,thermodynamics,84,P=\frac{Q}{\Delta t} \propto A \frac{\Delta T}{\Delta x}
-chemistry,chemical_eqs,85,"\begin{array}{l}
+=\sum_{i=0}^{n+1} i^{2}",
+physics,work,80,W_{\mathrm{ext}}=\int_{x_{i}}^{x_{f}} \sum F d x,
+physics,work,81,W_{\mathrm{ext}}=\frac{1}{2} m v_{f}^{2}-\frac{1}{2} m v_{i}^{2},
+physics,momentum,82,\frac{1}{2} m_{1} v_{1 i}^{2}+\frac{1}{2} m_{2} v_{2 i}^{2}=\frac{1}{2} m_{1} v_{1 f}^{2}+\frac{1}{2} m_{2} v_{2 f}^{2},
+physics,momentum_angular,83,I=\frac{1}{12} M \ell^{2}+m_{f} d^{2}+m_{d}\left(\frac{\ell}{2}\right)^{2}=\frac{\ell^{2}}{4}\left(\frac{M}{3}+m_{d}\right)+m_{f} d^{2},
+physics,thermodynamics,84,P=\frac{Q}{\Delta t} \propto A \frac{\Delta T}{\Delta x},
+chemistry,chemical_eqs,085,"\begin{array}{l}
 \mathrm{CH}_{4}+\mathrm{O}_{2} \rightarrow \mathrm{CO}_{2}+\mathrm{H}_{2} \mathrm{O}\\
 \text { reactants } \quad \text { products }
-\end{array}"
-chemistry,chemical_eqs,86,"\begin{array}{l}
+\end{array}",
+chemistry,chemical_eqs,086,"\begin{array}{l}
 \mathrm{CO}_{2}(g)+\mathrm{CaSiO}_{3}(s)+\mathrm{H}_{2} \mathrm{O}(l) \rightarrow \\
 \mathrm{SiO}_{2}(s)+\mathrm{Ca}\left(\mathrm{HCO}_{3}\right)_{2}(a q)
-\end{array}"
-chemistry,quantum_mech,87,\Delta E=-2.18 \times 10^{-18} \mathrm{~J}\left(\frac{1}{n_{\mathrm{f}}^{2}}-\frac{1}{n_{\mathrm{i}}^{2}}\right)
+\end{array}",
+chemistry,quantum_mech,087,\Delta E=-2.18 \times 10^{-18} \mathrm{~J}\left(\frac{1}{n_{\mathrm{f}}^{2}}-\frac{1}{n_{\mathrm{i}}^{2}}\right),
+physics,electricity_magnetism,088,\vec{E}(\vec{x})=\int_{\mathbb{R}^{3}} d^{3} \vec{x}^{\prime} \frac{\rho\left(\vec{x}^{\prime}\right)}{\left|\vec{x}-\vec{x}^{\prime}\right|^{3}}\left(\vec{x}-\vec{x}^{\prime}\right),
+physics,kinematics,089,\vec{v}=\dot{\vec{r}}=r \vec{e}_{r}+r \dot{\varphi} \vec{e}_{d}+r \dot{\vartheta} \sin \vartheta \vec{e}_{\theta},
+physics,kinematics,090,m \ddot{x}+b \dot{x}+k x=F(t),
+physics,quantum_mech,091,\tilde{\psi}(p)=\langle p \mid \psi\rangle=\int d^{3} x\langle p \mid x\rangle\langle x \mid p\rangle=\int \frac{d^{3} x}{(2 \pi \hbar)^{3 / 2}} e^{-i \frac{p \cdot x}{h}} \psi(x),
+physics,relativity,092,"\mathcal{L}=i \hbar c \bar{\psi}  \cancel{\partial} \psi -m c^{2}  \bar{\psi}  \psi, \  \cancel{\partial} \equiv \gamma^\mu \partial\mu",
+physics,Hermitian,093,A^{\dagger}=\left(A^{*}\right)^{T},
+physics,approximation,094,"\log (1+x) \approx x, \ |x| \ll 1",
+physics,relativity,095,R_{\mu \nu}-\frac{1}{2} R g_{\mu \nu}+\Lambda g_{\mu \nu}=\frac{8 \pi G}{c^{4}} T_{\mu \nu},
+physics,electricity_magnetism,096,"dF=\partial_{[\alpha} F_{\beta \gamma ]}=0 \ \text { or } \ \left\{\begin{array}{l}
+\nabla \cdot E=0 \\
+\nabla \cdot B=0
+\end{array}\right.",
+physics,relativity,097,ds^{2}=d x^{\mu} g_{\mu \nu} d x^{\nu},
