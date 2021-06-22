@@ -208,7 +208,7 @@ chemistry,quantum_mech,087,\Delta E=-2.18 \times 10^{-18} \mathrm{~J}\left(\frac
 physics,electricity_magnetism,088,\vec{E}(\vec{x})=\int_{\mathbb{R}^{3}} d^{3} \vec{x}^{\prime} \frac{\rho\left(\vec{x}^{\prime}\right)}{\left|\vec{x}-\vec{x}^{\prime}\right|^{3}}\left(\vec{x}-\vec{x}^{\prime}\right),
 physics,kinematics,089,\vec{v}=\dot{\vec{r}}=r \vec{e}_{r}+r \dot{\varphi} \vec{e}_{d}+r \dot{\vartheta} \sin \vartheta \vec{e}_{\theta},
 physics,kinematics,090,m \ddot{x}+b \dot{x}+k x=F(t),
-physics,quantum_mech,091,\tilde{\psi}(p)=\langle p \mid \psi\rangle=\int d^{3} x\langle p \mid x\rangle\langle x \mid p\rangle=\int \frac{d^{3} x}{(2 \pi \hbar)^{3 / 2}} e^{-i \frac{p \cdot x}{h}} \psi(x),
+physics,quantum_mech,091,\tilde{\psi}(p)=\langle p \mid \psi\rangle=\int d^{3} x\langle p \mid x\rangle\langle x \mid \psi \rangle=\int \frac{d^{3} x}{(2 \pi \hbar)^{3 / 2}} e^{-i \frac{p \cdot x}{\hbar}} \psi(x),
 physics,relativity,092,"\mathcal{L}=i \hbar c \bar{\psi}  \cancel{\partial} \psi -m c^{2}  \bar{\psi}  \psi, \  \cancel{\partial} \equiv \gamma^\mu \partial\mu",
 physics,Hermitian,093,A^{\dagger}=\left(A^{*}\right)^{T},
 physics,approximation,094,"\log (1+x) \approx x, \ |x| \ll 1",
