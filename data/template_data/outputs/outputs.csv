@@ -1,0 +1,195 @@
+category,designation,filetag,latex
+algebra,rational_eq,005,2 x-\frac{2}{3}=\frac{3}{4} y+3
+algebra,rational_eq,011,f(x)=-\frac{5}{x^{3}}+9 x^{5}
+algebra,rational_eq,039,\frac{x^{3}-x+1}{x^{2}(x-1)^{3}}=\frac{A}{x}+\frac{B}{x^{2}}+\frac{C}{x-1}+\frac{D}{(x-1)^{2}}+\frac{E}{(x-1)^{3}}
+algebra,rational_eq,038,\int \frac{d x}{x^{2} \sqrt{x}+4}=\frac{1}{4} \int \frac{\cos \theta}{\sin ^{2} \theta} d \theta=\frac{1}{4} \int \frac{d u}{u^{2}}=-\frac{\csc \theta}{4}+C
+algebra,rational_eq,010,2 x^{2}+10 x+17=0
+algebra,rational_eq,004,\frac{(16 \sqrt{x})^{2}}{y^{-1}}
+algebra,rational_eq,012,"f(x)=\left\{\begin{array}{ll}
+x+1 & \text { if } & -2<x<3 \\
+-x & \text { if } & x \geq 3
+\end{array}\right."
+algebra,rational_eq,006,3 x^{3}-6 x^{2}-27 x+54=0
+algebra,rational_eq,007,"\frac{x}{x^{2}-9}+\frac{4}{x+3}=\frac{3}{x^{2}-9} x \neq 3,3"
+algebra,rational_eq,013,f(x)=x\left(4 x^{2}-12 x+9\right)\left(x^{2}+8 x+16\right)
+algebra,rational_eq,017,f(x)=3(4)^{-x}+2
+algebra,rational_eq,003,\frac{a}{2^{3}}(64)-12 a \div 6
+algebra,rational_eq,002,(\mid 5-7) \cdot(3-7)
+algebra,rational_eq,016,g(x)=\frac{6 x^{3}-10 x}{2 x^{3}+5 x^{2}}
+algebra,rational_eq,028,y^{\prime \prime}=\frac{d}{d x}\left(\frac{-x^{3}}{y^{3}}\right)=\frac{-y^{3}(d / d x)\left(x^{3}\right)-x^{3}(d / d x)\left(y^{3}\right)}{\left(y^{3}\right)^{2}}
+algebra,rational_eq,014,x + 1 \longdiv { 5 x ^ { 2 } + 3 x - 2 }
+algebra,rational_eq,015,f(x)=3 x^{4}-11 x^{3}+10 x-4
+algebra,rational_eq,001,24+6 \cdot \frac{2}{3}-4^{2}
+algebra,rational_eq,029,f^{\prime}(c)=\frac{f(b)-f(a)}{b-a}
+algebra,rational_eq,066,y\left(\bigcup_{2=1}^{\infty} A_{l}\right)=\sum_{i=1}^{\infty} \mu\left(A_{i}\right)
+algebra,rational_eq,072,\lim _{h \rightarrow 0^{+}} \frac{H(x+h)-H(x)}{h} \leq \lim _{h \rightarrow 0^{+}} \frac{H(x+h)-H(x-h)}{h} \leq 4 \operatorname{limsw}_{h \rightarrow 0^{+}} \frac{\lambda(B(x) h))}{4 h}=0
+algebra,rational_eq,073,\int|f(x)|^{p} d x=\int_{0}^{\infty} p t^{p-1} m\left(\left\{x_{i}|f(x)| \geq t\right\}\right) d t
+algebra,rational_eq,067,\mu^{*}(E)=\inf \left\{\sum_{i=1}^{\infty}\left[\left(A_{i}\right): A_{i} \in C \text { for each } i \text { and } E C \bigcup_{\varepsilon=1}^{\infty} A_{i}\right\}\right.
+algebra,rational_eq,098,"(\mathbb{Z} \mid n \mathbb{Z})^{x}=\{\bar{a} \in \mathbb{Z}|n \mathbb{Z}|(a, n)=1\}"
+algebra,rational_eq,071,M(\{x:|f(x)| \geq a\}) \leq \frac{\int|f|^{p} d \mu}{a^{p}}
+algebra,rational_eq,065,\lim _{n \rightarrow \infty} 5 u p a_{n}={ }_{n}{ }_{n \geq n} f_{m \rightarrow n} q_{m}
+algebra,rational_eq,059,\left(T_{3} \circ_{2} T_{1}\right)(x)=T_{3}\left(T_{2}\left(T_{1}(x)\right)\right)
+algebra,rational_eq,058,"\left(A x_{5}\right)^{\top} X_{5} \approx\left[\begin{array}{ll}
+3.53576 & 3.53531
+\end{array}\right]\left[\begin{array}{l}
+0.70733 \\
+0.70688
+\end{array}\right]"
+algebra,rational_eq,064,A \Delta B=(A-B) \cup[B-A)
+algebra,rational_eq,070,\sum_{n=1}^{\infty} \mu\left(\left\{x_{i} f(x) \geq n\right\}\right)<\infty
+algebra,rational_eq,048,"\iint_{R} f\left(x_{1} y\right) d A=\lim _{m n \rightarrow \infty} \sum_{i=1}^{m} \sum_{j=1}^{n} f\left(x_{2 j}^{*}, y_{i j}^{*}\right) \Delta A"
+algebra,rational_eq,074,\left[\lim _{x \rightarrow \infty} f(x)=y\right] \equiv[\forall \in>0: \exists N: \forall x>N:|f(x)-y|<\varepsilon]
+algebra,rational_eq,060,"C B A=\left[\begin{array}{lll}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 0
+\end{array}\right]\left[\begin{array}{ccc}
+-1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}\right]\left[\begin{array}{ccc}
+\cos \theta & -\sin \theta & 0 \\
+\sin \theta & \cos \theta & 0 \\
+0 & 0 & 1
+\end{array}\right]"
+algebra,rational_eq,061,
+algebra,rational_eq,075,A_{1}: \forall x: \operatorname{Ex} \leftrightarrow\left(x=0 v\left(\exists y: E_{y} \wedge x=S S y\right)\right)
+algebra,rational_eq,049,"\begin{array}{c}
+V=\iint_{D}\left(x^{2}+y^{2}\right) d A=\int_{0}^{4} \int_{\frac{1}{2} y}^{\sqrt{y}}\left(x^{2}+y^{2}\right) d x d y= \\
+\int_{0}^{4}\left(\frac{y^{3 / 2}}{3}+y^{5 / 2}-\frac{y^{3}}{24}-\frac{y^{3}}{2}\right) d y
+\end{array}"
+algebra,rational_eq,088,\vec{E}(\vec{x})=\int_{R^{3}} d^{3} \vec{x}^{\prime} \frac{\rho\left(\vec{x}^{\prime}\right)}{|\vec{x}-\bar{x}|^{3}}\left(\vec{x}-\vec{x}^{\prime}\right)
+algebra,rational_eq,063,b_{n}=\frac{1}{\sqrt{\pi}}\left\langle f_{j} f_{2 n}\right\rangle=\frac{1}{\sqrt{\pi}} \int_{0}^{2 \pi} f(x) \frac{\sin n x}{\sqrt{\pi}} d x
+algebra,rational_eq,077,"(x+y)^{n}=\sum_{k=0}^{\infty}\left(\begin{array}{l}
+n \\
+k
+\end{array}\right) x^{k} y^{n-k}"
+algebra,rational_eq,076,\left(P_{\wedge}(p \rightarrow Q)\right) \rightarrow Q=\left(P_{\wedge}(\neg \operatorname{PvQ})\right) \rightarrow Q
+algebra,rational_eq,062,"\begin{aligned}
+A P &=\left[A_{p_{1}} A_{p_{2}} \cdots\right.& \cdots &\left.A p_{n}\right] \\
+&=\left[\lambda_{1} p_{1} \lambda_{2} p_{2}\right.& \cdots &\left.\lambda_{n} p_{n}\right] \\
+&=\left[\begin{array}{cccc}
+P_{11} & P_{12} & \cdots & P_{1 n} \\
+P_{a 1} & P_{22} & \cdots & P_{n} \\
+\vdots & \vdots & & \vdots \\
+p_{n 1} & P_{n 2} & \cdots & p_{n n}
+\end{array}\right]\left[\begin{array}{ccc}
+\lambda_{1} & 0 & \cdots & 0 \\
+0 & \lambda_{2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_{n}
+\end{array}\right]=P D
+\end{aligned}"
+algebra,rational_eq,089,\vec{V}=\dot{\vec{r}}=\Gamma \vec{e}_{r}+r \dot{\varphi} \vec{e}_{\varphi}+r \dot{\theta} \sin \theta \vec{e}_{\theta}
+algebra,rational_eq,084,P=\frac{Q}{\Delta t} \alpha A \frac{\Delta T}{\Delta x}
+algebra,rational_eq,090,m \ddot{x}+b \dot{x}+k x=F(t)
+algebra,rational_eq,047,"D_{v} f\left(x_{0}, y_{0}, Z_{0}\right)=\lim _{h \rightarrow 0} \frac{f\left(x_{0}+h a_{1} y_{0}+h b, z_{0}+h c\right)-f\left(x_{0}, y_{0}, z_{0}\right)}{h}"
+algebra,rational_eq,053,"\begin{array}{l}
+a_{11} x_{1}+a_{12} x_{2}+\cdots+a_{1 n} x_{n}=b_{1} \\
+a_{21} x_{1}+a_{22} x_{2}+\cdots+a_{2 n} x_{n}=b_{2} \\
+\vdots \\
+a_{m n} x_{1}+a_{m_{2}} x_{2}+\cdots+a_{m n} x_{n}=b_{m}
+\end{array}"
+algebra,rational_eq,052,"V=\left(v_{1}, v_{2}, \ldots, v_{n}\right)=v_{1} e_{1}+v_{2} e_{2}+\cdots+v_{n} e_{n}"
+algebra,rational_eq,046,\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}=e^{-2 s}\left[\frac{\partial^{\partial} u}{\partial s^{2}}+\frac{\partial^{2} U}{d t^{2}}\right]
+algebra,rational_eq,091,\psi^{v}(p)=\langle p \mid \psi\rangle=\int d^{3} x\langle p \mid x\rangle\langle x \mid \psi\rangle=\int \frac{d^{3} x}{(\partial \pi \hbar)^{3 / 2}} e^{-i \frac{p \cdot x}{\hbar}} \psi(x)
+algebra,rational_eq,085,"\begin{array}{l}
+\mathrm{CH}_{4}+\mathrm{O}_{2} \rightarrow \mathrm{CO}_{2}+\mathrm{H}_{2} \mathrm{O} \\
+\text { reactants } \\
+\text { products }
+\end{array}"
+algebra,rational_eq,093,A^{+}=\left(A^{*}\right)^{\top}
+algebra,rational_eq,087,\Delta E=-2.18 \times 10^{-18} \mathrm{~J}\left(\frac{1}{n_{f}^{2}}-\frac{1}{n_{i}^{2}}\right)
+algebra,rational_eq,050,\iint_{B}\left\{x y z^{2} d V=\int_{0}^{3} \int_{-1}^{2} \int_{0}^{1} x y z^{2} d x d y d z\right.
+algebra,rational_eq,044,\frac{d}{d t}[u(t) x v(t)]=u^{\prime}(t) x v(t)+u(t) x V^{\prime}(t)
+algebra,rational_eq,078,"\operatorname{Pr}\left[\bigcup_{i=1}^{n} A_{g}\right]=\sum_{S \leq\{1 \ldots n\}, S \neq D}(-1)^{[S \mid+1} \operatorname{Pr}\left[\bigcap_{j \in S} A_{j}\right]"
+algebra,rational_eq,079,\frac{1}{3}(n+1)^{3}+\frac{1}{2}(n+1)^{2}+\frac{1}{6}(n+1)=\frac{1}{3} n^{3}+\frac{1}{2} n^{a}+\frac{1}{6} n+n^{2}+2 n+1=\sum_{i=0}^{n} i+(n+1)^{2}=\sum_{i=0}^{n+1} i^{2}
+algebra,rational_eq,045,"\lim _{(x, y) \rightarrow(0,0)} \frac{x^{2}+y^{2}}{\sqrt{x^{2}+y^{3}+1}-1}"
+algebra,rational_eq,051,(2 u-7 w)-(8 v+u)
+algebra,rational_eq,086,"\begin{array}{l}
+\mathrm{CO}_{2}(\mathrm{~g})+\mathrm{CaS}_{i} \mathrm{O}_{3}(\mathrm{~s})+\mathrm{H}_{2} \mathrm{O}(\mathrm{l}) \rightarrow \\
+\mathrm{Si} \mathrm{O}_{2}^{(5)}+\mathrm{Ca}\left(\mathrm{HCO}_{3}\right)_{2}\left({\circ}{ }^{\circ} g\right)
+\end{array}"
+algebra,rational_eq,092,"\mathcal{L}=i \hbar c \bar{\psi} \gamma \psi-m_{c}^{2} \bar{\psi} \psi, \phi \equiv \gamma^{\mu} \partial_{\mu}"
+algebra,rational_eq,096,"J F=\partial_{\left[\alpha F_{B \gamma}\right]}=0 \quad \text { or }\left\{\begin{aligned}
+\nabla \cdot E &=0 \\
+\nabla \cdot B &=0
+\end{aligned}\right."
+algebra,rational_eq,082,X
+algebra,rational_eq,069,\int \varphi=\sum a_{j}^{*} m\left(E_{j}^{*}\right)=\sum \sum_{E_{k} D E_{j}^{*} k} m\left(E_{\rho}^{*}\right)=\sum a_{k} m\left(E_{k}\right)
+algebra,rational_eq,055,"\left[\begin{array}{l}
+-1 \\
+2 \\
+0
+\end{array}\right]+\left[\begin{array}{r}
+-3 t \\
+4 t \\
+t
+\end{array}\right]=\left[\begin{array}{r}
+-1 \\
+2 \\
+0
+\end{array}\right]+t\left[\begin{array}{r}
+-3 \\
+4 \\
+1
+\end{array}\right]"
+algebra,rational_eq,041,\sum_{n=0}^{\infty} a_{n} x^{n}=c_{0}+c_{1} x+c_{2} x^{2}+c_{3} x^{3}+\cdots
+algebra,rational_eq,040,\left.\int_{1}^{\infty} \frac{1}{x} d x=\lim _{t \rightarrow \infty} \int_{1}^{t} \frac{1}{x} d x=\lim _{t \rightarrow \infty} \ln |x|\right]_{1}^{t}=\lim _{t \rightarrow \infty}(\ln t-\ln 1)=\infty
+algebra,rational_eq,054,"\left[\begin{array}{cccc}
+1 & 2 & a \\
+0 & 1 & -\frac{7}{2} & -\frac{17}{2} \\
+0 & 3 & -11 & -27
+\end{array}\right]"
+algebra,rational_eq,068,\lim _{n \rightarrow \infty} \sup _{n \rightarrow \infty} \int f_{n} d x \leq \int \lim _{n \rightarrow \infty} \sup f_{n} d x
+algebra,rational_eq,083,I=\frac{1}{12} m e^{2}+m_{f} d^{a}+m_{d}\left(\frac{e}{2}\right)^{2}=\frac{P}{4}\left(\frac{M}{3}+m_{d}\right)+m_{f}^{2}
+algebra,rational_eq,097,d s^{2}=d x^{\mu} g_{\mu \nu} d x^{\nu}
+algebra,rational_eq,081,W_{e x t}=\frac{1}{2} m V_{f}^{2}-\frac{1}{2} m r_{i}^{2}
+algebra,rational_eq,095,R_{M \nu}-\frac{1}{2} R_{g_{\mu \nu}}+\Lambda g_{\mu \nu}=\frac{8 \pi G}{C^{4}} T_{\mu \nu}
+algebra,rational_eq,042,\left|R_{n}(x)\right| \leq \frac{M}{(n+1) !}|x-a|^{n+1}
+algebra,rational_eq,056,"A^{-1}=\frac{1}{a d-b c}\left[\begin{array}{cc}
+d & -b \\
+-C & a
+\end{array}\right]"
+algebra,rational_eq,057,"\operatorname{det}(\lambda I-A)=\left|\begin{array}{cc}
+\lambda & 1 & 0 \\
+0 & \lambda & -1 \\
+4 & 17 & 7-8
+\end{array}\right|=\lambda^{3}-8 \lambda^{2}+17 \lambda-4"
+algebra,rational_eq,043,"\left.r^{\prime}(t)=\lim _{\Delta t \rightarrow 0}\left\langle\frac{f(t+\Delta t)-f(t)}{\Delta t}\right) \frac{g(t+\Delta t)-g(t)}{\Delta t}, \frac{h(t+\Delta t)-h(t)}{\Delta t}\right\rangle"
+algebra,rational_eq,094,"\log (1+x) \approx x,|x|<<"
+algebra,rational_eq,080,W_{\text {ext }}=\int_{x_{i}}^{x_{f}} \sum F d x
+algebra,rational_eq,024,f^{\prime}(a)=\lim _{h \rightarrow 0} \frac{f(a+h)-f(a)}{h}
+algebra,rational_eq,030,\lim _{t \rightarrow 0} \frac{8^{t}-5^{t}}{t}
+algebra,rational_eq,018,\log _{y}(137)=x
+algebra,rational_eq,019,\log _{5}(4 x+7)-\log _{5}(x-1)=2
+algebra,rational_eq,031,x_{n+1}=x_{n}-\frac{f\left(x_{n}\right)}{f^{\prime}\left(x_{n}\right)}
+algebra,rational_eq,025,\frac{d}{d x}\left(\frac{d y}{d x}\right)=\frac{\partial^{a} y}{d x^{2}}
+algebra,rational_eq,033,F(x)=\int_{x}^{4} \sqrt{1+\operatorname{set}} d t
+algebra,rational_eq,027,\frac{d y}{d x}=\lim _{\Delta \rightarrow 0} \frac{\Delta y}{\Delta v} \cdot \lim _{\Delta x \rightarrow 0} \frac{\Delta u}{\Delta x}
+algebra,rational_eq,026,"\begin{array}{l}
+\frac{d}{d x}\left(x^{8}+12 x^{5}-4 x^{4}+10 x^{3}-6 x+5\right) \\
+\quad=\frac{d}{d x}\left(x^{8}\right)+12 \frac{d\left(x^{5}\right)}{d x}-4 \frac{d\left(x^{4}\right)}{d x}+10 \frac{d\left(x^{3}\right)}{d x}-\frac{6 d(x)}{d x}+\frac{d(5)}{d x}
+\end{array}"
+algebra,rational_eq,032,\lim _{n \rightarrow \infty} \sum_{i=1}^{n} \frac{\pi}{4 n} \tan \frac{i \pi}{4 n}
+algebra,rational_eq,036,\int \frac{d x}{\sqrt{1-x^{2}} \sin ^{-1} x}
+algebra,rational_eq,022,"f(x)=\left\{\begin{array}{l}
+\frac{x^{2}-4}{x-2} \quad \text { i } f x<2 \\
+a x^{2}-b x+3 \text { it } 2 \leq k<3 \\
+2 x-a+b \text { if } x \geq 3
+\end{array}\right."
+algebra,rational_eq,023,\lim _{x \rightarrow \infty}\left(\sqrt{9 x^{2}+x}-3 x\right)
+algebra,rational_eq,037,"\begin{array}{l}
+\int x \sin x d x=F(x) g(x)-\int g(x) f^{\prime}(x) d x \\
+\quad=x(-\cos x)-\int(-\cos x) d x \\
+=-x \cos x+\sin x+C
+\end{array}"
+algebra,rational_eq,009,-\frac{1}{2}|x+2|<4
+algebra,rational_eq,021,\lim _{x \rightarrow 2} \sqrt{f(x)}
+algebra,rational_eq,035,\int_{-2}^{0}\left(\frac{1}{2} t^{4}+\frac{1}{4} t^{3}-t\right) d t
+algebra,rational_eq,034,"\begin{aligned}
+\left(\int_{a}^{x} f(t) d t+\right.&\left.\int_{x}^{x+h} f(t) d t\right)-\int_{a}^{x} f(t) d t \\
+&=\int_{x}^{x+h} f(t) d t
+\end{aligned}"
+algebra,rational_eq,020,\lim _{x \rightarrow 5} \frac{e^{x}}{(x-5)^{3}}
+algebra,rational_eq,008,|3 x+1|=|2 x+3|
