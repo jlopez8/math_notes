@@ -110,3 +110,6 @@ tutorials/
 # configs
 configs/
 experiments/end_to_end_handwrite_to_LaTeX/config.py
+
+# workbooks
+work_book/

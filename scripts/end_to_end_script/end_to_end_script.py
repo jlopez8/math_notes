@@ -1,3 +1,4 @@
+import os
 import sys
 import base64
 
@@ -69,7 +70,7 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
     :rtype: dict
     """
     
-    def save(N=5):
+    def save():
         """Saves a canvas file after appending with string of N 
          random characters for uniquness.
     
@@ -90,6 +91,9 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
 
         global lastx, lasty
         lastx, lasty = event.x, event.y
+    
+    def quit():
+        root.destroy()
 
     def add_line(event):
         """Adds a line connection previous location of event to current event location.
@@ -126,18 +130,16 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
     canvas.bind("<Button-1>", save_posn)
     canvas.bind("<B1-Motion>", add_line)
     
-    button = Button(text="Save Image", command=lambda: save(N=7))
-    button.pack()
+    button_save = Button(text="Save Image", command=save)
+    button_quit = Button(text="Quit", command=quit)
+    button_save.pack()
+    button_quit.pack()
 
     root.mainloop()
     
 def dump_predictions(predictions):
-    #yah right the fuck now.
     headers = ["latex"]
-    
     with open('outputs.csv', 'w', newline='') as file:
-
-        # Write the header, then fill in the rows.
         writer = csv.writer(file)
         writer.writerow(headers)   
         for i in range(len(predictions)):
@@ -156,7 +158,7 @@ def user_input():
     :rtype: str
     """
     
-    user_choice = int(input("Enter '1' for receiving a handraw canvas or '2' provide an image path for Math OCR."))
+    user_choice = int(input("Enter '1' for receiving a handraw canvas or '2' provide an image path for Math OCR: \n"))
     
     if user_choice==1:
         pilot_canvas()
@@ -175,13 +177,14 @@ def main(path):
     """
     predictions = []
     
+    path = os.path.join(path)
+    
     for image in path:
-        latex_pred = ocr_request(image)
-        predictions.append(latex_pred)
-        
-        #yah dump predictions
-            
-if __name__ = '__main__':
+        print('bs')
+#         latex_pred = ocr_request(image)
+#         predictions.append(latex_pred)
+    
+if __name__ == '__main__':
     path = user_input()
     main(path=path)
     
