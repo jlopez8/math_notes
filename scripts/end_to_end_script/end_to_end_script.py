@@ -3,6 +3,8 @@ import sys
 import base64
 from pathlib import Path
 
+import csv
+
 from tkinter import Tk, Canvas, ttk, Button
 from tkinter import constants as con
 
@@ -11,9 +13,10 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
+sys.path.insert(1, '../../configs/')
 import config as cfg
 
-# Mathpix API key
+# Mathpix API key details.
 app_id = cfg.math_pix_key["app_id"]  
 app_key = cfg.math_pix_key["app_key"]
 
@@ -87,6 +90,9 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
         
         :param event: Recorded mouse-click events for drawing.
         :type event: class tkinter.Event
+        
+        :return: none
+        :rtype: none
         """
 
         global lastx, lasty
@@ -103,6 +109,9 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
         
         :param event: Recorded mouse-click events for drawing.
         :type event: class tkinter.Event
+        
+        :return: none
+        :rtype: none
         """
         # This canvas call is what the user sees on the screen. 
         canvas.create_line((lastx, lasty, event.x, event.y),
@@ -123,7 +132,7 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
     canvas.pack()
     
     # PIL create an empty image and draw object to draw on memory only.  It is not visible.
-    canvas_image = PIL.Image.new("RGB", (width, height), (255, 255, 255))
+    canvas_image = Image.new("RGB", (width, height), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
 
     canvas.pack(expand=True, fill="both")
@@ -137,14 +146,22 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
 
     root.mainloop()
     
-def dump_predictions(predictions):
+def save_predictions(predictions):
+    """Save a list of LaTeX predictions to a csv.
+    
+    :param predictions: A list of strings of the latex predictions.
+    :type predictions: List[str]
+    
+    :return: none
+    :rtype: none
+    """
     headers = ["latex"]
     with open('outputs.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(headers)   
         for i in range(len(predictions)):
-            latex = latex_returns[key]
-            writer.writerow([category, designation, filetag, latex])
+            latex = predictions[i]
+            writer.writerow(latex)
             
         file.close()
 
@@ -158,15 +175,15 @@ def user_input():
     :rtype: str
     """
     
-    user_choice = int(input("Enter '1' for receiving a handraw canvas or '2' provide an image path for Math OCR: \n"))
+    user_choice = int(input("Enter '1' for receiving a handraw canvas or '2' provide an image path for Math OCR or '3' to exit: \n"))
     
-    if user_choice==1:
+    if user_choice == 1:
         pilot_canvas()
         path = "./temp_files"
-        
     elif user_choice==2:
         path = input("Provide image directory: ")
-        
+    elif user_choice == 3:
+        path = "" 
     return path
     
 def main(path):
@@ -174,22 +191,22 @@ def main(path):
     
     :param path: Path to image(s) to pass-on to the API.
     :type path: str
+    
+    :return: none
+    :rtype: none
     """
-    predictions = []
-    
-    for image in Path(path).iterdir():
-        if image.is_file():
-            latex_pred = ocr_request(image)
-            predictions.append(latex_pred)
+    if path == "":
+        print("Exit code 0.")
+    else:
+        predictions = []
+
+        for image in Path(path).iterdir():
+            if image.is_file():
+                latex_pred = ocr_request(image)
+                predictions.append(latex_pred)
+
+        save_predictions(predictions)
             
-    
-    
 if __name__ == '__main__':
     path = user_input()
     main(path=path)
-    
-    
-    
-
-
-
