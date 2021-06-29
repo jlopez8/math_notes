@@ -1,12 +1,12 @@
 import os
 import sys
 import base64
+from pathlib import Path
 
 from tkinter import Tk, Canvas, ttk, Button
 from tkinter import constants as con
 
-from PIL import ImageGrab, ImageTk, ImageDraw
-import PIL
+from PIL import ImageGrab, ImageTk, ImageDraw, Image
 
 import requests
 import json
@@ -177,12 +177,12 @@ def main(path):
     """
     predictions = []
     
-    path = os.path.join(path)
+    for image in Path(path).iterdir():
+        if image.is_file():
+            latex_pred = ocr_request(image)
+            predictions.append(latex_pred)
+            
     
-    for image in path:
-        print('bs')
-#         latex_pred = ocr_request(image)
-#         predictions.append(latex_pred)
     
 if __name__ == '__main__':
     path = user_input()
