@@ -202,9 +202,9 @@ def main(path):
 
         for image in Path(path).iterdir():
             if image.is_file():
-                latex_pred = ocr_request(image)
+                latex_pred = [ocr_request(image)]
                 predictions.append(latex_pred)
-
+            
         save_predictions(predictions)
             
 if __name__ == '__main__':
