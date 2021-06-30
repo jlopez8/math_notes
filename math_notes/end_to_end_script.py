@@ -13,8 +13,7 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
-sys.path.insert(1, '../../configs/')
-import config as cfg
+from ...math_notes.configs import config as cfg
 
 # Mathpix API key details.
 app_id = cfg.math_pix_key["app_id"]  
@@ -166,7 +165,7 @@ def save_predictions(predictions):
         file.close()
 
 def user_input():
-    """Promptes the user to decide how they would like to provide an image to the math OCR. They can decide to write on a canvas and save the file for predictions or to specify a directory with multiple images
+    """Prompts the user to decide how they would like to provide an image to the math OCR. They can either write on a canvas and save the file for predictions or specify a directory with multiple images
     
     :param width: Canvas width, defaults to 800.
     :type width: int, optional
@@ -199,12 +198,14 @@ def main(path):
         print("Exit code 0.")
     else:
         predictions = []
-
+        
         for image in Path(path).iterdir():
-            if image.is_file():
-                latex_pred = [ocr_request(image)]
-                predictions.append(latex_pred)
             
+            if image.is_file():
+                if image.name.endswith('png'):
+                    latex_pred = [ocr_request(image)]
+                    predictions.append(latex_pred)
+        
         save_predictions(predictions)
             
 if __name__ == '__main__':

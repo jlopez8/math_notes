@@ -3,3 +3,4 @@ latex
 V=\iint_{D}\left(x^{2}+y^{2}\right) d A=\int_{0}^{4} \int_{\frac{1}{2} y}^{\sqrt{y}}\left(x^{2}+y^{2}\right) d x d y= \\
 \int_{0}^{4}\left(\frac{y^{3 / 2}}{3}+y^{5 / 2}-\frac{y^{3}}{24}-\frac{y^{3}}{2}\right) d y
 \end{array}"
+\lim _{h \rightarrow 0^{+}} \frac{H(x+h)-H(x)}{h} \leq \lim _{h \rightarrow 0^{+}} \frac{H(x+h)-H(x-h)}{h} \leq 4 \operatorname{limsw}_{h \rightarrow 0^{+}} \frac{\lambda(B(x) h))}{4 h}=0

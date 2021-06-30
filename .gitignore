@@ -107,10 +107,5 @@ ENV/
 # tutorials
 tutorials/
 
-# configs
-configs/
-experiments/end_to_end_handwrite_to_LaTeX/config.py
-scripts/end_to_end_script/config.py
-
 # workbooks
 work_book/
