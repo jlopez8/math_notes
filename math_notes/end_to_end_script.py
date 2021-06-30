@@ -5,7 +5,7 @@ from pathlib import Path
 
 import csv
 
-from tkinter import Tk, Canvas, ttk, Button
+from tkinter import Tk, Canvas, ttk, Button, filedialog, Label
 from tkinter import constants as con
 
 from PIL import ImageGrab, ImageTk, ImageDraw, Image
@@ -13,7 +13,7 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
-from ...math_notes.configs import config as cfg
+import configs.configs as cfg
 
 # Mathpix API key details.
 app_id = cfg.math_pix_key["app_id"]  
@@ -72,6 +72,29 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
     :rtype: dict
     """
     
+    def browseFiles():
+        init_browse_dir = os.getcwd()
+        filename["name"] = filedialog.askopenfilename(initialdir = init_browse_dir, title = "Select a File",
+                                              filetypes = (("png files",".png"),
+                                                           ("jpg files",".jpg"),
+                                                           ("all files","*.*")))
+        
+        canvas.destroy()
+        text = Label(text=filename, font=("helvetica", 18)) 
+        text.pack()
+        
+    def ocr_request_button(filename):
+        """Calls the ocr_request function defined above. This prints the returned LaTeX to 
+        the command line.
+        
+        :param filename: String with the filename image location to be sent to the API.
+        :type filename: str
+        """
+        
+        latex_return = ocr_request(filename)
+        print("latex_return: ")
+        print(latex_return)
+    
     def save():
         """Saves a canvas file after appending with string of N 
          random characters for uniquness.
@@ -80,9 +103,11 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
         :type N: int
         """
         
-        filename= "temp_files/cv_temp.png"
-        canvas_image.save(filename)
-        print("File was saved as: ", filename)
+        filename["name"]= "temp_files/cv_temp.png"
+        canvas_image.save(filename["name"])
+        
+        text = Label(text="File was saved as: " + filename["name"], font=("helvetica", 25)) 
+        text.pack()
 
     def save_posn(event):
         """Saves positional coordinates of object event.
@@ -112,6 +137,7 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
         :return: none
         :rtype: none
         """
+        
         # This canvas call is what the user sees on the screen. 
         canvas.create_line((lastx, lasty, event.x, event.y),
                            smooth=True, width=linewidth, fill=linecolor)
@@ -125,6 +151,7 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
     filename = {}
 
     root = Tk()
+    root.geometry("900x800")
 
     # Instantiate the tkinter canvas to draw on. 
     canvas = Canvas(root, bg="white", width=width, height=height)
@@ -138,31 +165,21 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
     canvas.bind("<Button-1>", save_posn)
     canvas.bind("<B1-Motion>", add_line)
     
+    # Buttons to save canvas, quit canvas, browse images.
+    button_explore = Button(root,
+                        text = "Browse Files",
+                        command = browseFiles)  
     button_save = Button(text="Save Image", command=save)
     button_quit = Button(text="Quit", command=quit)
+    button_predict = Button(text="Predict LaTeX!", 
+                            command=lambda: ocr_request_button(filename=filename["name"]))
+    
+    button_explore.pack()
     button_save.pack()
     button_quit.pack()
+    button_predict.pack()
 
     root.mainloop()
-    
-def save_predictions(predictions):
-    """Save a list of LaTeX predictions to a csv.
-    
-    :param predictions: A list of strings of the latex predictions.
-    :type predictions: List[str]
-    
-    :return: none
-    :rtype: none
-    """
-    headers = ["latex"]
-    with open('outputs.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(headers)   
-        for i in range(len(predictions)):
-            latex = predictions[i]
-            writer.writerow(latex)
-            
-        file.close()
 
 def user_input():
     """Prompts the user to decide how they would like to provide an image to the math OCR. They can either write on a canvas and save the file for predictions or specify a directory with multiple images
@@ -185,29 +202,27 @@ def user_input():
         path = "" 
     return path
     
-def main(path):
-    """Initiates mechanisms for converting hand-written math to Latex.
-    
-    :param path: Path to image(s) to pass-on to the API.
-    :type path: str
+def main():
+    """Initiates canvas for converting hand-written math to Latex.
     
     :return: none
     :rtype: none
     """
-    if path == "":
-        print("Exit code 0.")
-    else:
-        predictions = []
+    pilot_canvas()
+    
+#     if path == "":
+#         print("Exit code 0.")
+#     else:
+#         predictions = []
         
-        for image in Path(path).iterdir():
+#         for image in Path(path).iterdir():
             
-            if image.is_file():
-                if image.name.endswith('png'):
-                    latex_pred = [ocr_request(image)]
-                    predictions.append(latex_pred)
+#             if image.is_file():
+#                 if image.name.endswith('png'):
+#                     latex_pred = [ocr_request(image)]
+#                     predictions.append(latex_pred)
         
-        save_predictions(predictions)
+#         save_predictions(predictions)
             
 if __name__ == '__main__':
-    path = user_input()
-    main(path=path)
+    main()
