@@ -114,9 +114,6 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
         
         :param event: Recorded mouse-click events for drawing.
         :type event: class tkinter.Event
-        
-        :return: none
-        :rtype: none
         """
 
         global lastx, lasty
@@ -133,9 +130,6 @@ def pilot_canvas(width=800, height=600, linewidth = 3, linecolor="BLACK"):
         
         :param event: Recorded mouse-click events for drawing.
         :type event: class tkinter.Event
-        
-        :return: none
-        :rtype: none
         """
         
         # This canvas call is what the user sees on the screen. 
@@ -204,25 +198,8 @@ def user_input():
     
 def main():
     """Initiates canvas for converting hand-written math to Latex.
-    
-    :return: none
-    :rtype: none
     """
     pilot_canvas()
     
-#     if path == "":
-#         print("Exit code 0.")
-#     else:
-#         predictions = []
-        
-#         for image in Path(path).iterdir():
-            
-#             if image.is_file():
-#                 if image.name.endswith('png'):
-#                     latex_pred = [ocr_request(image)]
-#                     predictions.append(latex_pred)
-        
-#         save_predictions(predictions)
-            
 if __name__ == '__main__':
     main()
