@@ -77,9 +77,6 @@ ENV/
 # tutorials
 tutorials/
 
-# workbooks
-work_book/
-
 # configs
 configs/
 math_notes/configs
