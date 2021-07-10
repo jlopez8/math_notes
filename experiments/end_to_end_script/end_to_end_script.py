@@ -13,7 +13,8 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
-from ...math_notes.configs import config as cfg
+# from ...math_notes.configs import config as cfg
+import configs as cfg
 
 # Mathpix API key details.
 app_id = cfg.math_pix_key["app_id"]  

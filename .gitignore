@@ -88,3 +88,6 @@ work_book/
 
 # source image data
 data/template_data/source
+
+# development notes
+dev_notes
