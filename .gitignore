@@ -80,14 +80,9 @@ tutorials/
 # configs
 configs/
 math_notes/configs
-experiments/ipython_canvas_tool/configs/config.py
-experiments/end_to_end_handwrite_to_LaTeX/config.py
 
 # workbooks
 work_book/
 
 # source image data
 data/template_data/source
-
-# development notes
-dev_notes
