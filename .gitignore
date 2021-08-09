@@ -77,13 +77,9 @@ ENV/
 # tutorials
 tutorials/
 
-# workbooks
-work_book/
-
 # configs
 configs/
 math_notes/configs
-experiments/end_to_end_handwrite_to_LaTeX/config.py
 
 # workbooks
 work_book/
