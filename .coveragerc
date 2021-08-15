@@ -1,0 +1,8 @@
+# .coveragec for math_notes
+
+[run]
+data_file = coverage_2
+
+[html] 
+directory = coverage_html_report_2
+
