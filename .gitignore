@@ -86,3 +86,9 @@ work_book/
 
 # source image data
 data/template_data/source
+
+# coverage reports
+.coveragerc
+
+# flake8
+.flake8
