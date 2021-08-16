@@ -1,0 +1,9 @@
+[flake8]
+max-line-length = 120
+max-complexity = 18
+exclude = 
+  tutorials/* 
+  work_book/*
+  experiments/*
+  #*/.ipynb_checkpoints/
+  #math_notes/configs/	
