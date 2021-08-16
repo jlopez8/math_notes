@@ -1,0 +1,19 @@
+# .coveragec for math_notes
+
+[run]
+# data_file = put a coverage file name here!!!
+
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
+omit = 
+  tests/*
+  experiments/*
+  tutorials/*
+  work_book/*
+
+[html] 
+# directory = put a directory here!!!!
+

@@ -54,25 +54,10 @@ docs/_build/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# pyenv
-.python-version
-
-# dotenv
-.env
-
 # virtualenv
 .venv
 venv/
 ENV/
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-
-# IDE settings
-.vscode/
 
 # tutorials
 tutorials/
