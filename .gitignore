@@ -60,8 +60,7 @@ venv/
 ENV/
 
 # tutorials
-tutorials/*
-!tutorials/continuous_integration
+tutorials/
 
 # configs
 configs/

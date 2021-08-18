@@ -1,3 +1,0 @@
-###### Requirements with Version Specifiers ######
-flake8 == 3.9.2
-coverage != 3.5 # Version Exclusion. Anything except version 3.5
