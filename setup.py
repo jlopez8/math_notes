@@ -33,10 +33,10 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     description="math_notes is a tool that integrates anatural"
-    + "handwritten math with digital notetaking means"
-    + "in an online environment.t making the accessible"
-    + "anywhere and easy to transition"
-    + "from work or home.",
+                + "handwritten math with digital notetaking means"
+                + "in an online environment.t making the accessible"
+                + "anywhere and easy to transition"
+                + "from work or home.",
     entry_points={
         "console_scripts": [
             "math_notes=math_notes.cli:main",
