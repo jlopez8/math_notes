@@ -60,13 +60,13 @@ venv/
 ENV/
 
 # tutorials
-tutorials/
+/tutorials/
 
 # configs
-.configs/
+/configs/
 
 # workbooks
-work_book/
+/work_book/
 
 # source image data
 data/template_data/sourcef
