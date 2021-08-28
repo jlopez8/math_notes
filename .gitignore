@@ -63,10 +63,10 @@ ENV/
 tutorials/
 
 # configs
-configs/
+.configs/
 
 # workbooks
 work_book/
 
 # source image data
-data/template_data/source
+data/template_data/sourcef
