@@ -64,6 +64,7 @@ tutorials/
 
 # configs
 configs/
+!mathnotes/configs/config.py
 
 # workbooks
 work_book/
