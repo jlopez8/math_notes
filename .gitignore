@@ -60,14 +60,13 @@ venv/
 ENV/
 
 # tutorials
-tutorials/
+/tutorials/
 
 # configs
-configs/
-math_notes/configs
+/configs/
 
 # workbooks
-work_book/
+/work_book/
 
 # source image data
-data/template_data/source
+data/template_data/sourcef
