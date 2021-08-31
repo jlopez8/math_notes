@@ -1,4 +1,4 @@
-from configs import config
+from math_notes import config
 
 from pathlib import Path
 
