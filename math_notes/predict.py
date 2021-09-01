@@ -1,8 +1,6 @@
 import requests
 import json
 
-import argparse
-
 import math_notes.config as config
 
 app_id = config.APP_ID
@@ -53,11 +51,3 @@ def predict(images):
         latex_results.append(latex_return)
 
     return latex_results
-
-
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--images", required=True)
-
-    predict(images=parser.images)
