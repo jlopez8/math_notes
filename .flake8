@@ -5,5 +5,5 @@ exclude =
   tutorials/* 
   work_book/*
   experiments/*
-  #*/.ipynb_checkpoints/
+  */.ipynb_checkpoints/*
   #math_notes/configs/	
