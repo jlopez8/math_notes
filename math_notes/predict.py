@@ -4,11 +4,10 @@ import base64
 import requests
 import json
 
-from math_notes import config
+import math_notes.config as config
 
 app_id = config.APP_ID
 app_key = config.APP_KEY
-
 
 def ocr_request(image):
     """Sends an API request to MathPix API to be handled by the OCR.
@@ -45,15 +44,18 @@ def predict(images):
     :return: List of Latex-formatted strings.
     :rtype: [str]
     """
-    latex_results = []
     
+    latex_results = []
     for image in images:
         # Any image pre-processing necessary is done here.
         latex_return = ocr_request(image)
         latex_results.append(latex_return)
+        
+    print("latex_results from predict.py", latex_results)
+    
     return latex_results
 
 
 if __name__ == "__main__":
     
-    predict(images)
+    predict(image_uri)
