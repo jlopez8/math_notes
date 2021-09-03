@@ -1,10 +1,7 @@
 from tkinter import Tk, Canvas, ttk, Button
 from tkinter import constants as con
 
-import config as cfg
-
-app_id = cfg.math_pix_key["app_id"]  
-app_key = cfg.math_pix_key["app_key"]
+import .predict.predict
 
 def save():
     """Saves a canvas file after appending with string of 
@@ -67,7 +64,8 @@ def save_predictions(predictions):
 
 def user_input():
     """Prompts the user to decide how they would like to provide an image to the math OCR. 
-    They can either write on a canvas and save the file for predictions or specify a directory with multiple images
+    They can either write on a canvas and save the file for predictions or 
+    specify a directory with multiple images
     
     :param width: Canvas width, defaults to 800.
     :type width: int, optional
@@ -89,8 +87,3 @@ def user_input():
     
 def quit():
     root.destroy()
-
-if __name__ == '__main__':
-    path = user_input()
-    main(path=path) 
-    
