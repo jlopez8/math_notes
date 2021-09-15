@@ -2,14 +2,19 @@ import os
 
 import csv
 
-from tkinter import Tk, Canvas, ttk, Button
+from tkinter import Tk, Canvas, ttk, Button, Label
 from tkinter import constants as con
+
+from PIL import Image
 
 from pathlib import Path
 
 from math_notes import predict
 
 filename = {}
+filename["path"] = Path("temp_files/")
+if not os.path.isdir( filename["path"]):
+    os.mkdir(filename["path"])
 
 def browseFiles():
     """Opens a file system dialogue allowing a user to specify a file to send to the prediction service. 
@@ -29,16 +34,16 @@ def browseFiles():
     text = Label(text=text, font=("helvetica", 18))
     text.pack()
 
-def save_canvas():
-    """Saves a canvas file.
+def save_canvas(
+                canvas_image=Image.new("RGB", (100, 100), (255, 255, 255))
+    ):
+    """Saves a canvas file to a temporary directory.
+    
+    :param canvas_image: Image to capture drawing.
+    :type canvas_image: Pil image object
     """
     
-    filename["name"] = Path("temp_files/cv_temp.png")
-    filename["path"] = Path("temp_files/")
-
-    if not os.path.isdir( filename["path"]):
-        os.mkdir(filename["path"])
-    
+    filename["name"] = Path("temp_files/cv_temp.png") 
     canvas_image.save(str(filename["name"]))
     text = Label(
         text="File was saved as: " + str(filename["name"]), font=("helvetica", 25)
@@ -88,7 +93,22 @@ def add_line(event):
         joint="curve",
     )
     save_posn(event)
-        
+    
+## YAH >> refactor to use  OCR prediction service
+# look at predict and what it requires
+def ocr_request_button(filename):
+    """Calls the ocr_request function defined above. This prints the returned LaTeX to
+    the command line.
+
+    :param filename: String with the filename image location to be sent to the API.
+    :type filename: str
+    """
+
+    latex_return = ocr_request(filename)
+    print("latex_return: ")
+    print(latex_return)
+
         
 def quit():
     root.destroy()
+    

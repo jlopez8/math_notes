@@ -12,17 +12,13 @@ import PIL
 width = 600
 height = 400
 center = height // 2
-white = (255, 255, 255)
-
+white = (255, 255, 255)    
 
 def test_save():
-    filename = "tests/temp_canvas_img.png"
     canvas_image = PIL.Image.new("RGB", (width, height), white)
-    backend.save(canvas_image, filename=filename)
-    my_file = Path(filename)
-    assert my_file.is_file()
-    os.remove(my_file)
-
+    backend.save_canvas(canvas_image)
+    assert backend.filename["name"].is_file()
+    
 
 def test_save_predictions():
     predictions = ["x", "\\int_0^\\intfy 1/x^2 dx"]
