@@ -1,101 +1,94 @@
+import os
+
 import csv
 
 from tkinter import Tk, Canvas, ttk, Button
 from tkinter import constants as con
 
+from pathlib import Path
+
 from math_notes import predict
 
+filename = {}
 
-def save(canvas_image, filename="tests/temp_canvas_img.png"):
-    """Saves a canvas file after appending with string of
-    random characters for uniquness.
+def browseFiles():
+    """Opens a file system dialogue allowing a user to specify a file to send to the prediction service. 
     """
-    canvas_image.save(filename)
+    
+    init_browse_dir = os.getcwd()
+    filename["name"] = filedialog.askopenfilename(
+        initialdir=init_browse_dir,
+        title="Select a File",
+        filetypes=(
+            ("png files", ".png"),
+            ("jpg files", ".jpg"),
+            ("all files", "*.*"),
+        ),
+    )
+    text = "filename = " + filename["name"]
+    text = Label(text=text, font=("helvetica", 18))
+    text.pack()
 
-
-def paint(event):
-    """Places a dot at each mouse location corresponding to the click event.
-    On the draw object, adds a line connection nearby locations of where the
-    event occurs. This latter image is saved and represents the image drawn
-    on the tkinter canvas by the user.
-
-    :param event: Recorded mouse-click events for drawing.
-    :type event: class tkinter.Event
+def save_canvas():
+    """Saves a canvas file.
     """
-    x1, y1 = (event.x - 1), (event.y - 1)
-    x2, y2 = (event.x + 1), (event.y + 1)
-    cv.create_oval(x1, y1, x2, y2, fill="black", width=2)
-    draw.line([x1, y1, x2, y2], fill="black", width=2)
+    
+    filename["name"] = Path("temp_files/cv_temp.png")
+    filename["path"] = Path("temp_files/")
 
-
+    if not os.path.isdir( filename["path"]):
+        os.mkdir(filename["path"])
+    
+    canvas_image.save(str(filename["name"]))
+    text = Label(
+        text="File was saved as: " + str(filename["name"]), font=("helvetica", 25)
+    )
+    text.pack()
+    
 def save_posn(event):
     """Saves positional coordinates of object event.
 
     :param event: Recorded mouse-click events for drawing.
     :type event: class tkinter.Event
-    """
-    global lastx, lasty
-    lastx, lasty = event.x, event.y
-
-
-def add_line(event):
-    """Adds a line connection previous location of event to current event location.
-    Event here is where the mouse was and is located.
-
-    :param event: Recorded mouse-click events for drawing.
-    :type event: class tkinter.Event
-    """
-    canvas.create_line((lastx, lasty, event.x, event.y))
-    save_posn(event)
-
-
-def save_predictions(predictions):
-    """Save a list of LaTeX predictions to a csv.
-
-    :param predictions: A list of strings of the latex predictions.
-    :type predictions: List[str]
 
     :return: none
     :rtype: none
     """
-    headers = ["latex"]
-    with open("outputs.csv", "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(headers)
-        for i in range(len(predictions)):
-            latex = predictions[i]
-            writer.writerow(latex)
 
-        file.close()
+    global lastx, lasty
+    lastx, lasty = event.x, event.y
+    
+def add_line(event):
+    """Adds a line connection previous location of event to current event location.
+    Event here is where the mouse was and is located. Also draws the same line
+    on a PIL image which represents the image drawn on the tkinter canvas by the
+    user. This is the image that will actually be saved and used by the OCR.
 
+    :param event: Recorded mouse-click events for drawing.
+    :type event: class tkinter.Event
 
-def user_input(user_choice=3):
-    """Prompts the user to decide how they would like to provide an image to the math OCR.
-    They can either write on a canvas and save the file for predictions or
-    specify a directory with multiple images
-
-    :param width: Canvas width, defaults to 800.
-    :type width: int, optional
-
-    :return: Path containing images for prediction.
-    :rtype: str
+    :return: none
+    :rtype: none
     """
-    if not bool(user_choice):
-        user_choice = int(
-            input(
-                "Enter '1' for receiving a handraw canvas or '2' provide an image path for Math OCR or '3' to exit: \n"
-            )
-        )
 
-    if user_choice == 1:
-        pilot_canvas()
-        path = "./temp_files"
-    elif user_choice == 2:
-        path = input("Provide image directory: ")
-    elif user_choice == 3:
-        path = ""
-    return path
+    # This canvas call is what the user sees on the screen.
+    canvas.create_line(
+        (lastx, lasty, event.x, event.y),
+        smooth=True,
+        width=linewidth,
+        fill=linecolor,
+    )
 
-
+    # The draw call is in the background (invisible)
+    # capturing what will actually get converted to an image.
+    draw.line(
+        [lastx, lasty, event.x, event.y],
+        fill=linecolor,
+        width=linewidth,
+        joint="curve",
+    )
+    save_posn(event)
+        
+        
 def quit():
     root.destroy()
