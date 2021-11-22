@@ -6,4 +6,7 @@ exclude =
   work_book/*
   experiments/*
   */.ipynb_checkpoints/*
-  #math_notes/configs/	
+  math_notes/configs/
+  math_notes/View_AskText.py
+	
+		
