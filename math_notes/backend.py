@@ -2,7 +2,7 @@ import os
 
 import csv
 
-from tkinter import Tk, Canvas, ttk, Button, Label
+from tkinter import Tk, canvas, ttk, Button, Label, filedialog
 from tkinter import constants as con
 
 from PIL import Image
@@ -11,15 +11,17 @@ from pathlib import Path
 
 from math_notes import predict
 
+import config as cfg
+
 filename = {}
 filename["path"] = Path("temp_files/")
-if not os.path.isdir( filename["path"]):
+if not os.path.isdir(filename["path"]):
     os.mkdir(filename["path"])
 
+
 def browseFiles():
-    """Opens a file system dialogue allowing a user to specify a file to send to the prediction service. 
-    """
-    
+    """Opens a file system dialogue allowing a user to specify a file to send to the prediction service."""
+
     init_browse_dir = os.getcwd()
     filename["name"] = filedialog.askopenfilename(
         initialdir=init_browse_dir,
@@ -34,22 +36,44 @@ def browseFiles():
     text = Label(text=text, font=("helvetica", 18))
     text.pack()
 
-def save_canvas(
-                canvas_image=Image.new("RGB", (100, 100), (255, 255, 255))
-    ):
+
+def save_predictions(predictions):
+    """Save a list of LaTeX predictions to a csv.
+
+    :param predictions: A list of strings of the latex predictions.
+    :type predictions: List[str]
+
+    :return: none
+    :rtype: none
+    """
+
+    filename = Path("temp_files/canvas_predict.csv")
+    headers = ["latex"]
+    data = predictions
+    with open(filename, "w", newline="") as file:
+        writer = csv.writer(file, delimiter=",")
+        writer.writerow([headers])
+        for i in range(len(data)):
+            latex = data[i]
+            writer.writerow([latex])
+        file.close()
+
+
+def save_canvas(canvas_image=Image.new("RGB", (100, 100), (255, 255, 255))):
     """Saves a canvas file to a temporary directory.
-    
+
     :param canvas_image: Image to capture drawing.
     :type canvas_image: Pil image object
     """
-    
-    filename["name"] = Path("temp_files/cv_temp.png") 
+
+    filename["name"] = Path("temp_files/cv_temp.png")
     canvas_image.save(str(filename["name"]))
     text = Label(
         text="File was saved as: " + str(filename["name"]), font=("helvetica", 25)
     )
     text.pack()
-    
+
+
 def save_posn(event):
     """Saves positional coordinates of object event.
 
@@ -62,7 +86,8 @@ def save_posn(event):
 
     global lastx, lasty
     lastx, lasty = event.x, event.y
-    
+
+
 def add_line(event):
     """Adds a line connection previous location of event to current event location.
     Event here is where the mouse was and is located. Also draws the same line
@@ -93,22 +118,24 @@ def add_line(event):
         joint="curve",
     )
     save_posn(event)
-    
-## YAH >> refactor to use  OCR prediction service
-# look at predict and what it requires
-def ocr_request_button(filename):
-    """Calls the ocr_request function defined above. This prints the returned LaTeX to
-    the command line.
+
+
+def ocr_request_button(filename="temp_files/canvas_temp.png"):
+    """Calls the prediction service using the given filename in the temp_files directory.
 
     :param filename: String with the filename image location to be sent to the API.
     :type filename: str
     """
 
-    latex_return = ocr_request(filename)
-    print("latex_return: ")
-    print(latex_return)
+    image_uri = (
+        "data:image/png;base64,"
+        + base64.b64encode(open(filename, "rb").read()).decode()
+    )
+    images = [image_uri]
+    latex_return = predict.predict(images)
 
-        
+    save_predictions([latex_return])
+
+
 def quit():
     root.destroy()
-    
