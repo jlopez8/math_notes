@@ -1,10 +1,10 @@
 import requests
 import json
 
-import math_notes.config as config
+import config as cfg
 
-app_id = config.APP_ID
-app_key = config.APP_KEY
+app_id = cfg.APP_ID
+app_key = cfg.APP_KEY
 
 
 def ocr_request(image):

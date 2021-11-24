@@ -2,14 +2,14 @@ import os
 
 import csv
 
-from tkinter import Tk, canvas, ttk, Button, Label, filedialog
+from tkinter import Tk, Canvas, ttk, Button, Label, filedialog
 from tkinter import constants as con
 
 from PIL import Image
 
 from pathlib import Path
 
-from math_notes import predict
+import predict
 
 import config as cfg
 
@@ -19,7 +19,7 @@ if not os.path.isdir(filename["path"]):
     os.mkdir(filename["path"])
 
 
-def browseFiles():
+def browse_files():
     """Opens a file system dialogue allowing a user to specify a file to send to the prediction service."""
 
     init_browse_dir = os.getcwd()
