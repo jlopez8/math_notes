@@ -16,16 +16,11 @@ white = (255, 255, 255)
 
 def test_submission():
     # Mimics browsing for a file.
-    backend.filename["name"] = "tests/data/img_for_testing.png"
+    backend.filename["name"] = "tests/data/img_x.png"
     backend.ocr_request_button(backend.filename["name"])
-    
-    # >>DEV
-    # here test this file resulted in a saved prediction. 
-    # math_notes(project)/temp_files/cv_predict.csv
     
     path = Path("temp_files/cv_predict.csv")
     file = open(path)
-
     csv_reader = csv.reader(file)
 
     header = []
@@ -41,23 +36,46 @@ def test_submission():
 def test_save_canvas():
     # Draw on a canvas.
     canvas_image = PIL.Image.new("RGB", (width, height), white)
+    draw = ImageDraw.Draw(canvas_image)
     
-    # 
+    # Draw an x by specifying some lines.
+    coords = [275, 165, 604, 390]
+    draw.line(
+        coords,
+        fill='BlACK',
+        width=3,
+        joint=None,
+    )
+    coords = [coords[0], coords[3], coords[2], coords[1]]
+    draw.line(
+        coords,
+        fill='BlACK',
+        width=3,
+        joint=None,
+    )
     
-    backend.save_canvas(canvas_image)
-    assert backend.filename["name"].is_file()
+    path = Path("temp_files/cv_temp.png")
+    backend.save_canvas(canvas_image, path)
+
+    assert path.is_file() 
     
-# def test_save_file
+def test_save_predictions():
+    predictions = ["x", "\\int_0^\\intfy 1/x^2 dx", "ax+b=y"]
+    path = Path("temp_files/cv_saved_predict.csv")
+    backend.save_predictions(predictions, path = path)
+    
+    file = open(path)
+    csv_reader = csv.reader(file)
 
-# def test_save_predictions():
-#     predictions = ["x", "\\int_0^\\intfy 1/x^2 dx"]
-#     backend.save_predictions(predictions)
-#     filename = "outputs.csv"
-#     my_file = Path(filename)
-#     os.remove(my_file)
+    header = []
+    header = next(csv_reader)
 
-
-# def test_user_input():
-#     path = backend.user_input(user_choice=3)
-#     print("path is path:", path)
-#     assert "" == path
+    rows = []
+    for row in csv_reader:
+        rows.append(row)
+    file.close()
+    
+    for i in range(len(rows)):
+        assert rows[i][0] == predictions[i]
+        
+    assert path.is_file()

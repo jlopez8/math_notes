@@ -35,7 +35,7 @@ def browse_files():
     text.pack()
 
 
-def save_predictions(predictions):
+def save_predictions(predictions, path = Path("temp_files/cv_predict.csv")):
     """Save a list of LaTeX predictions to a csv.
 
     :param predictions: A list of strings of the latex predictions.
@@ -45,7 +45,7 @@ def save_predictions(predictions):
     :rtype: none
     """
 
-    filename = Path("temp_files/cv_predict.csv")
+    filename = path
     headers = ["latex"]
     data = predictions
     with open(filename, "w", newline="") as file:
@@ -53,18 +53,18 @@ def save_predictions(predictions):
         writer.writerow(headers)
         for i in range(len(data)):
             latex = data[i]
-            writer.writerow(latex)
-        file.close()
+            writer.writerow([latex])
+    file.close()
 
 
-def save_canvas(canvas_image=Image.new("RGB", (100, 100), (255, 255, 255))):
+def save_canvas(canvas_image=Image.new("RGB", (100, 100), (255, 255, 255)), path = Path("temp_files/cv_temp.png")):
     """Saves a canvas file to a temporary directory.
 
     :param canvas_image: Image to capture drawing.
     :type canvas_image: Pil image object
     """
 
-    filename["name"] = Path("temp_files/cv_temp.png")
+    filename["name"] = path
     canvas_image.save(str(filename["name"]))
     text = Label(
         text="File was saved as: " + str(filename["name"]), font=("helvetica", 25)
@@ -132,7 +132,7 @@ def ocr_request_button(filename="temp_files/canvas_temp.png"):
     images = [image_uri]
     latex_return = predict.predict(images)
 
-    save_predictions([latex_return])
+    save_predictions(latex_return)
 
 
 def quit():
