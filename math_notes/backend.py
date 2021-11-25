@@ -1,17 +1,15 @@
 import os
-
 import csv
+import base64
+
+from pathlib import Path
 
 from tkinter import Tk, Canvas, ttk, Button, Label, filedialog
 from tkinter import constants as con
 
 from PIL import Image
 
-from pathlib import Path
-
-import predict
-
-import config as cfg
+from math_notes import predict
 
 filename = {}
 filename["path"] = Path("temp_files/")
@@ -47,15 +45,15 @@ def save_predictions(predictions):
     :rtype: none
     """
 
-    filename = Path("temp_files/canvas_predict.csv")
+    filename = Path("temp_files/cv_predict.csv")
     headers = ["latex"]
     data = predictions
     with open(filename, "w", newline="") as file:
         writer = csv.writer(file, delimiter=",")
-        writer.writerow([headers])
+        writer.writerow(headers)
         for i in range(len(data)):
             latex = data[i]
-            writer.writerow([latex])
+            writer.writerow(latex)
         file.close()
 
 

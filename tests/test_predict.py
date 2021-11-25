@@ -5,7 +5,7 @@ from math_notes.predict import predict
 
 def test_prediction_single():
 
-    filename = "tests/integral_to_transform_1.png"
+    filename = "tests/data/integral_to_transform_1.png"
     true_latex_string = "f(x)=\\int_{a}^{x} t^{3}+1 d t"
 
     image_uri = []
@@ -13,7 +13,6 @@ def test_prediction_single():
         "data:image/png;base64,"
         + base64.b64encode(open(filename, "rb").read()).decode()
     )
-
     latex_return = predict(image_uri)
 
     assert latex_return[0] == true_latex_string
