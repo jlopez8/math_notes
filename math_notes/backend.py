@@ -35,7 +35,7 @@ def browse_files():
     text.pack()
 
 
-def save_predictions(predictions, path = Path("temp_files/cv_predict.csv")):
+def save_predictions(predictions, path=Path("temp_files/cv_predict.csv")):
     """Save a list of LaTeX predictions to a csv.
 
     :param predictions: A list of strings of the latex predictions.
@@ -57,7 +57,10 @@ def save_predictions(predictions, path = Path("temp_files/cv_predict.csv")):
     file.close()
 
 
-def save_canvas(canvas_image=Image.new("RGB", (100, 100), (255, 255, 255)), path = Path("temp_files/cv_temp.png")):
+def save_canvas(
+    canvas_image=Image.new("RGB", (100, 100), (255, 255, 255)),
+    path=Path("temp_files/cv_temp.png"),
+):
     """Saves a canvas file to a temporary directory.
 
     :param canvas_image: Image to capture drawing.
@@ -118,11 +121,14 @@ def add_line(event):
     save_posn(event)
 
 
-def ocr_request_button(filename="temp_files/canvas_temp.png"):
+def ocr_request_button(filename="temp_files/canvas_temp.png", test_mode=False):
     """Calls the prediction service using the given filename in the temp_files directory.
 
     :param filename: String with the filename image location to be sent to the API.
     :type filename: str
+
+    :param test_mode: Boolean for testing mode. Use 'True' in test_mode to avoid pinging the API unnecessary multiple costs.
+    :type test_mode: Bool
     """
 
     image_uri = (
@@ -130,7 +136,10 @@ def ocr_request_button(filename="temp_files/canvas_temp.png"):
         + base64.b64encode(open(filename, "rb").read()).decode()
     )
     images = [image_uri]
-    latex_return = predict.predict(images)
+    if not test_mode:
+        latex_return = predict.predict(images)
+    else:
+        latex_return = ["x"]
 
     save_predictions(latex_return)
 

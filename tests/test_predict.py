@@ -20,9 +20,9 @@ def test_prediction_single():
 
 def test_prediction_multiple():
     filenames = [
-        "tests/integral_to_transform_1.png",
-        "tests/integral_to_transform_2.png",
-        "tests/integral_to_transform_3.png",
+        "tests/data/integral_to_transform_1.png",
+        "tests/data/integral_to_transform_2.png",
+        "tests/data/integral_to_transform_3.png",
     ]
 
     true_latex_strings = ["f(x)=\\int_{a}^{x} t^{3}+1 d t", "x^{2}+1=0", "a x+b=y"]
