@@ -6,7 +6,7 @@ from . import config as cfg
 app_id = cfg.APP_ID
 app_key = cfg.APP_KEY
 
-'../configs/app_id.txt'
+"../configs/app_id.txt"
 
 
 def ocr_request(image):
