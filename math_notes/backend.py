@@ -9,7 +9,8 @@ from tkinter import constants as con
 
 from PIL import Image
 
-from math_notes import predict
+# from math_notes import predict
+import predict
 
 filename = {}
 filename["path"] = Path("temp_files/")

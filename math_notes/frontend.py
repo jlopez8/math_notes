@@ -19,53 +19,15 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
+import backend as be
+
 import config as cfg
 
 # Mathpix API key details.
 app_id = cfg.APP_ID
 app_key = cfg.APP_KEY
 
-
-def ocr_request(filename):
-    """Sends an API request to MathPix API to be handled by the OCR.
-
-    :param filename: Filename of the image to be sent to the MathPix API for a LaTeX prediction.
-    :type filename: str
-
-    :return: Latex-formatted string.
-    :rtype: str
-    """
-
-    dict_request = {
-        "src": "data:image/png",
-        "formats": ["text", "data", "html"],
-        "data_options": {"include_asciimath": True, "include_latex": True},
-    }
-
-    # Put desired filename from earlier.
-    image_uri = (
-        "data:image/png;base64,"
-        + base64.b64encode(open(filename, "rb").read()).decode()
-    )
-
-    # Send the request.
-    r = requests.post(
-        "https://api.mathpix.com/v3/text",
-        data=json.dumps({"src": image_uri}),
-        headers={
-            "app_id": app_id,
-            "app_key": app_key,
-            "Content-type": "application/json",
-        },
-    )
-
-    json_return = json.loads(r.text)
-    latex_return = json_return.get("latex_styled")
-
-    return latex_return
-
-
-def pilot_canvas(master,
+def open_canvas(master,
                  width=800,
                  height=600,
                  linewidth=3,
@@ -90,34 +52,8 @@ def pilot_canvas(master,
     """
 
 
-    
-    def browseFiles():
-        init_browse_dir = os.getcwd()
-        filename["name"] = filedialog.askopenfilename(
-            initialdir=init_browse_dir,
-            title="Select a File",
-            filetypes=(
-                ("png files", ".png"),
-                ("jpg files", ".jpg"),
-                ("all files", "*.*"),
-            ),
-        )
 
-        canvas.destroy()
-        text = Label(text=filename, font=("helvetica", 18))
-        text.pack()
 
-    def ocr_request_button(filename):
-        """Calls the ocr_request function defined above. This prints the returned LaTeX to
-        the command line.
-
-        :param filename: String with the filename image location to be sent to the API.
-        :type filename: str
-        """
-
-        latex_return = ocr_request(filename)
-        print("latex_return: ")
-        print(latex_return)
 
     def save():
         """Saves a canvas file after appending with string of N

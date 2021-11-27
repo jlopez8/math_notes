@@ -1,7 +1,8 @@
 import requests
 import json
 
-from . import config as cfg
+# from . import config as cfg
+import config as cfg
 
 app_id = cfg.APP_ID
 app_key = cfg.APP_KEY
