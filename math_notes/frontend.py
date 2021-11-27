@@ -23,13 +23,8 @@ import backend as be
 
 import config as cfg
 
-# Mathpix API key details.
-app_id = cfg.APP_ID
-app_key = cfg.APP_KEY
-
-def open_canvas(master,
-                 width=800,
-                 height=600,
+def open_canvas(width=1200,
+                 height=400,
                  linewidth=3,
                  linecolor="BLACK"):
     
@@ -51,78 +46,12 @@ def open_canvas(master,
     :rtype: dict
     """
 
-
-
-
-
-    def save():
-        """Saves a canvas file after appending with string of N
-         random characters for uniquness.
-
-        :param N: Number of random characters to append, defaults to 5.
-        :type N: int
-        """
-
-        filename["name"] = "temp_files/cv_temp.png"
-        canvas_image.save(filename["name"])
-
-        text = Label(
-            text="File was saved as: " + filename["name"], font=("helvetica", 25)
-        )
-        text.pack()
-
-    def save_posn(event):
-        """Saves positional coordinates of object event.
-
-        :param event: Recorded mouse-click events for drawing.
-        :type event: class tkinter.Event
-
-        :return: none
-        :rtype: none
-        """
-
-        global lastx, lasty
-        lastx, lasty = event.x, event.y
-
-    def quit():
-        root.destroy()
-
-    def add_line(event):
-        """Adds a line connection previous location of event to current event location.
-        Event here is where the mouse was and is located. Also draws the same line
-        on a PIL image which represents the image drawn on the tkinter canvas by the
-        user. This is the image that will actually be saved and used by the OCR.
-
-        :param event: Recorded mouse-click events for drawing.
-        :type event: class tkinter.Event
-
-        :return: none
-        :rtype: none
-        """
-
-        # This canvas call is what the user sees on the screen.
-        canvas.create_line(
-            (lastx, lasty, event.x, event.y),
-            smooth=True,
-            width=linewidth,
-            fill=linecolor,
-        )
-
-        # The draw call is in the background (invisible)
-        # capturing what will actually get converted to an image.
-        draw.line(
-            [lastx, lasty, event.x, event.y],
-            fill=linecolor,
-            width=linewidth,
-            joint="curve",
-        )
-        save_posn(event)
-
     offset = linewidth / 2
     filename = {}
-
+    
     root = Tk()
-    root.geometry("900x800")
+    canvas_dimensions = str(width) + "x" + str(int(height*1.5))
+    root.geometry(canvas_dimensions)
 
     # Instantiate the tkinter canvas to draw on.
     canvas = Canvas(root, bg="white", width=width, height=height)
@@ -133,16 +62,18 @@ def open_canvas(master,
     draw = ImageDraw.Draw(canvas_image)
 
     canvas.pack(expand=True, fill="both")
-    canvas.bind("<Button-1>", save_posn)
-    canvas.bind("<B1-Motion>", add_line)
+    canvas.bind("<Button-1>", be.save_posn)
+    canvas.bind("<B1-Motion>", be.add_line)
 
     # Buttons to save canvas, quit canvas, browse images.
-    button_explore = Button(root, text="Browse Files", command=browseFiles)
-    button_save = Button(text="Save Image", command=save)
-    button_quit = Button(text="Quit", command=quit)
+    button_explore = Button(root, text="Browse Files", command=be.browse_files)
+    button_save = Button(text="Save Image", command=lambda: be.save_canvas(canvas_image=canvas_image))
+    button_quit = Button(text="Quit", command=lambda: be.quit(root))
+    
+    # >> This will complicate the way things are done
     button_predict = Button(
         text="Predict LaTeX!",
-        command=lambda: ocr_request_button(filename=filename["name"]),
+        command=lambda: be.ocr_request_button(filename=filename["name"]),
     )
 
     button_explore.pack()
@@ -153,7 +84,12 @@ def open_canvas(master,
     root.mainloop()
     
 # This modifier may be needed for the actual testing???
-def start_application() -> pilot_canvas:
-    root = tk.Tk()
-    app = pilot_canvas(master=root)
-    return app # will return the application without starting the main loop.
+def start_application():
+#     root = tk.Tk()
+    app = open_canvas()
+    return app
+    #return app # will return the application without starting the main loop.
+
+if __name__ == '__main__':
+    start_application()
+#     app

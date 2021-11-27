@@ -22,7 +22,7 @@ def browse_files():
     """Opens a file system dialogue allowing a user to specify a file to send to the prediction service."""
 
     init_browse_dir = os.getcwd()
-    filename["name"] = filedialog.askopenfilename(
+    filename = filedialog.askopenfilename(
         initialdir=init_browse_dir,
         title="Select a File",
         filetypes=(
@@ -31,7 +31,7 @@ def browse_files():
             ("all files", "*.*"),
         ),
     )
-    text = "filename = " + filename["name"]
+    text = "filename = " + filename
     text = Label(text=text, font=("helvetica", 18))
     text.pack()
 
@@ -68,10 +68,10 @@ def save_canvas(
     :type canvas_image: Pil image object
     """
 
-    filename["name"] = path
-    canvas_image.save(str(filename["name"]))
+    filename = path
+    canvas_image.save(filename)
     text = Label(
-        text="File was saved as: " + str(filename["name"]), font=("helvetica", 25)
+        text="File was saved as: " + str(filename), font=("helvetica", 25)
     )
     text.pack()
 
@@ -145,5 +145,5 @@ def ocr_request_button(filename="temp_files/canvas_temp.png", test_mode=False):
     save_predictions(latex_return)
 
 
-def quit():
+def quit(root):
     root.destroy()
