@@ -5,6 +5,7 @@
 import os
 import sys
 import base64
+
 from pathlib import Path
 
 import csv
@@ -18,7 +19,7 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
-from math_notes import config as cfg
+import config as cfg
 
 # Mathpix API key details.
 app_id = cfg.APP_ID
