@@ -1,9 +1,5 @@
-# This was directly imported from http://localhost:8888/lab/tree/work_book/end_to_end_script.py
-
-# Change it up to remove unecesary components, clean up code, remove unused functionality
-
 import os
-import sys
+# import sys
 import base64
 
 from pathlib import Path
@@ -21,12 +17,11 @@ import json
 
 import backend as be
 
-import config as cfg
-
-def open_canvas(width=1200,
-                 height=400,
-                 linewidth=3,
-                 linecolor="BLACK"):
+def open_canvas(filename,
+                width=1200,
+                height=400,
+                linewidth=3,
+                linecolor="BLACK"):
     
     """Opens a canvas widget using tkinter that allows a user to save their work.
 
@@ -45,9 +40,59 @@ def open_canvas(width=1200,
     :return: Dictionary of filename where canvas was saved.
     :rtype: dict
     """
+    
+    
+    def save_posn(event):
+        """Saves positional coordinates of object event.
 
-    offset = linewidth / 2
-    filename = {}
+        :param event: Recorded mouse-click events for drawing.
+        :type event: class tkinter.Event
+
+        :return: none
+        :rtype: none
+        """
+
+        global lastx, lasty
+        lastx, lasty = event.x, event.y
+        
+    def add_line(event):
+        """Adds a line connection previous 
+        location of event to current event location.
+        
+        Event here is where the mouse was and is located. Also draws the same line
+        on a PIL image which represents the image drawn on the tkinter canvas by the
+        user. This is the image that will actually be saved and used by the OCR.
+
+        :param event: Recorded mouse-click events for drawing.
+        :type event: class tkinter.Event
+
+        :return: none
+        :rtype: none
+        """
+    
+        # This canvas call is what the user sees on the screen.
+        canvas.create_line(
+            (lastx, lasty, event.x, event.y),
+            smooth=True,
+            width=linewidth,
+            fill=linecolor,
+        )
+
+        # The draw call is in the background (invisible)
+        # capturing what will actually get converted to an image.
+        draw.line(
+            [lastx, lasty, event.x, event.y],
+            fill=linecolor,
+            width=linewidth,
+            joint="curve",
+        )
+        save_posn(event)
+    
+    global lastx, lasty
+    
+    filename['path'] = Path('./math_notes/temp_files/')
+    if not os.path.isdir(filename['path']):
+        os.mkdir(filename['path'])
     
     root = Tk()
     canvas_dimensions = str(width) + "x" + str(int(height*1.5))
@@ -57,23 +102,38 @@ def open_canvas(width=1200,
     canvas = Canvas(root, bg="white", width=width, height=height)
     canvas.pack()
 
-    # PIL create an empty image and draw object to draw on memory only.  It is not visible.
-    canvas_image = Image.new("RGB", (width, height), (255, 255, 255))
+    # PIL create an empty image and draw object to memory only 
+    # It is not visible.
+    canvas_image = Image.new("RGB", (width, int(height*1.5)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
-
     canvas.pack(expand=True, fill="both")
-    canvas.bind("<Button-1>", be.save_posn)
-    canvas.bind("<B1-Motion>", be.add_line)
+    
+    # Capturing mouse motion. 
+    canvas.bind("<Button-1>", save_posn)
+    canvas.bind("<B1-Motion>", add_line)
 
     # Buttons to save canvas, quit canvas, browse images.
-    button_explore = Button(root, text="Browse Files", command=be.browse_files)
-    button_save = Button(text="Save Image", command=lambda: be.save_canvas(canvas_image=canvas_image))
-    button_quit = Button(text="Quit", command=lambda: be.quit(root))
+    button_explore = Button(
+        root, 
+        text="Browse Files", 
+        command=lambda: be.browse_files(filename)
+    )
     
-    # >> This will complicate the way things are done
+    button_save = Button(
+        text="Save Image",          
+        command=lambda: be.save_canvas(
+            filename, 
+            canvas_image=canvas_image)
+    )
+    
+    button_quit = Button(
+        text="Quit", 
+        command=lambda: be.quit(root)
+    )
+    
     button_predict = Button(
         text="Predict LaTeX!",
-        command=lambda: be.ocr_request_button(filename=filename["name"]),
+        command=lambda: be.ocr_request_button(filename['filename']),
     )
 
     button_explore.pack()
@@ -82,14 +142,11 @@ def open_canvas(width=1200,
     button_predict.pack()
 
     root.mainloop()
-    
-# This modifier may be needed for the actual testing???
-def start_application():
-#     root = tk.Tk()
-    app = open_canvas()
-    return app
-    #return app # will return the application without starting the main loop.
+
+# def start_application():
+#     app = open_canvas()
+#     return app
 
 if __name__ == '__main__':
-    start_application()
-#     app
+    filename = {'filename':''}
+    open_canvas(filename)
