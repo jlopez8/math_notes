@@ -1,5 +1,4 @@
 import os
-# import sys
 import base64
 
 from pathlib import Path
@@ -15,14 +14,11 @@ from PIL import ImageGrab, ImageTk, ImageDraw, Image
 import requests
 import json
 
-import backend as be
+from math_notes import backend as be
 
-def open_canvas(filename,
-                width=1200,
-                height=400,
-                linewidth=3,
-                linecolor="BLACK"):
-    
+
+def open_canvas(filename, width=1200, height=400, linewidth=3, linecolor="BLACK"):
+
     """Opens a canvas widget using tkinter that allows a user to save their work.
 
     :param width: Canvas width, defaults to 800.
@@ -40,8 +36,7 @@ def open_canvas(filename,
     :return: Dictionary of filename where canvas was saved.
     :rtype: dict
     """
-    
-    
+
     def save_posn(event):
         """Saves positional coordinates of object event.
 
@@ -54,11 +49,11 @@ def open_canvas(filename,
 
         global lastx, lasty
         lastx, lasty = event.x, event.y
-        
+
     def add_line(event):
-        """Adds a line connection previous 
+        """Adds a line connection previous
         location of event to current event location.
-        
+
         Event here is where the mouse was and is located. Also draws the same line
         on a PIL image which represents the image drawn on the tkinter canvas by the
         user. This is the image that will actually be saved and used by the OCR.
@@ -69,7 +64,7 @@ def open_canvas(filename,
         :return: none
         :rtype: none
         """
-    
+
         # This canvas call is what the user sees on the screen.
         canvas.create_line(
             (lastx, lasty, event.x, event.y),
@@ -87,28 +82,28 @@ def open_canvas(filename,
             joint="curve",
         )
         save_posn(event)
-    
+
     global lastx, lasty
-    
-    filename['path'] = Path('./math_notes/temp_files/')
-    if not os.path.isdir(filename['path']):
-        os.mkdir(filename['path'])
-    
+
+    filename["path"] = Path("./math_notes/temp_files/")
+    if not os.path.isdir(filename["path"]):
+        os.mkdir(filename["path"])
+
     root = Tk()
-    canvas_dimensions = str(width) + "x" + str(int(height*1.5))
+    canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
     root.geometry(canvas_dimensions)
 
     # Instantiate the tkinter canvas to draw on.
     canvas = Canvas(root, bg="white", width=width, height=height)
     canvas.pack()
 
-    # PIL create an empty image and draw object to memory only 
+    # PIL create an empty image and draw object to memory only
     # It is not visible.
-    canvas_image = Image.new("RGB", (width, int(height*1.5)), (255, 255, 255))
+    canvas_image = Image.new("RGB", (width, int(height * 1.5)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
     canvas.pack(expand=True, fill="both")
-    
-    # Capturing mouse motion. 
+
+    # Capturing mouse motion.
     canvas.bind("<Button-1>", save_posn)
     canvas.bind("<B1-Motion>", add_line)
 
@@ -118,22 +113,20 @@ def open_canvas(filename,
         text="Browse Files", 
         command=lambda: be.browse_files(filename)
     )
-    
+
     button_save = Button(
-        text="Save Image",          
-        command=lambda: be.save_canvas(
-            filename, 
-            canvas_image=canvas_image)
+        text="Save Image",
+        command=lambda: be.save_canvas(filename, canvas_image=canvas_image),
     )
-    
+
     button_quit = Button(
         text="Quit", 
         command=lambda: be.quit(root)
     )
-    
+
     button_predict = Button(
         text="Predict LaTeX!",
-        command=lambda: be.ocr_request_button(filename['filename']),
+        command=lambda: be.ocr_request_button(filename["filename"]),
     )
 
     button_explore.pack()
@@ -143,10 +136,11 @@ def open_canvas(filename,
 
     root.mainloop()
 
+
 # def start_application():
 #     app = open_canvas()
 #     return app
 
-if __name__ == '__main__':
-    filename = {'filename':''}
+if __name__ == "__main__":
+    filename = {"filename": ""}
     open_canvas(filename)

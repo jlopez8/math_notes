@@ -5,7 +5,7 @@ from math_notes.predict import predict
 
 def test_prediction_single():
 
-    filename = "tests/data/integral_to_transform_1.png"
+    filename = 'tests/data/integral_to_transform_1.png'
     true_latex_string = "f(x)=\\int_{a}^{x} t^{3}+1 d t"
 
     image_uri = []
@@ -19,13 +19,18 @@ def test_prediction_single():
 
 
 def test_prediction_multiple():
+    
     filenames = [
         "tests/data/integral_to_transform_1.png",
         "tests/data/integral_to_transform_2.png",
         "tests/data/integral_to_transform_3.png",
     ]
 
-    true_latex_strings = ["f(x)=\\int_{a}^{x} t^{3}+1 d t", "x^{2}+1=0", "a x+b=y"]
+    true_latex_strings = [
+        "f(x)=\\int_{a}^{x} t^{3}+1 d t", 
+        "x^{2}+1=0", 
+        "a x+b=y"
+    ]
 
     image_uri = []
     for file in filenames:

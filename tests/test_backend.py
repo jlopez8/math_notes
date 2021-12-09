@@ -11,17 +11,19 @@ height = 400
 center = height // 2
 white = (255, 255, 255)
 
+filename = {}
+
 
 def test_submission():
     # Mimics browsing for a file.
-    backend.filename["name"] = "tests/data/img_x.png"
+    filename = "tests/data/img_x.png"
 
     # Call ocr_request_button with test_mode to avoid
     # pinging the prediction service, which is tested
     # in `tests_predict.py`.
-    backend.ocr_request_button(backend.filename["name"], test_mode=True)
+    backend.ocr_request_button(filename, test_mode=True)
 
-    path = Path("temp_files/cv_predict.csv")
+    path = Path("math_notes/temp_files/cv_predict.csv")
     file = open(path)
     csv_reader = csv.reader(file)
 
@@ -31,12 +33,11 @@ def test_submission():
     for row in csv_reader:
         rows.append(row)
     file.close()
-
+    
     assert rows[0][0] == "x"
 
 
 def test_save_canvas():
-    # Draw on a canvas.
     canvas_image = PIL.Image.new("RGB", (width, height), white)
     draw = ImageDraw.Draw(canvas_image)
 
@@ -48,6 +49,7 @@ def test_save_canvas():
         width=3,
         joint=None,
     )
+    
     coords = [coords[0], coords[3], coords[2], coords[1]]
     draw.line(
         coords,
@@ -55,11 +57,14 @@ def test_save_canvas():
         width=3,
         joint=None,
     )
+    
+    filename['path'] = Path('tests/data/')
+    filename['filename'] = 'test_save_canvas_x.png'
+    backend.save_canvas(filename, canvas_image)
 
-    path = Path("temp_files/cv_temp.png")
-    backend.save_canvas(canvas_image, path)
-
-    assert path.is_file()
+    file = filename['path']/filename['filename']
+    
+    assert file.is_file()
 
 
 def test_save_predictions():
