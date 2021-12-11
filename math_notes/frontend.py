@@ -19,7 +19,7 @@ from math_notes import backend as be
 
 def open_canvas(filename, width=1200, height=400, linewidth=3, linecolor="BLACK"):
 
-    """Opens a canvas widget using tkinter that allows a user to save their work.
+    '''Opens a canvas widget using tkinter that allows a user to save their work.
 
     :param width: Canvas width, defaults to 800.
     :type width: int, optional
@@ -35,7 +35,7 @@ def open_canvas(filename, width=1200, height=400, linewidth=3, linecolor="BLACK"
 
     :return: Dictionary of filename where canvas was saved.
     :rtype: dict
-    """
+    '''
 
     def save_posn(event):
         """Saves positional coordinates of object event.
@@ -85,19 +85,21 @@ def open_canvas(filename, width=1200, height=400, linewidth=3, linecolor="BLACK"
 
     global lastx, lasty
 
+    # Check the temporary files directory and create one if necessary.
     filename["path"] = Path("./math_notes/temp_files/")
     if not os.path.isdir(filename["path"]):
         os.mkdir(filename["path"])
 
+    # Create the canvas.
     root = Tk()
     canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
     root.geometry(canvas_dimensions)
 
-    # Instantiate the tkinter canvas to draw on.
+    # Instantiate the tkinter canvas for users to draw on. 
     canvas = Canvas(root, bg="white", width=width, height=height)
     canvas.pack()
 
-    # PIL create an empty image and draw object to memory only
+    # PIL create an empty image and draw object to memory only.
     # It is not visible.
     canvas_image = Image.new("RGB", (width, int(height * 1.5)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
@@ -128,7 +130,7 @@ def open_canvas(filename, width=1200, height=400, linewidth=3, linecolor="BLACK"
         text="Predict LaTeX!",
         command=lambda: be.ocr_request_button(filename["filename"]),
     )
-
+    
     button_explore.pack()
     button_save.pack()
     button_quit.pack()
@@ -136,11 +138,6 @@ def open_canvas(filename, width=1200, height=400, linewidth=3, linecolor="BLACK"
 
     root.mainloop()
 
-
-# def start_application():
-#     app = open_canvas()
-#     return app
-
 if __name__ == "__main__":
-    filename = {"filename": ""}
-    open_canvas(filename)
+    FILENAME = {"filename": ""}
+    open_canvas(FILENAME)
