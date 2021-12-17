@@ -1,1 +1,1 @@
-from .frontend import open_canvas
+from .math_notes import math_canvas
