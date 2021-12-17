@@ -1,14 +1,15 @@
+import logging
+
 import requests
 import json
 
-# from . import config as cfg
 from math_notes import config as cfg
 
 app_id = cfg.APP_ID
 app_key = cfg.APP_KEY
 
 
-def ocr_request(image):
+def _ocr_request(image):
     """Sends an API request to MathPix API to be handled by the OCR.
 
     :param filename: Dictionary with the filename of the image to be sent to the MathPix API for a LaTeX prediction.
@@ -35,14 +36,15 @@ def ocr_request(image):
         latex_return = json_return.get("latex_styled")
 
     except:
-        print(
-            "Exception while submitting prediction request to MathPix. Try checking connection to internet."
+        logging.error(
+            "Exception while submitting prediction request to MathPix. \
+            Try checking connection to internet."
         )
 
     return latex_return
 
 
-def predict(images):
+def _predict(images):
     """Receives images to send to the prediction service.
 
     :param images: List with base64 enconded images as pngs.
@@ -55,7 +57,7 @@ def predict(images):
     latex_results = []
     for image in images:
         # Any image pre-processing necessary is done here.
-        latex_return = ocr_request(image)
+        latex_return = _ocr_request(image)
         latex_results.append(latex_return)
 
     return latex_results

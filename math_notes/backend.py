@@ -12,9 +12,12 @@ from PIL import Image
 from math_notes import predict
 
 
-def browse_files(filename):
+def _browse_files(filename):
     """Opens a file system dialogue allowing a user to
     specify a file to send to the prediction service.6
+
+    :return: none
+    :rtype: none
     """
 
     init_browse_dir = os.getcwd()
@@ -38,7 +41,7 @@ def browse_files(filename):
     text.pack()
 
 
-def save_predictions(predictions, path=Path("math_notes/temp_files/cv_predict.csv")):
+def _save_predictions(predictions, path=Path("math_notes/temp_files/cv_predict.csv")):
     """Save a list of LaTeX predictions to a csv.
 
     :param predictions: A list of strings of the latex predictions.
@@ -47,7 +50,6 @@ def save_predictions(predictions, path=Path("math_notes/temp_files/cv_predict.cs
     :return: none
     :rtype: none
     """
-
 
     filename = path
     headers = ["latex"]
@@ -61,11 +63,14 @@ def save_predictions(predictions, path=Path("math_notes/temp_files/cv_predict.cs
     file.close()
 
 
-def save_canvas(filename, canvas_image=Image.new("RGB", (100, 100), (255, 255, 255))):
+def _save_canvas(filename, canvas_image=Image.new("RGB", (100, 100), (255, 255, 255))):
     """Saves a canvas file to a temporary directory.
 
     :param canvas_image: Image to capture drawing.
     :type canvas_image: Pil image object
+
+    :return: none
+    :rtype: none
     """
 
     if not os.path.isdir(filename["path"]):
@@ -75,14 +80,14 @@ def save_canvas(filename, canvas_image=Image.new("RGB", (100, 100), (255, 255, 2
     if filename["filename"] == "":
         filename["filename"] = "/saved_canvas.png"
 
-    saveas = filename["path"]/filename["filename"]
+    saveas = filename["path"] / filename["filename"]
     canvas_image.save(str(saveas))
 
     text = Label(text="File was saved as: " + str(saveas), font=("helvetica", 25))
     text.pack()
 
 
-def ocr_request_button(filename="", test_mode=False):
+def _ocr_request_button(filename="", test_mode=False):
     """Calls the prediction service using the given filename in the temp_files directory.
 
     :param filename: String with the filename image location to be sent to the API.
@@ -90,6 +95,9 @@ def ocr_request_button(filename="", test_mode=False):
 
     :param test_mode: Boolean for testing mode. Use 'True' in test_mode to avoid pinging the API unnecessary multiple costs.
     :type test_mode: Bool
+
+    :return: none
+    :rtype: none
     """
 
     if filename == "":
@@ -106,8 +114,14 @@ def ocr_request_button(filename="", test_mode=False):
         else:
             latex_return = ["x"]
 
-    save_predictions(latex_return)
+    _save_predictions(latex_return)
 
 
-def quit(root):
+def _quit(root):
+    """Closes down the canvas.
+
+    :return: none
+    :rtype: none
+    """
+
     root.destroy()
