@@ -54,10 +54,10 @@ def _predict(images):
     :rtype: [str]
     """
 
-    latex_results = []
+    prediction_results = []
     for image in images:
         # Any image pre-processing necessary is done here.
-        latex_return = _ocr_request(image)
-        latex_results.append(latex_return)
+        prediction = _ocr_request(image)
+        prediction_results.append(prediction)
 
-    return latex_results
+    return prediction_results
