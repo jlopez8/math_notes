@@ -1,11 +1,10 @@
 import os
 import shutil
 import base64
-
-import csv
 from pathlib import Path
 import logging
 
+import csv
 import tkinter as tk
 from tkinter import Tk, Canvas, ttk, Button, Label, filedialog, StringVar
 from tkinter import constants as con
@@ -100,6 +99,21 @@ def _save_canvas_temp(canvas_image):
     return filename_temp
 
 
+def _latex_read(filename):
+    latex_readin = []
+
+    filename = "cv_predict.csv"
+    path = Path("./math_notes/predictions/")
+    filepath = path / filename
+    with open(filepath, newline='') as csvfile:
+        csv_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        csv_reader.__next__()
+        for row in csv_reader:
+            latex_readin.append(row[0])
+    
+    return latex_readin
+
+
 def _ocr_request_button(
     filename,
     canvas_image=Image.new("RGB", (100, 100), (255, 255, 255)),
@@ -150,7 +164,7 @@ def _ocr_request_button(
     # Print a success message.
     new_text = "Prediction complete: " + latex_return[0]
     _update_prediction_label(text, new_text)
-
+    
 
 def _quit(root):
     """Closes down the canvas.

@@ -39,9 +39,31 @@ def open_canvas(
     :param linecolor: Canvas marker linecolor, defaults to black.
     :type linecolor: str, optional
 
-    :return: none
-    :rtype: none
+    :return: List of string of latex prediciton.
+    :rtype: [str]
     """
+    
+    def _latex_read():
+        """Reads in prediction string saved by the backend ocr mechanism.
+        
+        :return: List of string of latex prediciton.
+        :rtype: [str]
+        """
+        
+        
+        latex_readin = []
+        filename = "cv_predict.csv"
+        path = Path("./math_notes/predictions/")
+        filepath = path / filename
+        
+        with open(filepath, newline='') as csvfile:
+            csv_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+            csv_reader.__next__()
+            for row in csv_reader:
+                latex_readin.append(row[0])
+
+        return latex_readin
+    
 
     def _save_posn(event):
         """Saves positional coordinates while drawing on canvas.
@@ -140,8 +162,10 @@ def open_canvas(
 
     # Execute tkinter commands.
     root.mainloop()
+    
+    return _latex_read()
 
-
+    
 def main():
     FILENAME = {}
     open_canvas(FILENAME)
