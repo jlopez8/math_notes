@@ -18,9 +18,9 @@ from math_notes import backend as be
 
 
 def open_canvas(
-    filename={'filename': ''}, width=1200, height=400, linewidth=3, linecolor='BLACK'
+    filename={"filename": ""}, width=1200, height=400, linewidth=3, linecolor="BLACK"
 ):
-    '''Opens a canvas widget using tkinter that allows a user to
+    """Opens a canvas widget using tkinter that allows a user to
     save their work.
 
     :param filename: Filename dictionary for parameters to access
@@ -41,24 +41,23 @@ def open_canvas(
 
     :return: none
     :rtype: none
-    '''
-
+    """
 
     def _save_posn(event):
-        '''Saves positional coordinates while drawing on canvas.
+        """Saves positional coordinates while drawing on canvas.
 
         :param event: Recorded mouse-click events for drawing.
         :type event: class tkinter.Event
 
         :return: none
         :rtype: none
-        '''
+        """
 
         global lastx, lasty
         lastx, lasty = event.x, event.y
 
     def _add_line(event):
-        '''Adds a line connection previous location while drawing to current location.
+        """Adds a line connection previous location while drawing to current location.
 
         Event here is where the mouse was and is located. Also draws the same line
         on a PIL image which represents the image drawn on the tkinter canvas by the
@@ -69,7 +68,7 @@ def open_canvas(
 
         :return: none
         :rtype: none
-        '''
+        """
 
         # This canvas call is what the user sees on the screen.
         canvas.create_line(
@@ -85,67 +84,59 @@ def open_canvas(
             [lastx, lasty, event.x, event.y],
             fill=linecolor,
             width=linewidth,
-            joint='curve',
+            joint="curve",
         )
         _save_posn(event)
 
     global lastx, lasty
 
-    # Check the temporary files directory and create one if necessary.
-    filename['path'] = Path('./math_notes/temp_files/')
-    if not os.path.isdir(filename['path']):
-        os.mkdir(filename['path'])
+    # Define the supporting paths.
+    filename["path"] = Path("./math_notes/temp_files/")
+    filename["path_predictions"] = Path("./math_notes/predictions/")
 
     # Create the canvas.
     root = Tk()
-    canvas_dimensions = str(width) + 'x' + str(int(height * 1.5))
+    canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
     root.geometry(canvas_dimensions)
 
     # Instantiate the tkinter canvas for users to draw on.
-    canvas = Canvas(root, bg='white', width=width, height=height)
+    canvas = Canvas(root, bg="white", width=width, height=height)
     canvas.pack()
 
     # PIL create an empty image and draw object to memory only.
     # It is not visible.
-    canvas_image = Image.new('RGB', (width, int(height * 1.5)), (255, 255, 255))
+    canvas_image = Image.new("RGB", (width, int(height * 1.5)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
-    canvas.pack(expand=True, fill='both')
+    canvas.pack(expand=True, fill="both")
 
     # Capturing mouse motion.
-    canvas.bind('<Button-1>', _save_posn)
-    canvas.bind('<B1-Motion>', _add_line)
+    canvas.bind("<Button-1>", _save_posn)
+    canvas.bind("<B1-Motion>", _add_line)
 
     # Buttons to save canvas, quit canvas, browse images.
     button_explore = Button(
-        root, text='Browse Files', command=lambda: be._browse_files(filename)
+        root, text="Browse Files", command=lambda: be._browse_files(filename)
     )
 
-    button_save = Button(
-        text='Save Image',
-        command=lambda: be._save_canvas(filename, canvas_image=canvas_image),
-    )
-
-    button_quit = Button(text='Quit', command=lambda: be._quit(root))
+    button_quit = Button(text="Quit", command=lambda: be._quit(root))
 
     button_predict = Button(
-        text='Predict LaTeX!',
+        text="Predict LaTeX!",
         command=lambda: be._ocr_request_button(filename, canvas_image=canvas_image),
     )
 
-    button_explore.pack()
-    button_save.pack()
-    button_quit.pack()
+    # Layout.
     button_predict.pack()
+    button_explore.pack()
+    button_quit.pack()
 
     root.mainloop()
 
 
 def main():
-    FILENAME = {'filename': ''}
+    FILENAME = {"filename": ""}
     open_canvas(FILENAME)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
-
