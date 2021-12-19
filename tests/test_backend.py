@@ -49,9 +49,10 @@ def test_submission():
 def test_save_predictions():
     predictions = ["x", "\\int_0^\\intfy 1/x^2 dx", "ax+b=y"]
 
-    path_predictions = Path("./math_notes/predictions/")
     filename = "test_cv_saved_predict.csv"
-    backend._save_predictions(predictions, path=path_predictions, filename=filename)
+    path_predictions = Path("./math_notes/predictions/")
+
+    backend._save_predictions(predictions, filename=filename)
 
     filepath = path_predictions / filename
     file = open(filepath)
@@ -68,5 +69,4 @@ def test_save_predictions():
         assert rows[i][0] == predictions[i]
 
     assert filepath.is_file()
-
     os.remove(os.path.join(path_predictions, filename))

@@ -46,9 +46,7 @@ def _browse_files(filename):
     text.pack()
 
 
-def _save_predictions(
-    predictions, path=Path("math_notes/predictions/"), filename="cv_predict.csv"
-):
+def _save_predictions(predictions, filename="cv_predict.csv"):
     """Save a list of LaTeX predictions to a csv.
 
     :param predictions: A list of strings of the latex predictions.
@@ -57,7 +55,7 @@ def _save_predictions(
     :return: none
     :rtype: none
     """
-
+    path = Path("math_notes/predictions/")
     if not os.path.isdir(path):
         os.mkdir(path)
 

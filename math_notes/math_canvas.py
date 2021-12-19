@@ -92,7 +92,6 @@ def open_canvas(
 
     # Define the supporting paths.
     filename["path"] = Path("./math_notes/temp_files/")
-    filename["path_predictions"] = Path("./math_notes/predictions/")
 
     # Create the canvas.
     root = Tk()
@@ -134,7 +133,7 @@ def open_canvas(
 
 
 def main():
-    FILENAME = {"filename": ""}
+    FILENAME = {}
     open_canvas(FILENAME)
 
 
