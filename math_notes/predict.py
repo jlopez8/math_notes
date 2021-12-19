@@ -37,7 +37,7 @@ def _ocr_request(image):
 
     except:
         logging.error(
-            "Exception while submitting prediction request to MathPix. \
+            "Exception while submitting prediction request to MathPix.\
             Try checking connection to internet."
         )
 

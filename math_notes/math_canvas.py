@@ -90,11 +90,14 @@ def open_canvas(
 
     global lastx, lasty
 
+    root = Tk()
+    text = tk.StringVar()
+    text.set("Prediction (ready): ")
+
     # Define the supporting paths.
     filename["path"] = Path("./math_notes/temp_files/")
 
     # Create the canvas.
-    root = Tk()
     canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
     root.geometry(canvas_dimensions)
 
@@ -112,6 +115,9 @@ def open_canvas(
     canvas.bind("<Button-1>", _save_posn)
     canvas.bind("<B1-Motion>", _add_line)
 
+    # Labels for readouts.
+    label = tk.Label(root, textvariable=text, font=("helvetica", 18))
+
     # Buttons to save canvas, quit canvas, browse images.
     button_explore = Button(
         root, text="Browse Files", command=lambda: be._browse_files(filename)
@@ -121,14 +127,18 @@ def open_canvas(
 
     button_predict = Button(
         text="Predict LaTeX!",
-        command=lambda: be._ocr_request_button(filename, canvas_image=canvas_image),
+        command=lambda: be._ocr_request_button(
+            filename, canvas_image=canvas_image, text=text
+        ),
     )
 
     # Layout.
     button_predict.pack()
     button_explore.pack()
     button_quit.pack()
+    label.pack()
 
+    # Execute tkinter commands.
     root.mainloop()
 
 

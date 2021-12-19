@@ -6,7 +6,8 @@ import csv
 from pathlib import Path
 import logging
 
-from tkinter import Tk, Canvas, ttk, Button, Label, filedialog
+import tkinter as tk
+from tkinter import Tk, Canvas, ttk, Button, Label, filedialog, StringVar
 from tkinter import constants as con
 
 from PIL import Image
@@ -72,6 +73,11 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
     file.close()
 
 
+def _update_prediction_label(text, new_text):
+    if not text == "":
+        text.set(new_text)
+
+
 def _save_canvas_temp(canvas_image):
     """Captures whatever is on the canvas currently for immediate prediction.
 
@@ -98,6 +104,7 @@ def _ocr_request_button(
     filename,
     canvas_image=Image.new("RGB", (100, 100), (255, 255, 255)),
     test_mode=False,
+    text="",
 ):
     """Calls the prediction service using the given filename in the temp_files directory.
 
@@ -126,6 +133,7 @@ def _ocr_request_button(
     images = [image_uri]
 
     if not test_mode:
+
         latex_return = predict._predict(images)
     else:
         latex_return = ["x"]
@@ -138,6 +146,10 @@ def _ocr_request_button(
         logging.error("Error: %s - %s." % (e.filename, e.strerror))
 
     _save_predictions(latex_return)
+
+    # Print a success message.
+    new_text = "Prediction complete: " + latex_return[0]
+    _update_prediction_label(text, new_text)
 
 
 def _quit(root):
