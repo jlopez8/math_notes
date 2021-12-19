@@ -14,8 +14,8 @@ from math_notes import predict
 
 
 def _browse_files(filename):
-    '''Opens a file system dialogue allowing a user to
-    specify a file to send to the prediction service. Sets some parameters for the filename dictionary.
+    '''Opens a file system dialogue allowing a user to specify a file to send to the prediction service. 
+    Sets some parameters for the filename dictionary.
 
     :param filename: A dictionary of filename parameters for saving or supporting running predictions for the math canvas.
     :type filename: dictionary
@@ -65,7 +65,7 @@ def _save_predictions(predictions, path=Path('math_notes/temp_files/cv_predict.c
             latex = data[i]
             writer.writerow([latex])
     file.close()
-
+    
 
 def _save_canvas(filename, canvas_image=Image.new('RGB', (100, 100), (255, 255, 255))):
     '''Saves a canvas file to a temporary directory.
@@ -98,7 +98,7 @@ def _save_canvas_temp(canvas_image):
     '''Captures whatever is on the canvas curently for immedate prediction.
 
     :param canvas_image: Image to capture drawing.
-    :type canvas_image: Pil image object
+    :type canvas_image: PIL image object
 
     :return: String of temporary filename.
     :rtype: str
@@ -117,7 +117,7 @@ def _save_canvas_temp(canvas_image):
 
 
 def _ocr_request_button(
-    filename,
+    filename, 
     canvas_image=Image.new('RGB', (100, 100), (255, 255, 255)),
     test_mode=False,
 ):
@@ -133,6 +133,7 @@ def _ocr_request_button(
     :rtype: none
     '''
 
+
     latex_return = ['']
     filepath = filename['path'] / filename['filename']
 
@@ -146,6 +147,7 @@ def _ocr_request_button(
         + base64.b64encode(open(filepath, 'rb').read()).decode()
     )
     images = [image_uri]
+    
     if not test_mode:
         latex_return = predict._predict(images)
     else:
@@ -161,6 +163,5 @@ def _quit(root):
     :rtype: none
     '''
 
+    
     root.destroy()
-
-
