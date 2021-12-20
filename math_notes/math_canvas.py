@@ -8,6 +8,7 @@ import csv
 import tkinter as tk
 from tkinter import Tk, Canvas, ttk, Button, filedialog, Label
 from tkinter import constants as con
+import tkinter.font as font
 
 from PIL import ImageGrab, ImageTk, ImageDraw, Image
 
@@ -56,13 +57,14 @@ def open_canvas(
         path = Path("./math_notes/predictions/")
         filepath = path / filename
         
-        with open(filepath, newline='') as csvfile:
-            csv_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-            csv_reader.__next__()
-            for row in csv_reader:
-                latex_readin.append(row[0])
-
-        return latex_readin
+        try:
+            with open(filepath, newline='') as csvfile:
+                csv_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+                csv_reader.__next__()
+                for row in csv_reader:
+                    latex_readin.append(row[0])
+        finally:
+            return latex_readin
     
 
     def _save_posn(event):
@@ -125,40 +127,47 @@ def open_canvas(
 
     # Instantiate the tkinter canvas for users to draw on.
     canvas = Canvas(root, bg="white", width=width, height=height)
-    canvas.pack()
+    canvas.grid(row=0, column=0)
 
     # PIL create an empty image and draw object to memory only.
     # It is not visible.
     canvas_image = Image.new("RGB", (width, int(height * 1.5)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
-    canvas.pack(expand=True, fill="both")
 
     # Capturing mouse motion.
     canvas.bind("<Button-1>", _save_posn)
     canvas.bind("<B1-Motion>", _add_line)
 
     # Labels for readouts.
+    row = 10
     label = tk.Label(root, textvariable=text, font=("helvetica", 18))
+    label.grid(row=row+3, column=0)
 
     # Buttons to save canvas, quit canvas, browse images.
+    myFont = font.Font(family='Times', size=30)
+    
     button_explore = Button(
-        root, text="Browse Files", command=lambda: be._browse_files(filename)
+        root, text="Select a file", command=lambda: be._browse_files(filename),
+        height="2",
+        width="12",
     )
-
-    button_quit = Button(text="Quit", command=lambda: be._quit(root))
+    button_explore.grid(row=row, column=0)
 
     button_predict = Button(
         text="Predict LaTeX!",
         command=lambda: be._ocr_request_button(
             filename, canvas_image=canvas_image, text=text
         ),
+        height="2", width="12",
     )
-
-    # Layout.
-    button_predict.pack()
-    button_explore.pack()
-    button_quit.pack()
-    label.pack()
+    
+    button_predict.grid(row=row+1, column=0)
+    
+    button_quit = Button(
+        text="Quit", command=lambda: be._quit(root),
+        height="2", width="12",
+    )
+    button_quit.grid(row=row+2, column=0)
 
     # Execute tkinter commands.
     root.mainloop()

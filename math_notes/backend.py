@@ -26,7 +26,7 @@ def _browse_files(filename):
     """
 
     init_browse_dir = os.getcwd()
-    filename["filename"] = get(filename["filename"], "")
+    filename["filename"] = {}.get(filename["filename"], "")
     filename["filename"] = filedialog.askopenfilename(
         initialdir=init_browse_dir,
         title="Select a File",
@@ -43,7 +43,7 @@ def _browse_files(filename):
         text = "No file selected."
 
     text = Label(text=text, font=("helvetica", 18))
-    text.pack()
+    text.grid(row=12, column=0)
 
 
 def _save_predictions(predictions, filename="cv_predict.csv"):
@@ -73,8 +73,8 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
 
 
 def _update_prediction_label(text, new_text):
-    """Update the text label of the label on the tkinter window. 
-    
+    """Update the text label of the label on the tkinter window.
+
     :return: none
     :rtype: none
     """
@@ -129,8 +129,7 @@ def _ocr_request_button(
     # Force saving a canvas if a file wasn't selected by the browser.
     if filename["filename"] == "":
         filename_temp = _save_canvas_temp(canvas_image)
-        
-        
+
         filepath = Path("./math_notes/temp_files/") / filename_temp
 
     image_uri = (
@@ -157,7 +156,7 @@ def _ocr_request_button(
     # Print a success message.
     new_text = "Prediction complete: " + latex_return[0]
     _update_prediction_label(text, new_text)
-    
+
 
 def _quit(root):
     """Closes down the canvas.
