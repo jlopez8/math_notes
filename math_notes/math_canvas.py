@@ -59,7 +59,7 @@ def open_canvas(
         
         try:
             with open(filepath, newline='') as csvfile:
-                csv_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+                csv_reader = csv.reader(csvfile)
                 csv_reader.__next__()
                 for row in csv_reader:
                     latex_readin.append(row[0])
