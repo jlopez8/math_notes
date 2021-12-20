@@ -73,6 +73,11 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
 
 
 def _update_prediction_label(text, new_text):
+    """Update the text label of the label on the tkinter window. 
+    
+    :return: none
+    :rtype: none
+    """
     if not text == "":
         text.set(new_text)
 
@@ -88,8 +93,9 @@ def _save_canvas_temp(canvas_image):
     """
 
     directory = Path("math_notes/temp_files/")
-    if not os.path.isdir(directory):
-        os.mkdir(directory)
+    isExist = os.path.exists(directory)
+    if not isExist:
+        os.makedirs(directory)
 
     filename_temp = "temp_saved_canvas.png"
 
@@ -97,21 +103,6 @@ def _save_canvas_temp(canvas_image):
     canvas_image.save(str(saveas))
 
     return filename_temp
-
-
-def _latex_read(filename):
-    latex_readin = []
-
-    filename = "cv_predict.csv"
-    path = Path("./math_notes/predictions/")
-    filepath = path / filename
-    with open(filepath, newline='') as csvfile:
-        csv_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-        csv_reader.__next__()
-        for row in csv_reader:
-            latex_readin.append(row[0])
-    
-    return latex_readin
 
 
 def _ocr_request_button(
@@ -138,6 +129,8 @@ def _ocr_request_button(
     # Force saving a canvas if a file wasn't selected by the browser.
     if filename["filename"] == "":
         filename_temp = _save_canvas_temp(canvas_image)
+        
+        
         filepath = Path("./math_notes/temp_files/") / filename_temp
 
     image_uri = (
