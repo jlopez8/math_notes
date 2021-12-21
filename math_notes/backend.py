@@ -43,7 +43,7 @@ def _browse_files(filename):
         text = "No file selected."
 
     text = Label(text=text, font=("helvetica", 18))
-    text.grid(row=12, column=0)
+    text.grid(row=15, column=0)
 
 
 def _save_predictions(predictions, filename="cv_predict.csv"):
