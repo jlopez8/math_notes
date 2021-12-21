@@ -43,29 +43,27 @@ def open_canvas(
     :return: List of string of latex prediciton.
     :rtype: [str]
     """
-    
+
     def _latex_read():
         """Reads in prediction string saved by the backend ocr mechanism.
-        
+
         :return: List of string of latex prediciton.
         :rtype: [str]
         """
-        
-        
+
         latex_readin = []
         filename = "cv_predict.csv"
         path = Path("./math_notes/predictions/")
         filepath = path / filename
-        
+
         try:
-            with open(filepath, newline='') as csvfile:
+            with open(filepath, newline="") as csvfile:
                 csv_reader = csv.reader(csvfile)
                 csv_reader.__next__()
                 for row in csv_reader:
                     latex_readin.append(row[0])
         finally:
             return latex_readin
-    
 
     def _save_posn(event):
         """Saves positional coordinates while drawing on canvas.
@@ -141,40 +139,47 @@ def open_canvas(
     # Labels for readouts.
     row = 10
     label = tk.Label(root, textvariable=text, font=("helvetica", 18))
-    label.grid(row=row+3, column=0)
+    label.grid(row=row + 3, column=0)
 
     # Buttons to save canvas, quit canvas, browse images.
-    myFont = font.Font(family='Times', size=30)
-    
+    myFont = font.Font(family="Times", size=30)
+
     button_explore = Button(
-        root, text="Select a file", command=lambda: be._browse_files(filename),
+        root,
+        text="Select a file",
+        command=lambda: be._browse_files(filename),
         height="2",
         width="12",
     )
-    button_explore.grid(row=row, column=0)
+    
 
     button_predict = Button(
         text="Predict LaTeX!",
         command=lambda: be._ocr_request_button(
             filename, canvas_image=canvas_image, text=text
         ),
-        height="2", width="12",
+        height="2",
+        width="12",
     )
-    
-    button_predict.grid(row=row+1, column=0)
-    
+
     button_quit = Button(
-        text="Quit", command=lambda: be._quit(root),
-        height="2", width="12",
+        text="Quit",
+        command=lambda: be._quit(root),
+        height="2",
+        width="12",
     )
-    button_quit.grid(row=row+2, column=0)
+    
+    button_predict.grid(row=row, column=0)
+    button_explore.grid(row=row + 1, column=0)
+    button_quit.grid(row=row + 2, column=0)
+    
 
     # Execute tkinter commands.
     root.mainloop()
-    
+
     return _latex_read()
 
-    
+
 def main():
     FILENAME = {}
     open_canvas(FILENAME)
