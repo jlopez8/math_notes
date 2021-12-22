@@ -184,7 +184,7 @@ def open_canvas(
     return _latex_read()
 
 @register_line_magic
-def math_canvas(line):
+def mathcanvas(line):
     filename={"filename": ""}
     
     latex_return = []
@@ -199,9 +199,10 @@ def math_canvas(line):
         latex_prediction=latex_prediction
     )
     print("Raw LaTeX Prediction: ", latex_raw)
+    print("\n\n")
     
     return md("$$ \Huge {} $$".format(latex_prediction))
 
     
 if __name__ == "__main__":
-    math_canvas()
+    mathcanvas()
