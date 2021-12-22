@@ -117,6 +117,8 @@ def open_canvas(
     global lastx, lasty
 
     root = Tk()
+    root.title("Math Canvas")
+    
     text = tk.StringVar()
     text.set("Prediction (ready): ")
 
@@ -168,7 +170,7 @@ def open_canvas(
 
     button_quit = Button(
         text="Quit",
-        command=lambda: be._quit(root),
+        command=root.destroy,
         height="2",
         width="12",
     )
