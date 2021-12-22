@@ -5,6 +5,10 @@ from pathlib import Path
 
 import csv
 
+from IPython.core.magic import (register_line_magic, register_cell_magic,
+                                register_line_cell_magic)
+from IPython.display import Markdown as md
+
 import tkinter as tk
 from tkinter import Tk, Canvas, ttk, Button, filedialog, Label
 from tkinter import constants as con
@@ -179,11 +183,25 @@ def open_canvas(
 
     return _latex_read()
 
+@register_line_magic
+def math_canvas(line):
+    filename={"filename": ""}
+    
+    latex_return = []
+    if line != "" and isinstance(line, str):
+        filename={"filename": line}
+        latex_return = open_canvas(filename={"filename": ""})
+    else:
+        latex_return = open_canvas(filename=filename)
+        
+    latex_prediction = latex_return[0]
+    latex_raw = " $ {latex_prediction} $ ".format(
+        latex_prediction=latex_prediction
+    )
+    print("Raw LaTeX Prediction: ", latex_raw)
+    
+    return md("$$ \Huge {} $$".format(latex_prediction))
 
-def main():
-    FILENAME = {}
-    open_canvas(FILENAME)
-
-
+    
 if __name__ == "__main__":
-    main()
+    math_canvas()
