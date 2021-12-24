@@ -53,6 +53,7 @@ docs/_build/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+try_mathnotes.ipynb
 
 # virtualenv
 .venv
@@ -60,14 +61,14 @@ venv/
 ENV/
 
 # tutorials
-tutorials/
+/tutorials/
 
 # configs
-configs/
-math_notes/configs
+/configs/
 
 # workbooks
-work_book/
+/work_book/
 
 # source image data
-data/template_data/source
+data/template_data/sourcef
+

@@ -1,20 +1,9 @@
-#!/usr/bin/env python
-
-"""The setup script."""
-
 from setuptools import setup, find_packages
 
-with open("README.rst") as readme_file:
+with open("README.md") as readme_file:
     readme = readme_file.read()
 
-with open("HISTORY.rst") as history_file:
-    history = history_file.read()
-
-requirements = [
-    "Click>=7.0",
-]
-
-setup_requirements = []
+setup_requirements = ["tkinter", "PIL"]
 
 test_requirements = []
 
@@ -32,19 +21,19 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
-    description="math_notes is a tool that integrates anatural"
-    + "handwritten math with digital notetaking means"
-    + "in an online environment.t making the accessible"
-    + "anywhere and easy to transition"
-    + "from work or home.",
+    description="math_notes is a tool that integrates a natural,"
+    + "handwritten math with digital notetaking means via"
+    + "a Jupyter notebook, making the accessible"
+    + "anywhere for an easy transition between work"
+    + "and home.",
     entry_points={
         "console_scripts": [
             "math_notes=math_notes.cli:main",
         ],
     },
-    install_requires=requirements,
+    install_requires="requirements.txt",
     license="GNU General Public License v3",
-    long_description=readme + "\n\n" + history,
+    long_description=readme + "\n\n",
     include_package_data=True,
     keywords="math_notes",
     name="math_notes",
