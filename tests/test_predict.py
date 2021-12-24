@@ -1,6 +1,6 @@
 import base64
 
-from math_notes.predict import predict
+from math_notes import predict
 
 
 def test_prediction_single():
@@ -13,12 +13,13 @@ def test_prediction_single():
         "data:image/png;base64,"
         + base64.b64encode(open(filename, "rb").read()).decode()
     )
-    latex_return = predict(image_uri)
+    latex_return = predict._predict(image_uri)
 
     assert latex_return[0] == true_latex_string
 
 
 def test_prediction_multiple():
+
     filenames = [
         "tests/data/integral_to_transform_1.png",
         "tests/data/integral_to_transform_2.png",
@@ -33,6 +34,6 @@ def test_prediction_multiple():
             "data:image/png;base64,"
             + base64.b64encode(open(file, "rb").read()).decode()
         )
-    latex_returns = predict(image_uri)
+    latex_returns = predict._predict(image_uri)
 
     assert latex_returns == true_latex_strings

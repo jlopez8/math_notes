@@ -1,28 +1,34 @@
+import os
+
 import csv
 from pathlib import Path
 
 from math_notes import backend
-
-from PIL import ImageDraw
-import PIL
 
 width = 1200
 height = 400
 center = height // 2
 white = (255, 255, 255)
 
+filename = {}
+
 
 def test_submission():
     # Mimics browsing for a file.
-    backend.filename["name"] = "tests/data/img_x.png"
+    file = "img_x.png"
+    path = Path("./tests/data/")
+    path_predictions = Path("./math_notes/predictions/")
 
-    # Call ocr_request_button with test_mode to avoid
+    filename = {"filename": file, "path": path, "path_predictions": path_predictions}
+
+    # Call _ocr_request_button with test_mode to avoid
     # pinging the prediction service, which is tested
     # in `tests_predict.py`.
-    backend.ocr_request_button(backend.filename["name"], test_mode=True)
+    backend._ocr_request_button(filename, test_mode=True)
 
-    path = Path("temp_files/cv_predict.csv")
-    file = open(path)
+    filename_predictions = "cv_predict.csv"
+    predict_file = path_predictions / filename_predictions
+    file = open(predict_file)
     csv_reader = csv.reader(file)
 
     next(csv_reader)
@@ -34,40 +40,19 @@ def test_submission():
 
     assert rows[0][0] == "x"
 
-
-def test_save_canvas():
-    # Draw on a canvas.
-    canvas_image = PIL.Image.new("RGB", (width, height), white)
-    draw = ImageDraw.Draw(canvas_image)
-
-    # Draw an x by specifying some lines.
-    coords = [275, 165, 604, 390]
-    draw.line(
-        coords,
-        fill="BlACK",
-        width=3,
-        joint=None,
-    )
-    coords = [coords[0], coords[3], coords[2], coords[1]]
-    draw.line(
-        coords,
-        fill="BlACK",
-        width=3,
-        joint=None,
-    )
-
-    path = Path("temp_files/cv_temp.png")
-    backend.save_canvas(canvas_image, path)
-
-    assert path.is_file()
+    os.remove(os.path.join(path_predictions, filename_predictions))
 
 
 def test_save_predictions():
     predictions = ["x", "\\int_0^\\intfy 1/x^2 dx", "ax+b=y"]
-    path = Path("temp_files/cv_saved_predict.csv")
-    backend.save_predictions(predictions, path=path)
 
-    file = open(path)
+    filename = "test_cv_saved_predict.csv"
+    path_predictions = Path("./math_notes/predictions/")
+
+    backend._save_predictions(predictions, filename=filename)
+
+    filepath = path_predictions / filename
+    file = open(filepath)
     csv_reader = csv.reader(file)
 
     next(csv_reader)
@@ -80,4 +65,5 @@ def test_save_predictions():
     for i in range(len(rows)):
         assert rows[i][0] == predictions[i]
 
-    assert path.is_file()
+    assert filepath.is_file()
+    os.remove(os.path.join(path_predictions, filename))
