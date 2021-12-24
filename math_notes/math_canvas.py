@@ -141,7 +141,7 @@ def open_canvas(
     label.grid(row=row + 3, column=0)
 
     # Buttons to save canvas, quit canvas, browse images.
-    myFont = font.Font(family="Times", size=30)
+    myFont = font.Font(family="SFMono-Regular", size=11)
 
     button_explore = Button(
         root,

@@ -140,7 +140,6 @@ def _ocr_request_button(
     images = [image_uri]
 
     if not test_mode:
-
         latex_return = predict._predict(images)
     else:
         latex_return = ["x"]
