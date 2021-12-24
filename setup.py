@@ -1,4 +1,3 @@
-import pathlib
 from setuptools import setup, find_packages
 
 with open("README.md") as readme_file:
@@ -32,7 +31,7 @@ setup(
             "math_notes=math_notes.cli:main",
         ],
     },
-    install_requires=requirements,
+    install_requires="requirements.txt",
     license="GNU General Public License v3",
     long_description=readme + "\n\n",
     include_package_data=True,

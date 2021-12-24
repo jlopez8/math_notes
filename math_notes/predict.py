@@ -35,9 +35,9 @@ def _ocr_request(image):
         json_return = json.loads(r.text)
         latex_return = json_return.get("latex_styled")
 
-    except:
+    except Exception:
         logging.error(
-            "Exception while submitting prediction request to MathPix. \
+            "Exception while submitting prediction request to MathPix.\
             Try checking connection to internet."
         )
 
