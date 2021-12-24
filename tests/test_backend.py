@@ -3,11 +3,7 @@ import os
 import csv
 from pathlib import Path
 
-import tkinter as tk
 from math_notes import backend
-
-from PIL import ImageDraw
-import PIL
 
 width = 1200
 height = 400

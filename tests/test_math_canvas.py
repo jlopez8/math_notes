@@ -1,7 +1,2 @@
-import os
-
-from math_notes import math_canvas
-
-
-from PIL import ImageDraw
-import PIL
+# Most tests running on backend. 
+# Tests to be added soon here.

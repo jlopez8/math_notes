@@ -1,26 +1,16 @@
-import os
-import base64
-
 from pathlib import Path
 
 import csv
 
-from IPython.core.magic import (
-    register_line_magic,
-    register_cell_magic,
-    register_line_cell_magic,
-)
+from IPython.core.magic import register_line_magic
+
 from IPython.display import Markdown as md
 
 import tkinter as tk
-from tkinter import Tk, Canvas, ttk, Button, filedialog, Label
-from tkinter import constants as con
+from tkinter import Tk, Canvas, Button
 import tkinter.font as font
 
-from PIL import ImageGrab, ImageTk, ImageDraw, Image
-
-import requests
-import json
+from PIL import ImageDraw, Image
 
 from math_notes import backend as be
 
@@ -159,6 +149,7 @@ def open_canvas(
         command=lambda: be._browse_files(filename),
         height="2",
         width="12",
+        font=myFont
     )
 
     button_predict = Button(
@@ -168,6 +159,7 @@ def open_canvas(
         ),
         height="2",
         width="12",
+        font=myFont
     )
 
     button_quit = Button(
@@ -175,6 +167,7 @@ def open_canvas(
         command=root.destroy,
         height="2",
         width="12",
+        font=myFont
     )
 
     button_predict.grid(row=row, column=0)
@@ -199,11 +192,13 @@ def mathcanvas(line):
         latex_return = open_canvas(filename=filename)
 
     latex_prediction = latex_return[0]
-    latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
+    latex_raw = " $ {latex_prediction} $ ".format(
+        latex_prediction=latex_prediction
+    )
     print("Raw LaTeX Prediction: ", latex_raw)
     print("\n\n")
 
-    return md("$$ \Huge {} $$".format(latex_prediction))
+    return md("$$ \\Huge {} $$".format(latex_prediction))
 
 
 if __name__ == "__main__":

@@ -5,9 +5,7 @@ from pathlib import Path
 import logging
 
 import csv
-import tkinter as tk
-from tkinter import Tk, Canvas, ttk, Button, Label, filedialog, StringVar
-from tkinter import constants as con
+from tkinter import Label, filedialog
 
 from PIL import Image
 
@@ -18,7 +16,8 @@ def _browse_files(filename):
     """Opens a file system dialogue allowing a user to specify a file to send to the prediction service.
     Sets some parameters for the filename dictionary.
 
-    :param filename: A dictionary of filename parameters for saving or supporting running predictions for the math canvas.
+    :param filename: A dictionary of filename parameters
+    for saving or supporting running predictions for the math canvas.
     :type filename: dictionary
 
     :return: none
@@ -116,7 +115,9 @@ def _ocr_request_button(
     :param filename: Dictionary with the filename image location to be sent to the API.
     :type filename: dict of str
 
-    :param test_mode: Boolean for testing mode. Use 'True' in test_mode to avoid pinging the API unnecessary multiple costs.
+    :param test_mode: Boolean for testing mode. Use
+    'True' in test_mode to avoid pinging the API
+    unnecessary multiple costs.
     :type test_mode: Bool
 
     :return: none
