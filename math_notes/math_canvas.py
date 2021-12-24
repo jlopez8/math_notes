@@ -5,8 +5,11 @@ from pathlib import Path
 
 import csv
 
-from IPython.core.magic import (register_line_magic, register_cell_magic,
-                                register_line_cell_magic)
+from IPython.core.magic import (
+    register_line_magic,
+    register_cell_magic,
+    register_line_cell_magic,
+)
 from IPython.display import Markdown as md
 
 import tkinter as tk
@@ -118,7 +121,7 @@ def open_canvas(
 
     root = Tk()
     root.title("Math Canvas")
-    
+
     text = tk.StringVar()
     text.set("Prediction (ready): ")
 
@@ -157,7 +160,6 @@ def open_canvas(
         height="2",
         width="12",
     )
-    
 
     button_predict = Button(
         text="Predict LaTeX!",
@@ -174,37 +176,35 @@ def open_canvas(
         height="2",
         width="12",
     )
-    
+
     button_predict.grid(row=row, column=0)
     button_explore.grid(row=row + 1, column=0)
     button_quit.grid(row=row + 2, column=0)
-    
 
     # Execute tkinter commands.
     root.mainloop()
 
     return _latex_read()
 
+
 @register_line_magic
 def mathcanvas(line):
-    filename={"filename": ""}
-    
+    filename = {"filename": ""}
+
     latex_return = []
     if line != "" and isinstance(line, str):
-        filename={"filename": line}
+        filename = {"filename": line}
         latex_return = open_canvas(filename={"filename": ""})
     else:
         latex_return = open_canvas(filename=filename)
-        
+
     latex_prediction = latex_return[0]
-    latex_raw = " $ {latex_prediction} $ ".format(
-        latex_prediction=latex_prediction
-    )
+    latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
     print("Raw LaTeX Prediction: ", latex_raw)
     print("\n\n")
-    
+
     return md("$$ \Huge {} $$".format(latex_prediction))
 
-    
+
 if __name__ == "__main__":
     mathcanvas()
