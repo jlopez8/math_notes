@@ -149,7 +149,7 @@ def open_canvas(
         command=lambda: be._browse_files(filename),
         height="2",
         width="12",
-        font=myFont
+        font=myFont,
     )
 
     button_predict = Button(
@@ -159,15 +159,11 @@ def open_canvas(
         ),
         height="2",
         width="12",
-        font=myFont
+        font=myFont,
     )
 
     button_quit = Button(
-        text="Quit",
-        command=root.destroy,
-        height="2",
-        width="12",
-        font=myFont
+        text="Quit", command=root.destroy, height="2", width="12", font=myFont
     )
 
     button_predict.grid(row=row, column=0)
@@ -192,9 +188,7 @@ def mathcanvas(line):
         latex_return = open_canvas(filename=filename)
 
     latex_prediction = latex_return[0]
-    latex_raw = " $ {latex_prediction} $ ".format(
-        latex_prediction=latex_prediction
-    )
+    latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
     print("Raw LaTeX Prediction: ", latex_raw)
     print("\n\n")
 
