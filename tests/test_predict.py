@@ -12,13 +12,13 @@ from math_notes import predict
 def cfg_setup_teardown():
 
     # For now this is in configs.
-    path = Path("./tests_configs/")
+    path = Path("./configs/")
 
     # Setup.
     if not os.path.isdir(path):
         os.mkdir(path)
 
-    filename = "app_key2.txt"
+    filename = "app_key.txt"
     filepath = path / filename
     mode = "w+"
     file_object = open(filepath, mode)
@@ -26,7 +26,7 @@ def cfg_setup_teardown():
         file_object.write("app_dummy_email_dot_com")
     file_object.close()
 
-    filename = "app_id2.txt"
+    filename = "app_id.txt"
     filepath = path / filename
     mode = "w+"
     file_object = open(filepath, mode)
@@ -37,7 +37,7 @@ def cfg_setup_teardown():
     yield
 
     # For now this is in configs.
-    path = Path("./tests_configs/")
+    path = Path("./configs/")
 
     # Teardown.
     if os.path.isdir(path):
