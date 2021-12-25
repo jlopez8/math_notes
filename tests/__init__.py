@@ -5,6 +5,7 @@ import shutil
 
 import pytest
 
+
 @pytest.fixture(scope="module")
 def cfg_setup():
 
@@ -29,11 +30,12 @@ def cfg_setup():
     file_object = open(filepath, mode)
     for i in range(1):
         file_object.write("ABCDEFGHIJKLMNOP1234567890")
-    file_object.close() 
+    file_object.close()
+
 
 @pytest.fixture(scope="module")
 def cfg_teardown():
-    
+
     # For now this is in configs.
     path = Path("./tests_configs/")
 

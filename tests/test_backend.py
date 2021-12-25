@@ -68,6 +68,7 @@ def test_save_predictions(cfg_setup):
     assert filepath.is_file()
     os.remove(os.path.join(path_predictions, filename))
 
+
 def test_call_teardown(cfg_teardown):
     assert True == True
     pass

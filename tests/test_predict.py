@@ -6,9 +6,9 @@ import base64
 from tests import cfg_setup, cfg_teardown
 from math_notes import predict
 
-    
+
 def test_prediction_single(cfg_setup):
-    
+
     filename = "tests/data/integral_to_transform_1.png"
     true_latex_string = "f(x)=\\int_{a}^{x} t^{3}+1 d t"
 
@@ -46,4 +46,3 @@ def test_prediction_multiple(cfg_setup):
 def test_call_teardown(cfg_teardown):
     assert True == True
     pass
-    
