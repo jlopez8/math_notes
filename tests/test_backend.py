@@ -3,7 +3,6 @@ import os
 import csv
 from pathlib import Path
 
-from tests import cfg_setup, cfg_teardown
 from math_notes import backend
 
 width = 1200
@@ -14,7 +13,7 @@ white = (255, 255, 255)
 filename = {}
 
 
-def test_submission(cfg_setup):
+def test_submission():
     # Mimics browsing for a file.
     file = "img_x.png"
     path = Path("./tests/data/")
@@ -43,7 +42,7 @@ def test_submission(cfg_setup):
     os.remove(os.path.join(path_predictions, filename_predictions))
 
 
-def test_save_predictions(cfg_setup):
+def test_save_predictions():
     predictions = ["x", "\\int_0^\\intfy 1/x^2 dx", "ax+b=y"]
 
     filename = "test_cv_saved_predict.csv"
@@ -67,8 +66,3 @@ def test_save_predictions(cfg_setup):
 
     assert filepath.is_file()
     os.remove(os.path.join(path_predictions, filename))
-
-
-def test_call_teardown(cfg_teardown):
-    assert True == True
-    pass
