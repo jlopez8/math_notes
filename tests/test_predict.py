@@ -1,10 +1,14 @@
+import os
+from pathlib import Path
+
 import base64
 
+from tests import cfg_setup, cfg_teardown
 from math_notes import predict
 
-
-def test_prediction_single():
-
+    
+def test_prediction_single(cfg_setup):
+    
     filename = "tests/data/integral_to_transform_1.png"
     true_latex_string = "f(x)=\\int_{a}^{x} t^{3}+1 d t"
 
@@ -18,7 +22,7 @@ def test_prediction_single():
     assert latex_return[0] == true_latex_string
 
 
-def test_prediction_multiple():
+def test_prediction_multiple(cfg_setup):
 
     filenames = [
         "tests/data/integral_to_transform_1.png",
@@ -37,3 +41,9 @@ def test_prediction_multiple():
     latex_returns = predict._predict(image_uri)
 
     assert latex_returns == true_latex_strings
+
+
+def test_call_teardown(cfg_teardown):
+    assert True == True
+    pass
+    
