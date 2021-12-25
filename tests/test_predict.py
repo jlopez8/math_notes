@@ -9,7 +9,7 @@ from math_notes import predict
 
 
 @pytest.fixture(scope="module")
-def cfg_setup():
+def cfg_setup_teardown():
 
     # For now this is in configs.
     path = Path("./tests_configs/")
@@ -34,9 +34,7 @@ def cfg_setup():
         file_object.write("ABCDEFGHIJKLMNOP1234567890")
     file_object.close()
 
-
-@pytest.fixture(scope="module")
-def cfg_teardown():
+    yield
 
     # For now this is in configs.
     path = Path("./tests_configs/")
@@ -46,7 +44,7 @@ def cfg_teardown():
         shutil.rmtree(path)
 
 
-def test_prediction_single(cfg_setup):
+def test_prediction_single(cfg_setup_teardown):
 
     filename = "tests/data/integral_to_transform_1.png"
     true_latex_string = "f(x)=\\int_{a}^{x} t^{3}+1 d t"
@@ -60,10 +58,8 @@ def test_prediction_single(cfg_setup):
 
     assert latex_return[0] == true_latex_string
 
-    # cfg_teardown()
 
-
-def test_prediction_multiple(cfg_setup):
+def test_prediction_multiple(cfg_setup_teardown):
 
     filenames = [
         "tests/data/integral_to_transform_1.png",
@@ -82,5 +78,3 @@ def test_prediction_multiple(cfg_setup):
     latex_returns = predict._predict(image_uri)
 
     assert latex_returns == true_latex_strings
-
-    # cfg_teardown()
