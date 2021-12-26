@@ -7,8 +7,8 @@ APP_ID = ""
 APP_KEY = ""
 
 if "PYTEST_CURRENT_TEST" in os.environ:
-    APP_ID = os.environ['APP_ID']
-    APP_KEY = os.environ['APP_KEY']
+    APP_ID = os.environ["APP_ID"]
+    APP_KEY = os.environ["APP_KEY"]
 
 else:
     app_id_path = Path("configs/app_id.txt")

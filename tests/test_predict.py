@@ -1,9 +1,4 @@
-import os
-from pathlib import Path
 import base64
-import shutil
-
-import pytest
 
 from math_notes import predict
 
