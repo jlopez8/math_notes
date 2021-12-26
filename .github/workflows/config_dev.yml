@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ master ]
+    branches: [ development ]
   pull_request:
-    branches: [ master ]
+    branches: [ development ]
 
 jobs:
   build:
@@ -34,5 +34,7 @@ jobs:
         # Run flake8
         flake8 .
     - name: Test and coverage with pytest and pytest-cov
+      with:
+        APP_ID: ${{ secrets.MATH_NOTES_APP_ID }}
       run: /
         pytest --cov-config=.coveragerc --cov=math_notes tests/
