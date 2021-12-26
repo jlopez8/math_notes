@@ -34,5 +34,8 @@ jobs:
         # Run flake8
         flake8 .
     - name: Test and coverage with pytest and pytest-cov
+      env:
+          APP_ID: ${{ secrets.MATH_NOTES_APP_ID }}
+          APP_KEY: ${{ secrets.MATH_NOTES_APP_KEY }}
       run: |
         pytest --cov-config=.coveragerc --cov=math_notes tests/*
