@@ -39,9 +39,9 @@ def cfg_setup_teardown():
     # For now this is in configs.
     path = Path("./configs/")
 
-#     # Teardown.
-#     if os.path.isdir(path):
-#         shutil.rmtree(path)
+    # Teardown.
+    if os.path.isdir(path):
+        shutil.rmtree(path)
 
 
 def test_prediction_single(cfg_setup_teardown):
