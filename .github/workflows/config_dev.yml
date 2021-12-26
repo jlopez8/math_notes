@@ -38,4 +38,4 @@ jobs:
           APP_ID: ${{ secrets.MATH_NOTES_APP_ID }}
           APP_KEY: ${{ secrets.MATH_NOTES_APP_KEY }}
       run: |
-        pytest --cov-config=.coveragerc --cov=math_notes tests/*
+        pytest --cov-config=.coveragerc --cov=math_notes tests/
