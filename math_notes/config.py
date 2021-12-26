@@ -3,8 +3,8 @@ from pathlib import Path
 
 
 # Read the app_id and app_key required for MathPix API.
-APP_ID = ""
-APP_KEY = ""
+APP_ID = Path("")
+APP_KEY = Path("")
 
 if "PYTEST_CURRENT_TEST" in os.environ:
     APP_ID = os.environ["APP_ID"]
