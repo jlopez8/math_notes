@@ -6,7 +6,7 @@ from pathlib import Path
 APP_ID = Path("")
 APP_KEY = Path("")
 
-if "PYTEST_CURRENT_TEST" in os.environ:
+if "GITHUB_JOB" in os.environ:
     APP_ID = os.environ["APP_ID"]
     APP_KEY = os.environ["APP_KEY"]
 
