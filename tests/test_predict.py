@@ -1,50 +1,9 @@
-import os
-from pathlib import Path
 import base64
-import shutil
-
-import pytest
 
 from math_notes import predict
 
 
-@pytest.fixture(scope="module")
-def cfg_setup_teardown():
-
-    # For now this is in configs.
-    path = Path("./configs/")
-
-    # Setup.
-    if not os.path.isdir(path):
-        os.mkdir(path)
-
-    filename = "app_key.txt"
-    filepath = path / filename
-    mode = "w+"
-    file_object = open(filepath, mode)
-    for i in range(1):
-        file_object.write("app_dummy_email_dot_com")
-    file_object.close()
-
-    filename = "app_id.txt"
-    filepath = path / filename
-    mode = "w+"
-    file_object = open(filepath, mode)
-    for i in range(1):
-        file_object.write("ABCDEFGHIJKLMNOP1234567890")
-    file_object.close()
-
-    yield
-
-    # For now this is in configs.
-    path = Path("./configs/")
-
-    # Teardown.
-    if os.path.isdir(path):
-        shutil.rmtree(path)
-
-
-def test_prediction_single(cfg_setup_teardown):
+def test_prediction_single():
 
     filename = "tests/data/integral_to_transform_1.png"
     true_latex_string = "f(x)=\\int_{a}^{x} t^{3}+1 d t"
@@ -59,7 +18,7 @@ def test_prediction_single(cfg_setup_teardown):
     assert latex_return[0] == true_latex_string
 
 
-def test_prediction_multiple(cfg_setup_teardown):
+def test_prediction_multiple():
 
     filenames = [
         "tests/data/integral_to_transform_1.png",

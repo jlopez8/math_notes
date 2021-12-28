@@ -1,13 +1,13 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Python application dev
 
 on:
   push:
-    branches: [ master ]
+    branches: [ development ]
   pull_request:
-    branches: [ master ]
+    branches: [ development ]
 
 jobs:
   build:
@@ -37,5 +37,5 @@ jobs:
       env:
           APP_ID: ${{ secrets.MATH_NOTES_APP_ID }}
           APP_KEY: ${{ secrets.MATH_NOTES_APP_KEY }}
-      run: /
+      run: |
         pytest --cov-config=.coveragerc --cov=math_notes tests/
