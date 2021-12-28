@@ -187,12 +187,15 @@ def mathnotes(line):
     else:
         latex_return = open_canvas(filename={"filename": ""})
 
-    latex_prediction = latex_return[0]
-    latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
-    print("Raw LaTeX Prediction: ", latex_raw)
-    print("\n\n")
+    if len(latex_return) > 0:
+        latex_prediction = latex_return[0]
+        latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
+        print("Raw LaTeX Prediction: ", latex_raw)
+        print("\n\n")
 
-    return md("$$ \\Huge {} $$".format(latex_prediction))
+        return md("$$ \\Huge {} $$".format(latex_prediction))
+    
+    return
 
 
 if __name__ == "__main__":
