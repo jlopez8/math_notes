@@ -177,7 +177,7 @@ def open_canvas(
 
 
 @register_line_magic
-def mathcanvas(line):
+def mathnotes(line):
     filename = {"filename": ""}
 
     latex_return = []
@@ -196,4 +196,4 @@ def mathcanvas(line):
 
 
 if __name__ == "__main__":
-    mathcanvas()
+    mathnotes()
