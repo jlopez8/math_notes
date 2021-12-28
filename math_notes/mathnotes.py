@@ -163,7 +163,7 @@ def open_canvas(
     )
 
     button_quit = Button(
-        text="Quit", command=root.destroy, height="2", width="12", font=myFont
+        text="Quit", command=lambda: be._quit(root), height="2", width="12", font=myFont
     )
 
     button_predict.grid(row=row, column=0)
@@ -183,9 +183,9 @@ def mathnotes(line):
     latex_return = []
     if line != "" and isinstance(line, str):
         filename = {"filename": line}
-        latex_return = open_canvas(filename={"filename": ""})
-    else:
         latex_return = open_canvas(filename=filename)
+    else:
+        latex_return = open_canvas(filename={"filename": ""})
 
     latex_prediction = latex_return[0]
     latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
