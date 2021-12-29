@@ -193,7 +193,7 @@ def mn(line):
         print("Raw LaTeX Prediction: ", latex_raw)
         print("\n\n")
 
-        return md("$$ \\Huge {} $$".format(latex_prediction))
+        return md("$$ {} $$".format(latex_prediction))
 
     return
 
