@@ -116,7 +116,7 @@ def open_canvas(
     text.set("Prediction (ready): ")
 
     # Define the supporting paths.
-    filename["path"] = Path("./math_notes/temp_files/")
+    filename["path"] = filename.get("path", Path("./math_notes/temp_files/"))
 
     # Create the canvas.
     canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
@@ -178,12 +178,18 @@ def open_canvas(
 
 @register_line_magic
 def mn(line):
-    filename = {"filename": ""}
 
+    filename = {"filename": ""}
+    
     latex_return = []
     if line != "" and isinstance(line, str):
-        filename = {"filename": line}
+        line = str(line)
+        
+        filename["filename"] = line
+        filename["path"] = Path(".")
+        
         latex_return = open_canvas(filename=filename)
+        
     else:
         latex_return = open_canvas(filename={"filename": ""})
 
