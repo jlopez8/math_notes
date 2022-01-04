@@ -180,16 +180,16 @@ def open_canvas(
 def mn(line):
 
     filename = {"filename": ""}
-    
+
     latex_return = []
     if line != "" and isinstance(line, str):
         line = str(line)
-        
+
         filename["filename"] = line
         filename["path"] = Path(".")
-        
+
         latex_return = open_canvas(filename=filename)
-        
+
     else:
         latex_return = open_canvas(filename={"filename": ""})
 
