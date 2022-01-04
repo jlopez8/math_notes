@@ -2,7 +2,6 @@ import os
 import shutil
 import base64
 from pathlib import Path
-import logging
 
 import csv
 from tkinter import Label, filedialog
@@ -130,7 +129,6 @@ def _ocr_request_button(
     # Force saving a canvas if a file wasn't selected by the browser.
     if filename["filename"] == "":
         filename_temp = _save_canvas_temp(canvas_image)
-
         filepath = Path("./math_notes/temp_files/") / filename_temp
 
     image_uri = (
@@ -145,11 +143,9 @@ def _ocr_request_button(
         latex_return = ["x"]
 
     # Remove the temporary directory for storing the canvas image.
-    try:
-        mydir = Path("./math_notes/temp_files/")
+    mydir = Path("./math_notes/temp_files/")
+    if os.path.isdir(mydir):
         shutil.rmtree(mydir)
-    except OSError as e:
-        logging.error("Error: %s - %s." % (e.filename, e.strerror))
 
     _save_predictions(latex_return)
 
