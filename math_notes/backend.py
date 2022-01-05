@@ -161,5 +161,4 @@ def _quit(root):
     :rtype: none
     """
 
-
     root.after(1, root.destroy())
