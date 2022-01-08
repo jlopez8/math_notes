@@ -142,9 +142,9 @@ def _ocr_request_button(
     else:
         latex_return = ["x"]
     # Remove the temporary directory for storing the canvas image.
-    temp_files_dir = Path("./math_notes/temp_files/")
-    if os.path.isdir(temp_files_dir):
-        shutil.rmtree(temp_files_dir)
+    temp_predict_path = Path("./math_notes/temp_files/")
+    if os.path.isdir(temp_predict_path):
+        shutil.rmtree(temp_predict_path)
 
     _save_predictions(latex_return)
 
