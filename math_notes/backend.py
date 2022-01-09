@@ -3,7 +3,7 @@ import shutil
 import base64
 from pathlib import Path
 
-import csv
+import pandas as pd
 from tkinter import Label, filedialog
 
 from PIL import Image
@@ -56,18 +56,13 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
     path = Path("math_notes/predictions/")
     if not os.path.isdir(path):
         os.mkdir(path)
-
     saveas = path / filename
 
     headers = ["latex"]
     data = predictions
-    with open(saveas, "w", newline="") as file:
-        writer = csv.writer(file, delimiter=",")
-        writer.writerow(headers)
-        for i in range(len(data)):
-            latex = data[i]
-            writer.writerow([latex])
-    file.close()
+
+    df = pd.DataFrame(data=data, columns=headers)
+    df.to_csv(saveas, index=False)
 
 
 def _update_prediction_label(text, new_text):

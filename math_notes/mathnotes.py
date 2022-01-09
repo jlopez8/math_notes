@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import csv
+import pandas as pd
 
 from IPython.core.magic import register_line_magic
 
@@ -48,19 +48,14 @@ def open_canvas(
         :rtype: [str]
         """
 
-        latex_readin = []
         filename = "cv_predict.csv"
         path = Path("./math_notes/predictions/")
         filepath = path / filename
-
+        df = pd.DataFrame()
         try:
-            with open(filepath, newline="") as csvfile:
-                csv_reader = csv.reader(csvfile)
-                csv_reader.__next__()
-                for row in csv_reader:
-                    latex_readin.append(row[0])
+            df = pd.read_csv(r"{filepath}".format(filepath=filepath))
         finally:
-            return latex_readin
+            return df
 
     def _save_posn(event):
         """Saves positional coordinates while drawing on canvas.
@@ -194,12 +189,12 @@ def mn(line):
         latex_return = open_canvas(filename={"filename": ""})
 
     if len(latex_return) > 0:
-        latex_prediction = latex_return[0]
+        latex_prediction = latex_return["latex"][0]
         latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
         print("Raw LaTeX Prediction: ", latex_raw)
         print("\n\n")
 
-        return md("$$ {} $$".format(latex_prediction))
+        return md("$$ \\Large {} $$".format(latex_prediction))
 
     return
 
