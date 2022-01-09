@@ -1,5 +1,3 @@
-import os
-import shutil
 import base64
 from pathlib import Path
 
@@ -23,7 +21,7 @@ def _browse_files(filename):
     :rtype: none
     """
 
-    init_browse_dir = pathlib.Path().absolute()
+    init_browse_dir = Path.cwd()
     filename["filename"] = {}.get(filename["filename"], "")
     filename["filename"] = filedialog.askopenfilename(
         initialdir=init_browse_dir,
@@ -42,22 +40,23 @@ def _browse_files(filename):
 
     text = Label(text=text, font=("helvetica", 18))
     text.grid(row=15, column=0)
-    
+
+
 def _delete_folder(path):
     """Delete a directory
-    
+
     :param path: Path do remove.
     :type path: pathlib.Path()
-    
+
     :return: none
     :rtype: none
     """
-    
+
     # Remove files and files in subdirectories.
     for sub in path.iterdir():
         if sub.is_dir():
             # Recursive call, DFS.
-            delete_folder(sub)
+            _delete_folder(sub)
         else:
             sub.unlink()
     path.rmdir()
@@ -74,8 +73,8 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
     """
     path = Path("math_notes/predictions/")
     if not path.exists():
-         path.mkdir()
-        
+        path.mkdir()
+
     saveas = path / filename
 
     headers = ["latex"]
@@ -159,7 +158,7 @@ def _ocr_request_button(
     # Remove the temporary directory for storing the canvas image.
     temp_predict_path = Path("./math_notes/temp_files/")
     if temp_predict_path.exists():
-        delete_folder(temp_predict_path)
+        _delete_folder(temp_predict_path)
 
     _save_predictions(latex_return)
 

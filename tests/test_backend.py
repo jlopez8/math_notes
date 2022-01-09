@@ -1,8 +1,6 @@
-import os
-
-import csv
 from pathlib import Path
 
+import pandas as pd
 from math_notes import backend
 
 width = 1200
@@ -28,18 +26,12 @@ def test_submission():
 
     filename_predictions = "cv_predict.csv"
     predict_file = path_predictions / filename_predictions
-    file = open(predict_file)
-    csv_reader = csv.reader(file)
 
-    next(csv_reader)
+    df = pd.DataFrame()
+    df = pd.read_csv(r"{filepath}".format(filepath=predict_file))
 
-    rows = []
-    for row in csv_reader:
-        rows.append(row)
-    file.close()
-
-    assert rows[0][0] == "x"
-    os.remove(os.path.join(path_predictions, filename_predictions))
+    assert df["latex"][0] == "x"
+    backend._delete_folder(path_predictions)
 
 
 def test_save_predictions():
@@ -51,18 +43,11 @@ def test_save_predictions():
     backend._save_predictions(predictions, filename=filename)
 
     filepath = path_predictions / filename
-    file = open(filepath)
-    csv_reader = csv.reader(file)
+    df = pd.DataFrame()
+    df = pd.read_csv(r"{filepath}".format(filepath=filepath))
 
-    next(csv_reader)
-
-    rows = []
-    for row in csv_reader:
-        rows.append(row)
-    file.close()
-
-    for i in range(len(rows)):
-        assert rows[i][0] == predictions[i]
+    for i in range(len(df.index)):
+        assert df["latex"][i] == predictions[i]
 
     assert filepath.is_file()
-    os.remove(os.path.join(path_predictions, filename))
+    backend._delete_folder(path_predictions)
