@@ -2,14 +2,15 @@ import base64
 from pathlib import Path
 
 import pandas as pd
-from tkinter import Label, filedialog
+
+from tkinter import filedialog
 
 from PIL import Image
 
 from math_notes import predict
 
 
-def _browse_files(filename):
+def _browse_files(filename, text=""):
     """Opens a file system dialogue allowing a user to specify a file to send to the prediction service.
     Sets some parameters for the filename dictionary. Updates the text displayed with the chosen filename.
 
@@ -17,9 +18,14 @@ def _browse_files(filename):
     for saving or supporting running predictions for the math canvas.
     :type filename: dictionary
 
+    :param text: String variable object to display prediction result on canvas.
+    :type text: tkinter StringVar object
+
     :return: none
     :rtype: none
     """
+
+    new_text = ""
 
     init_browse_dir = Path.cwd()
     filename["filename"] = {}.get(filename["filename"], "")
@@ -34,11 +40,11 @@ def _browse_files(filename):
     )
 
     if filename["filename"] != "":
-        text = "filename = " + filename["filename"]
+        new_text = "File Chosen: " + filename["filename"]
     else:
-        text = "No file selected."
+        new_text = "File Chosen: No file selected."
 
-    file_select_text.set("File Chosen: " + text)
+    _update_prediction_label(text, new_text)
 
 
 def _delete_folder(path):
@@ -70,8 +76,7 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
     :return: none
     :rtype: none
     """
-    
-    
+
     path = Path("math_notes/predictions/")
     if not path.exists():
         path.mkdir()
@@ -88,11 +93,16 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
 def _update_prediction_label(text, new_text):
     """Update the text label of the label on the tkinter window.
 
+    :param text: String variable object to display on the canvas.
+    :type text: tkinter StringVar object
+
+    :param new_text: Text to modify object text with.
+    :type new_text: str
+
     :return: none
     :rtype: none
     """
-    
-    
+
     if not text == "":
         text.set(new_text)
 
@@ -107,7 +117,6 @@ def _save_canvas_temp(canvas_image):
     :rtype: str
     """
 
-    
     directory = Path("math_notes/temp_files/")
     isExist = directory.exists()
     if not isExist:
@@ -137,11 +146,13 @@ def _ocr_request_button(
     unnecessary multiple costs.
     :type test_mode: Bool
 
+    :param text: String variable object to display prediction result on canvas.
+    :type text: tk.StringVar object
+
     :return: none
     :rtype: none
     """
 
-    
     latex_return = [""]
     filepath = filename["path"] / filename["filename"]
 
@@ -180,5 +191,4 @@ def _quit(root):
     :rtype: none
     """
 
-    
     root.after(1, root.destroy())

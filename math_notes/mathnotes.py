@@ -3,7 +3,6 @@ from pathlib import Path
 import pandas as pd
 
 from IPython.core.magic import register_line_magic
-
 from IPython.display import Markdown as md
 
 import tkinter as tk
@@ -108,8 +107,8 @@ def open_canvas(
     root.title("Math Canvas")
 
     pred_result_text = tk.StringVar()
-    pred_result_text.set("Prediction (ready): ")
-    
+    pred_result_text.set("Prediction (standby): ")
+
     file_select_text = tk.StringVar()
     file_select_text.set("File Chosen: None")
 
@@ -133,29 +132,20 @@ def open_canvas(
     canvas.bind("<B1-Motion>", _add_line)
 
     # Labels for showing prediction and/or chosen file.
-    pred_label = tk.Label(
-        root, 
-        textvariable=pred_result_text, 
-        font=("helvetica", 18)
-    )
-    
-    file_select_label = tk.Label(
-        root,
-        textvariable=file_select_text,
-        font=("helvetica", 18)
-    )
-    
-    # installing a label
-    text = tk.Label(text="", font=("helvetica", 18))
+    pred_label = tk.Label(root, textvariable=pred_result_text, font=("helvetica", 18))
 
-    # Buttons to browse images, send a prediction request, 
+    file_select_label = tk.Label(
+        root, textvariable=file_select_text, font=("helvetica", 18)
+    )
+
+    # Buttons to browse images, send a prediction request,
     # or quit canvas.
-    myFont = font.Font(family="SFMono-Regular", size=11)
+    myFont = font.Font(family="SFMono-Regular", size=16)
 
     button_explore = Button(
         root,
         text="Select a file",
-        command=lambda: be._browse_files(filename),
+        command=lambda: be._browse_files(filename, text=file_select_text),
         height="2",
         width="12",
         font=myFont,
@@ -172,19 +162,16 @@ def open_canvas(
     )
 
     button_quit = Button(
-        text="Quit", 
-        command=lambda: be._quit(root), 
-        height="2", width="12", 
-        font=myFont
+        text="Quit", command=lambda: be._quit(root), height="2", width="12", font=myFont
     )
 
-    # Widget locations. 
+    # Widget locations.
     canvas.grid(row=0, column=0, columnspan=3)
     button_predict.grid(row=1, column=0)
     button_explore.grid(row=1, column=1)
     button_quit.grid(row=1, column=2)
-    pred_label.grid(row=2, column=1, pady= 10)
-    file_select_label.grid(row=3, column=1, pady= 10)
+    pred_label.grid(row=2, column=1, pady=10)
+    file_select_label.grid(row=3, column=1, pady=10)
 
     # Execute tkinter commands.
     root.mainloop()
