@@ -107,35 +107,49 @@ def open_canvas(
     root = Tk()
     root.title("Math Canvas")
 
-    text = tk.StringVar()
-    text.set("Prediction (ready): ")
+    pred_result_text = tk.StringVar()
+    pred_result_text.set("Prediction (ready): ")
+    
+    file_select_text = tk.StringVar()
+    file_select_text.set("File Chosen: None")
 
     # Define the supporting paths.
     filename["path"] = filename.get("path", Path("./math_notes/temp_files/"))
 
     # Create the canvas.
-    canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
-    root.geometry(canvas_dimensions)
+    tkinter_dims = str(width) + "x" + str(int(height * 1.40))
+    root.geometry(tkinter_dims)
 
     # Instantiate the tkinter canvas for users to draw on.
     canvas = Canvas(root, bg="white", width=width, height=height)
-    canvas.grid(row=0, column=0)
 
     # PIL create an empty image and draw object to memory only.
     # It is not visible.
-    canvas_image = Image.new("RGB", (width, int(height * 1.5)), (255, 255, 255))
+    canvas_image = Image.new("RGB", (width, int(height)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
 
     # Capturing mouse motion.
     canvas.bind("<Button-1>", _save_posn)
     canvas.bind("<B1-Motion>", _add_line)
 
-    # Labels for readouts.
-    row = 10
-    label = tk.Label(root, textvariable=text, font=("helvetica", 18))
-    label.grid(row=row + 3, column=0)
+    # Labels for showing prediction and/or chosen file.
+    pred_label = tk.Label(
+        root, 
+        textvariable=pred_result_text, 
+        font=("helvetica", 18)
+    )
+    
+    file_select_label = tk.Label(
+        root,
+        textvariable=file_select_text,
+        font=("helvetica", 18)
+    )
+    
+    # installing a label
+    text = tk.Label(text="", font=("helvetica", 18))
 
-    # Buttons to save canvas, quit canvas, browse images.
+    # Buttons to browse images, send a prediction request, 
+    # or quit canvas.
     myFont = font.Font(family="SFMono-Regular", size=11)
 
     button_explore = Button(
@@ -150,7 +164,7 @@ def open_canvas(
     button_predict = Button(
         text="Predict LaTeX!",
         command=lambda: be._ocr_request_button(
-            filename, canvas_image=canvas_image, text=text
+            filename, canvas_image=canvas_image, text=pred_result_text
         ),
         height="2",
         width="12",
@@ -158,12 +172,19 @@ def open_canvas(
     )
 
     button_quit = Button(
-        text="Quit", command=lambda: be._quit(root), height="2", width="12", font=myFont
+        text="Quit", 
+        command=lambda: be._quit(root), 
+        height="2", width="12", 
+        font=myFont
     )
 
-    button_predict.grid(row=row, column=0)
-    button_explore.grid(row=row + 1, column=0)
-    button_quit.grid(row=row + 2, column=0)
+    # Widget locations. 
+    canvas.grid(row=0, column=0, columnspan=3)
+    button_predict.grid(row=1, column=0)
+    button_explore.grid(row=1, column=1)
+    button_quit.grid(row=1, column=2)
+    pred_label.grid(row=2, column=1, pady= 10)
+    file_select_label.grid(row=3, column=1, pady= 10)
 
     # Execute tkinter commands.
     root.mainloop()

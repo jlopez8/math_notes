@@ -11,7 +11,7 @@ from math_notes import predict
 
 def _browse_files(filename):
     """Opens a file system dialogue allowing a user to specify a file to send to the prediction service.
-    Sets some parameters for the filename dictionary.
+    Sets some parameters for the filename dictionary. Updates the text displayed with the chosen filename.
 
     :param filename: A dictionary of filename parameters
     for saving or supporting running predictions for the math canvas.
@@ -38,8 +38,7 @@ def _browse_files(filename):
     else:
         text = "No file selected."
 
-    text = Label(text=text, font=("helvetica", 18))
-    text.grid(row=15, column=0)
+    file_select_text.set("File Chosen: " + text)
 
 
 def _delete_folder(path):
@@ -71,6 +70,8 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
     :return: none
     :rtype: none
     """
+    
+    
     path = Path("math_notes/predictions/")
     if not path.exists():
         path.mkdir()
@@ -90,6 +91,8 @@ def _update_prediction_label(text, new_text):
     :return: none
     :rtype: none
     """
+    
+    
     if not text == "":
         text.set(new_text)
 
@@ -104,6 +107,7 @@ def _save_canvas_temp(canvas_image):
     :rtype: str
     """
 
+    
     directory = Path("math_notes/temp_files/")
     isExist = directory.exists()
     if not isExist:
@@ -137,6 +141,7 @@ def _ocr_request_button(
     :rtype: none
     """
 
+    
     latex_return = [""]
     filepath = filename["path"] / filename["filename"]
 
@@ -175,4 +180,5 @@ def _quit(root):
     :rtype: none
     """
 
+    
     root.after(1, root.destroy())
