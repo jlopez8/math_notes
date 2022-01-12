@@ -31,11 +31,7 @@ def _browse_files(filename, text=""):
     filename["filename"] = filedialog.askopenfilename(
         initialdir=init_browse_dir,
         title="Select a File",
-        filetypes=(
-            ("png files", ".png"),
-            ("jpg files", ".jpg"),
-            ("all files", "*.*"),
-        ),
+        filetypes=(("png files", ".png"), ("jpg files", ".jpg"), ("all files", "*.*")),
     )
 
     if filename["filename"] != "":
@@ -191,4 +187,4 @@ def _quit(root):
     :rtype: none
     """
 
-    root.after(1, root.destroy())
+    root.after(2, root.destroy())
