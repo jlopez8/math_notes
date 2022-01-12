@@ -65,6 +65,7 @@ ENV/
 
 # configs
 /configs/
+/configs_backup/
 
 # workbooks
 /work_book/

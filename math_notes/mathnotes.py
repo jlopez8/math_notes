@@ -1,15 +1,11 @@
 from pathlib import Path
 
-import csv
-
+import pandas as pd
 from IPython.core.magic import register_line_magic
-
 from IPython.display import Markdown as md
-
 import tkinter as tk
 from tkinter import Tk, Canvas, Button
 import tkinter.font as font
-
 from PIL import ImageDraw, Image
 
 from math_notes import backend as be
@@ -48,19 +44,14 @@ def open_canvas(
         :rtype: [str]
         """
 
-        latex_readin = []
         filename = "cv_predict.csv"
         path = Path("./math_notes/predictions/")
         filepath = path / filename
-
+        df = pd.DataFrame()
         try:
-            with open(filepath, newline="") as csvfile:
-                csv_reader = csv.reader(csvfile)
-                csv_reader.__next__()
-                for row in csv_reader:
-                    latex_readin.append(row[0])
+            df = pd.read_csv(r"{filepath}".format(filepath=filepath))
         finally:
-            return latex_readin
+            return df
 
     def _save_posn(event):
         """Saves positional coordinates while drawing on canvas.
@@ -112,63 +103,85 @@ def open_canvas(
     root = Tk()
     root.title("Math Canvas")
 
-    text = tk.StringVar()
-    text.set("Prediction (ready): ")
+    pred_result_text = tk.StringVar()
+    pred_result_text.set("Prediction (standby): ")
+
+    file_select_text = tk.StringVar()
+    file_select_text.set("File Chosen: None")
 
     # Define the supporting paths.
-    filename["path"] = Path("./math_notes/temp_files/")
+    filename["path"] = filename.get("path", Path("./math_notes/temp_files/"))
 
     # Create the canvas.
-    canvas_dimensions = str(width) + "x" + str(int(height * 1.5))
-    root.geometry(canvas_dimensions)
+    tkinter_dims = str(width) + "x" + str(int(height * 1.40))
+    root.geometry(tkinter_dims)
 
     # Instantiate the tkinter canvas for users to draw on.
     canvas = Canvas(root, bg="white", width=width, height=height)
-    canvas.grid(row=0, column=0)
 
     # PIL create an empty image and draw object to memory only.
     # It is not visible.
-    canvas_image = Image.new("RGB", (width, int(height * 1.5)), (255, 255, 255))
+    canvas_image = Image.new("RGB", (width, int(height)), (255, 255, 255))
     draw = ImageDraw.Draw(canvas_image)
 
     # Capturing mouse motion.
     canvas.bind("<Button-1>", _save_posn)
     canvas.bind("<B1-Motion>", _add_line)
 
-    # Labels for readouts.
-    row = 10
-    label = tk.Label(root, textvariable=text, font=("helvetica", 18))
-    label.grid(row=row + 3, column=0)
+    # Labels for showing prediction and/or chosen file.
+    predidction_label = tk.Label(
+        root, textvariable=pred_result_text, font=("helvetica", 18)
+    )
 
-    # Buttons to save canvas, quit canvas, browse images.
-    myFont = font.Font(family="SFMono-Regular", size=11)
+    file_select_label = tk.Label(
+        root, textvariable=file_select_text, font=("helvetica", 18)
+    )
+
+    # Buttons to browse images, send a prediction request,
+    # or quit canvas.
+    myFont = font.Font(family="SFMono-Regular", size=16)
 
     button_explore = Button(
         root,
-        text="Select a file",
-        command=lambda: be._browse_files(filename),
+        text="Select an image file",
+        command=lambda: be._browse_files(filename, text=file_select_text),
         height="2",
-        width="12",
+        padx=5,
+        pady=2,
         font=myFont,
     )
 
     button_predict = Button(
+        root,
         text="Predict LaTeX!",
         command=lambda: be._ocr_request_button(
-            filename, canvas_image=canvas_image, text=text
+            filename, canvas_image=canvas_image, text=pred_result_text
         ),
         height="2",
         width="12",
+        padx=5,
+        pady=2,
         font=myFont,
     )
 
     button_quit = Button(
-        text="Quit", command=root.destroy, height="2", width="12", font=myFont
+        root,
+        text="Quit",
+        command=lambda: be._quit(root),
+        height="2",
+        width="12",
+        padx=5,
+        pady=2,
+        font=myFont,
     )
 
-    button_predict.grid(row=row, column=0)
-    button_explore.grid(row=row + 1, column=0)
-    button_quit.grid(row=row + 2, column=0)
+    # Widget locations.
+    canvas.grid(row=0, column=0, columnspan=3)
+    button_predict.grid(row=1, column=0)
+    button_explore.grid(row=1, column=1)
+    button_quit.grid(row=1, column=2)
+    predidction_label.grid(row=2, column=1, pady=10)
+    file_select_label.grid(row=3, column=1, pady=10)
 
     # Execute tkinter commands.
     root.mainloop()
@@ -177,23 +190,32 @@ def open_canvas(
 
 
 @register_line_magic
-def mathcanvas(line):
+def mathnote(line):
+
     filename = {"filename": ""}
 
     latex_return = []
     if line != "" and isinstance(line, str):
-        filename = {"filename": line}
-        latex_return = open_canvas(filename={"filename": ""})
-    else:
+        line = str(line)
+
+        filename["filename"] = line
+        filename["path"] = Path(".")
+
         latex_return = open_canvas(filename=filename)
 
-    latex_prediction = latex_return[0]
-    latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
-    print("Raw LaTeX Prediction: ", latex_raw)
-    print("\n\n")
+    else:
+        latex_return = open_canvas(filename={"filename": ""})
 
-    return md("$$ \\Huge {} $$".format(latex_prediction))
+    if len(latex_return) > 0:
+        latex_prediction = latex_return["latex"][0]
+        latex_raw = " $ {latex_prediction} $ ".format(latex_prediction=latex_prediction)
+        print("Raw LaTeX Prediction: ", latex_raw)
+        print("\n\n")
+
+        return md("$$ \\Large {} $$".format(latex_prediction))
+
+    return
 
 
 if __name__ == "__main__":
-    mathcanvas()
+    mathnote()

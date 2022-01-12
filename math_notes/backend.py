@@ -1,48 +1,65 @@
-import os
-import shutil
 import base64
 from pathlib import Path
-import logging
 
-import csv
-from tkinter import Label, filedialog
-
+import pandas as pd
+from tkinter import filedialog
 from PIL import Image
 
 from math_notes import predict
 
 
-def _browse_files(filename):
-    """Opens a file system dialogue allowing a user to specify a file to send to the prediction service.
-    Sets some parameters for the filename dictionary.
+def _browse_files(filename, text=""):
+    """Opens a file system dialogue allowing a user to specify a file
+    to send to the prediction service. Sets some parameters for the
+    filename dictionary. Updates the text displayed with the chosen filename.
 
     :param filename: A dictionary of filename parameters
     for saving or supporting running predictions for the math canvas.
     :type filename: dictionary
 
+    :param text: String variable object to display prediction result on canvas.
+    :type text: tkinter StringVar object
+
     :return: none
     :rtype: none
     """
 
-    init_browse_dir = os.getcwd()
+    new_text = ""
+
+    init_browse_dir = Path.cwd()
     filename["filename"] = {}.get(filename["filename"], "")
     filename["filename"] = filedialog.askopenfilename(
         initialdir=init_browse_dir,
         title="Select a File",
-        filetypes=(
-            ("png files", ".png"),
-            ("jpg files", ".jpg"),
-            ("all files", "*.*"),
-        ),
+        filetypes=(("png files", ".png"), ("jpg files", ".jpg"), ("all files", "*.*")),
     )
 
     if filename["filename"] != "":
-        text = "filename = " + filename["filename"]
+        new_text = "File Chosen: " + filename["filename"]
     else:
-        text = "No file selected."
+        new_text = "File Chosen: No file selected."
 
-    text = Label(text=text, font=("helvetica", 18))
-    text.grid(row=15, column=0)
+    _update_prediction_label(text, new_text)
+
+
+def _delete_folder(path):
+    """Delete a directory
+
+    :param path: Path do remove.
+    :type path: pathlib.Path()
+
+    :return: none
+    :rtype: none
+    """
+
+    # Remove files and files in subdirectories.
+    for sub in path.iterdir():
+        if sub.is_dir():
+            # Recursive call, DFS.
+            _delete_folder(sub)
+        else:
+            sub.unlink()
+    path.rmdir()
 
 
 def _save_predictions(predictions, filename="cv_predict.csv"):
@@ -54,29 +71,33 @@ def _save_predictions(predictions, filename="cv_predict.csv"):
     :return: none
     :rtype: none
     """
+
     path = Path("math_notes/predictions/")
-    if not os.path.isdir(path):
-        os.mkdir(path)
+    if not path.exists():
+        path.mkdir()
 
     saveas = path / filename
 
     headers = ["latex"]
     data = predictions
-    with open(saveas, "w", newline="") as file:
-        writer = csv.writer(file, delimiter=",")
-        writer.writerow(headers)
-        for i in range(len(data)):
-            latex = data[i]
-            writer.writerow([latex])
-    file.close()
+
+    df = pd.DataFrame(data=data, columns=headers)
+    df.to_csv(saveas, index=False)
 
 
 def _update_prediction_label(text, new_text):
     """Update the text label of the label on the tkinter window.
 
+    :param text: String variable object to display on the canvas.
+    :type text: tkinter StringVar object
+
+    :param new_text: Text to modify object text with.
+    :type new_text: str
+
     :return: none
     :rtype: none
     """
+
     if not text == "":
         text.set(new_text)
 
@@ -92,9 +113,9 @@ def _save_canvas_temp(canvas_image):
     """
 
     directory = Path("math_notes/temp_files/")
-    isExist = os.path.exists(directory)
+    isExist = directory.exists()
     if not isExist:
-        os.makedirs(directory)
+        directory.mkdir()
 
     filename_temp = "temp_saved_canvas.png"
 
@@ -110,15 +131,19 @@ def _ocr_request_button(
     test_mode=False,
     text="",
 ):
-    """Calls the prediction service using the given filename in the temp_files directory.
+    """Calls the prediction service using the given filename in
+    the temp_files directory.
 
-    :param filename: Dictionary with the filename image location to be sent to the API.
+    :param filename: Dictionary with the filename image location for the API.
     :type filename: dict of str
 
-    :param test_mode: Boolean for testing mode. Use
-    'True' in test_mode to avoid pinging the API
-    unnecessary multiple costs.
+    :param test_mode: Boolean for testing mode. Use 'True' in
+    test_mode to avoid pinging the API for costs.
     :type test_mode: Bool
+
+    :param text: String variable object to display prediction result
+    on canvas.
+    :type text: tk.StringVar object
 
     :return: none
     :rtype: none
@@ -130,7 +155,6 @@ def _ocr_request_button(
     # Force saving a canvas if a file wasn't selected by the browser.
     if filename["filename"] == "":
         filename_temp = _save_canvas_temp(canvas_image)
-
         filepath = Path("./math_notes/temp_files/") / filename_temp
 
     image_uri = (
@@ -145,11 +169,9 @@ def _ocr_request_button(
         latex_return = ["x"]
 
     # Remove the temporary directory for storing the canvas image.
-    try:
-        mydir = Path("./math_notes/temp_files/")
-        shutil.rmtree(mydir)
-    except OSError as e:
-        logging.error("Error: %s - %s." % (e.filename, e.strerror))
+    temp_predict_path = Path("./math_notes/temp_files/")
+    if temp_predict_path.exists():
+        _delete_folder(temp_predict_path)
 
     _save_predictions(latex_return)
 
@@ -159,10 +181,10 @@ def _ocr_request_button(
 
 
 def _quit(root):
-    """Closes down the canvas.
+    """Closes the canvas.
 
     :return: none
     :rtype: none
     """
 
-    root.destroy()
+    root.after(2, root.destroy())
