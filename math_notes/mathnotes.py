@@ -1,14 +1,11 @@
 from pathlib import Path
 
 import pandas as pd
-
 from IPython.core.magic import register_line_magic
 from IPython.display import Markdown as md
-
 import tkinter as tk
 from tkinter import Tk, Canvas, Button
 import tkinter.font as font
-
 from PIL import ImageDraw, Image
 
 from math_notes import backend as be
@@ -132,7 +129,9 @@ def open_canvas(
     canvas.bind("<B1-Motion>", _add_line)
 
     # Labels for showing prediction and/or chosen file.
-    pred_label = tk.Label(root, textvariable=pred_result_text, font=("helvetica", 18))
+    predidction_label = tk.Label(
+        root, textvariable=pred_result_text, font=("helvetica", 18)
+    )
 
     file_select_label = tk.Label(
         root, textvariable=file_select_text, font=("helvetica", 18)
@@ -144,25 +143,36 @@ def open_canvas(
 
     button_explore = Button(
         root,
-        text="Select a file",
+        text="Select an image file",
         command=lambda: be._browse_files(filename, text=file_select_text),
         height="2",
-        width="12",
+        padx=5,
+        pady=2,
         font=myFont,
     )
 
     button_predict = Button(
+        root,
         text="Predict LaTeX!",
         command=lambda: be._ocr_request_button(
             filename, canvas_image=canvas_image, text=pred_result_text
         ),
         height="2",
         width="12",
+        padx=5,
+        pady=2,
         font=myFont,
     )
 
     button_quit = Button(
-        text="Quit", command=lambda: be._quit(root), height="2", width="12", font=myFont
+        root,
+        text="Quit",
+        command=lambda: be._quit(root),
+        height="2",
+        width="12",
+        padx=5,
+        pady=2,
+        font=myFont,
     )
 
     # Widget locations.
@@ -170,7 +180,7 @@ def open_canvas(
     button_predict.grid(row=1, column=0)
     button_explore.grid(row=1, column=1)
     button_quit.grid(row=1, column=2)
-    pred_label.grid(row=2, column=1, pady=10)
+    predidction_label.grid(row=2, column=1, pady=10)
     file_select_label.grid(row=3, column=1, pady=10)
 
     # Execute tkinter commands.
@@ -180,7 +190,7 @@ def open_canvas(
 
 
 @register_line_magic
-def mn(line):
+def mathnote(line):
 
     filename = {"filename": ""}
 
@@ -208,4 +218,4 @@ def mn(line):
 
 
 if __name__ == "__main__":
-    mn()
+    mathnote()

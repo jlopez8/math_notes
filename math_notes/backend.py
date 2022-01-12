@@ -2,17 +2,16 @@ import base64
 from pathlib import Path
 
 import pandas as pd
-
 from tkinter import filedialog
-
 from PIL import Image
 
 from math_notes import predict
 
 
 def _browse_files(filename, text=""):
-    """Opens a file system dialogue allowing a user to specify a file to send to the prediction service.
-    Sets some parameters for the filename dictionary. Updates the text displayed with the chosen filename.
+    """Opens a file system dialogue allowing a user to specify a file
+    to send to the prediction service. Sets some parameters for the
+    filename dictionary. Updates the text displayed with the chosen filename.
 
     :param filename: A dictionary of filename parameters
     for saving or supporting running predictions for the math canvas.
@@ -136,17 +135,18 @@ def _ocr_request_button(
     test_mode=False,
     text="",
 ):
-    """Calls the prediction service using the given filename in the temp_files directory.
+    """Calls the prediction service using the given filename in
+    the temp_files directory.
 
-    :param filename: Dictionary with the filename image location to be sent to the API.
+    :param filename: Dictionary with the filename image location for the API.
     :type filename: dict of str
 
-    :param test_mode: Boolean for testing mode. Use
-    'True' in test_mode to avoid pinging the API
-    unnecessary multiple costs.
+    :param test_mode: Boolean for testing mode. Use 'True' in
+    test_mode to avoid pinging the API for costs.
     :type test_mode: Bool
 
-    :param text: String variable object to display prediction result on canvas.
+    :param text: String variable object to display prediction result
+    on canvas.
     :type text: tk.StringVar object
 
     :return: none
@@ -185,7 +185,7 @@ def _ocr_request_button(
 
 
 def _quit(root):
-    """Closes down the canvas.
+    """Closes the canvas.
 
     :return: none
     :rtype: none
